@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+$body__bg-color: rgb(221, 234, 238);;
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+@import "~font-awesome/css/font-awesome.css";
+
+.cursor-click { cursor: pointer; };
+
+body {
+    margin-bottom: -20px;
+}
+
+.app-footer {
+    height: 20px;
+}
+
+.fa__icon__black {
+    color:black;
+}
+
+.img__medium {
+    width: 50%
+}
+
+html {
+    min-height: 100%;
+    background-color: $body__bg-color;
+}
+
+body {
+    background-color: $body__bg-color;
+}
+
+.img-flag {
+    width:20px;
+    height:15px;
+  }

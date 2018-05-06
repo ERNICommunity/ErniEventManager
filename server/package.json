@@ -1,0 +1,53 @@
+{
+  "name": "erni-event-manager-server",
+  "version": "0.1.0",
+  "description": "Application to manage erni events",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "start": "node ./dist/express.bundle.js",
+    "build": "webpack",
+    "watch": "npm-run-all clean build --parallel watch:server watch:build --print-label",
+    "watch:build": "webpack --watch",
+    "watch:server": "nodemon  --inspect=3000 ./dist/express.bundle.js --watch ./dist --on-change-only"
+  },
+  "author": "Erni",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "compression": "^1.7.1",
+    "cookie-parser": "~1.4.3",
+    "dotenv": "^2.0.0",
+    "express": "~4.15.5",
+    "mongoose": "^5.0.1",
+    "morgan": "^1.9.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "rxjs": "^5.5.2",
+    "serve-favicon": "^2.4.5"
+  },
+  "devDependencies": {
+    "@types/async": "^2.0.45",
+    "@types/body-parser": "^1.16.8",
+    "@types/cheerio": "^0.22.6",
+    "@types/connect-mongo": "0.0.34",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/dotenv": "^4.0.2",
+    "@types/errorhandler": "0.0.32",
+    "@types/express": "^4.0.39",
+    "@types/express-session": "^1.15.6",
+    "@types/jasmine": "~2.8.3",
+    "@types/jasminewd2": "~2.0.2",
+    "@types/mongodb": "^2.2.17",
+    "@types/mongoose": "^4.7.29",
+    "@types/node": "^6.0.93",
+    "@types/request": "^2.0.9",
+    "nodemon": "^1.12.7",
+    "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^3.3.0",
+    "typescript": "~2.5.3",
+    "webpack": "~3.10.0",
+    "webpack-node-externals": "^1.6.0"
+  }
+}

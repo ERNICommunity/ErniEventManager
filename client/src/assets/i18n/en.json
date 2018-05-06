@@ -1,0 +1,15 @@
+{
+    "CANCEL": "Cancel",
+    "CREATE": "Create",
+    "DESCRIPTION": "Description",
+    "EDIT": "Edit",
+    "ERNI_EVENT_MANAGER": "ERNI EVENT MANAGER",
+    "EVENT": "Event",
+    "EVENT_LIST": "Events List",
+    "HOME": "Home",
+    "INSERT_EVENT_DESCRIPTION": "Insert event description",
+    "INSERT_EVENT_NAME": "Insert event name",
+    "MY_EVENTS" : "My Events",
+    "NAME": "Name"
+    
+}

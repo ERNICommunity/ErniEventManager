@@ -1,0 +1,14 @@
+<section class="row mt-2 mb-2" >
+  <div class="col-sm-12">
+    <div class="card mx-auto">
+      <div class="card-header">
+          <i class="pull-left fa fa-trash cursor-click" (click)="deleteEvent()"></i>
+          <i class="pull-left fa fa-edit cursor-click" (click)="editEvent()"></i>
+        <small class="pull-left"><span [innerHtml]="'EVENT' | translate"></span> - {{event.name}}</small>
+      </div>
+      <div class="card-body">
+        <p class="card-text" [innerHTML]=event.description></p>
+      </div>
+    </div>
+  </div>
+</section>

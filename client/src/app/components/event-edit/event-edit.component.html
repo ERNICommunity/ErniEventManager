@@ -1,0 +1,17 @@
+<form #eventForm="ngForm">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="formGroupInput" class="form-control-label" [innerHtml]="'NAME' | translate"></label>
+      <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_EVENT_NAME' | translate }}" name="group" [(ngModel)]="event.name"
+            required minlength="5" maxlength="140" [disabled]="!isCreate">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="formDescInput" [innerHtml]="'DESCRIPTION' | translate"></label>
+      <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' | translate }}" 
+            name="description" [(ngModel)]="event.description"></textarea>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="cancel()" [innerHtml]="'CANCEL' | translate"></button>
+    <button type="button" *ngIf="isCreate" class="btn btn-primary" (click)="create()" [disabled]="!eventForm.form.valid" [innerHtml]="'CREATE' | translate"></button>
+    <button type="button" *ngIf="!isCreate" class="btn btn-primary" (click)="edit()" [disabled]="!eventForm.form.valid" [innerHtml]="'EDIT' | translate"></button>
+  </div>
+</form>
