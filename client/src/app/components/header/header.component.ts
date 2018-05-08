@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   switchLanguage(language: string) {
     this.translate.use(language);
+    localStorage.setItem('erniEventManager', language);
   }
 
 }
