@@ -30,7 +30,7 @@ export class EventEditComponent implements OnInit {
         }).
         catch((reason) => {
           this.router.navigate(['/']);
-        })
+        });
       this.isCreate = false;
     }
   }
@@ -42,7 +42,7 @@ export class EventEditComponent implements OnInit {
       })
       .catch((reason) => {
         console.log('Following error appeared: ', reason);
-      })
+      });
   }
 
   edit() {
@@ -52,7 +52,7 @@ export class EventEditComponent implements OnInit {
       })
       .catch((reason) => {
         console.log('Following error appeared: ', reason);
-      })
+      });
   }
 
   cancel() {

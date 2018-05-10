@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "watch": "ng serve",
     "build": "ng build --prod",
+    "tslint": "node node_modules/tslint/bin/tslint --project .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

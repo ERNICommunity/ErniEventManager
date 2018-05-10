@@ -9,7 +9,7 @@ export class IEventSchema {
     name: string;
     type: string;
     state: String;
-    startDate: Date;
+    startDate?: Date;
     endDate: Date;
     location: IEventLocation;
     description?: string;
@@ -35,7 +35,7 @@ export class IEventSchema {
 
 export class IFindOption {
     owner?: string;
-    editors? : string;
-    participants? : string;
+    editors?: string;
+    participants?: string;
     _id?: string;
 }

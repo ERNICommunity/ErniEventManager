@@ -1,4 +1,4 @@
-import { Response, Request, NextFunction } from "express";
+import { Response, Request, NextFunction } from 'express';
 export const handleError = (res: Response) => {
     return (err: string) => {
         res.status(404).json({ err });

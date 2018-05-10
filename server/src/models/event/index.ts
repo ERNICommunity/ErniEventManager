@@ -1,9 +1,8 @@
 import * as express from 'express';
-import { Router } from "express";
 const eventController = require('./event.controller');
 
 class EventRoute {
-    public router: Router;
+    public router: express.Router;
 
     constructor() {
         this.router = express.Router();
