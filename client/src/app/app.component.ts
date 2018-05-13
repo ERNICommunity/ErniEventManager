@@ -7,13 +7,13 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   private defaultLanguage = 'en';
   constructor(
     private translate: TranslateService
   ) {
     translate.setDefaultLang(this.defaultLanguage);
-    const eem = localStorage.getItem("erniEventManager");
+    const eem = localStorage.getItem('erniEventManager');
     if (eem) {
       translate.use(eem);
     } else {

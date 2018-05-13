@@ -1,7 +1,7 @@
-import { default as EventModel } from "./event.model";
-import { respondSuccess, handleError, allowedEventFields, pickProps, paginateProps } from "../../utils";
-import { IEventSchema, IFindOption } from "../../interfaces";
-import { Response, Request, NextFunction } from "express";
+import { default as EventModel } from './event.model';
+import { respondSuccess, handleError, allowedEventFields, pickProps, paginateProps } from '../../utils';
+import { IEventSchema, IFindOption } from '../../interfaces';
+import { Response, Request, NextFunction } from 'express';
 
 const EventController: any = {
     create: async (req: Request, res: Response, next: NextFunction) => {
@@ -12,7 +12,7 @@ const EventController: any = {
                 const event = await EventModel.findById(eventData._id, allowedEventFields);
                 return respondSuccess(res, [])(event);
             }
-            throw "Problem with creating event";
+            throw new Error('Problem with creating event');
         } catch (err) {
             return handleError(res)(err);
         }
@@ -24,7 +24,7 @@ const EventController: any = {
             if (event) {
                 return respondSuccess(res, [])(event);
             }
-            throw "Unable to find event";
+            throw new Error('Unable to find event');
         } catch (err) {
             return handleError(res)(err);
         }
@@ -42,15 +42,14 @@ const EventController: any = {
     update: async function (req: Request, res: Response, next: NextFunction) {
         try {
             const { eventData } = req.body;
-
             if (await EventModel.findById(eventData._id)) {
                 if (await EventModel.findByIdAndUpdate(eventData._id, eventData, { upsert: true })) {
                     const event = await EventModel.findById(eventData._id, allowedEventFields);
                     return respondSuccess(res, [])(event);
                 }
-                throw "Problem with updating event";
+                throw new Error('Problem with updating event');
             }
-            throw "Event not found";
+            throw new Error('Event not found');
         } catch (err) {
             return handleError(res)(err);
         }
@@ -64,9 +63,9 @@ const EventController: any = {
                     const eventResponse = await EventController.queryDataPaginated(paginated);
                     return respondSuccess(res, [])(eventResponse);
                 }
-                throw "Problem with deleting event";
+                throw new Error('Problem with deleting event');
             }
-            throw "You are not allowed to delete this entry";
+            throw new Error ('You are not allowed to delete this entry');
         } catch (err) {
             return handleError(res)(err);
         }
@@ -74,27 +73,27 @@ const EventController: any = {
 
     queryDataPaginated: async (filterInfo: any, reqUser: string, isAdmin: boolean) => {
         try {
-            let { filter, size, index, sort, qi } = filterInfo;
+            let { filter, size, index, sort} = filterInfo;
             if (!filter) {
                 filter = {};
             }
-            size = size | 10;
-            index = index | 0;
-            sort = sort | <any>{ way: '', field: 'date' };
+            size = (typeof size === 'number' && size > 0) ? size : 10;
+            index = (typeof index === 'number') ? index : 0;
+            sort = (typeof sort === 'undefined') ? sort : <any>{ way: '', field: 'date' };
             const mongoFilter: any = {};
             let counter = 10;
-            for (const property in filter) {
+            for (const property of Object.keys(filter)) {
                 const propValue = filter[property];
                 if (counter-- < 0) {
-                    throw "Too many properties";
+                    throw new Error('Too many properties');
                 } else if (propValue === undefined) {
                     continue;
-                } else if (typeof (propValue) === "number") {
+                } else if (typeof (propValue) === 'number') {
                     mongoFilter[property] = propValue;
-                } else if (typeof (propValue) === "string") {
+                } else if (typeof (propValue) === 'string') {
                     mongoFilter[property] = `/.*${propValue}*/i`;
                 }
-            };
+            }
             const list = await EventModel.find(mongoFilter, allowedEventFields)
                 .skip(size * index)
                 .limit(size)
@@ -104,7 +103,7 @@ const EventController: any = {
             return {
                 list,
                 length,
-                qi
+                qi: filterInfo.qi
             };
         } catch (err) {
             throw err;

@@ -19,7 +19,7 @@ export class EventListComponent implements OnInit {
     [5, 10, 25, 100],
     0,
     {},
-    { field: "name", way: "" },
+    { field: 'name', way: '' },
     {}
   );
   constructor(

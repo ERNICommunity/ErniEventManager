@@ -4,7 +4,7 @@ export class IPaginator {
     index: number | undefined;
     filter: any;
     sort: ISort | undefined;
-    qi: string | undefined;     //queryIndex
+    qi: string | undefined;     // queryIndex
     exactFilter: any;
 
     constructor() {
