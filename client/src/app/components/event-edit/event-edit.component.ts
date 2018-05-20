@@ -25,34 +25,38 @@ export class EventEditComponent implements OnInit {
       this.isCreate = true;
     } else {
       this.eventService.getEvent(this.route.snapshot.params['id'])
-        .then((event) => {
+        .subscribe((event) => {
           this.event = event;
-        }).
-        catch((reason) => {
+        },
+        (reason) => {
           this.router.navigate(['/']);
-        });
+        }
+      );
       this.isCreate = false;
     }
   }
 
   create() {
     this.eventService.createEvent(this.event)
-      .then((event) => {
-        this.router.navigate(['/']);
-      })
-      .catch((reason) => {
-        console.log('Following error appeared: ', reason);
-      });
+      .subscribe(
+        (event) => {
+          this.router.navigate(['/']); // success path
+        },
+        (error) => {
+          console.log('Following error appeared: ', error);
+        }
+      );
   }
 
   edit() {
     this.eventService.editEvent(this.route.snapshot.params['id'], this.event)
-      .then((event) => {
+      .subscribe((event) => {
         this.router.navigate(['/']);
-      })
-      .catch((reason) => {
+      },
+      (reason) => {
         console.log('Following error appeared: ', reason);
-      });
+      }
+    );
   }
 
   cancel() {

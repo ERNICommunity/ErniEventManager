@@ -31,17 +31,18 @@ export class EventListComponent implements OnInit {
   ngOnInit() {
     this.retreiveData = true;
     this.eventService.queryEventsPaginated(this.paginator)
-      .then((eventRes: IEventResponse) => {
+      .subscribe((eventRes: IEventResponse) => {
         if (eventRes.qi === this.paginator.qi) {
           this.retreiveData = false;
           this.paginator.length = eventRes.length;
           this.events = eventRes.list;
         }
-      })
-      .catch((reason) => {
+      },
+      (reason) => {
         this.displayError(reason);
         this.retreiveData = false;
-      });
+      }
+    );
   }
 
   openEvent(event: string) {
@@ -50,17 +51,18 @@ export class EventListComponent implements OnInit {
 
   deleteEvent(event: IEventSchema) {
     this.eventService.deleteEvent(event, this.paginator)
-      .then((eventRes: IEventResponse) => {
+      .subscribe((eventRes: IEventResponse) => {
         if (eventRes.qi === this.paginator.qi) {
           this.retreiveData = false;
           this.paginator.length = eventRes.length;
           this.events = eventRes.list;
         }
-      })
-      .catch((reason) => {
+      },
+      (reason) => {
         this.displayError(reason);
         this.retreiveData = false;
-      });
+      }
+    );
   }
 
   create() {

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
 import { HttpClient} from '@angular/common/http';
 import { IEventSchema, IEventRequest, IEventResponse, IPaginator } from '../../interfaces';
-import { parseResponse, parseResponsePaginated, preparePaginator } from '../../utils';
+import { parseResponse, parseResponsePaginated, preparePaginator, handleError } from '../../utils';
 
 @Injectable()
 export class EventService {
@@ -12,58 +14,49 @@ export class EventService {
   constructor(private httpClient: HttpClient) {
   }
 
-  createEvent = (eventData: IEventSchema): Promise<IEventSchema> => {
+  createEvent = (eventData: IEventSchema): Observable<IEventSchema> => {
     return this.httpClient.post(`${environment.serverPath}${this.eventPath}`, { eventData })
-      .toPromise()
-      .then(parseResponse)
-      .catch((reason) => {
-        return Promise.reject(reason);
-      });
+      .pipe(
+        catchError(handleError)
+      );
   }
 
-  getEvent = (id: string): Promise<IEventSchema> => {
+  getEvent = (id: string): Observable<IEventSchema> => {
     return this.httpClient.get(`${environment.serverPath}${this.eventPath}/${id}`)
-      .toPromise()
-      .then(parseResponse)
-      .catch((reason) => {
-        return Promise.reject(reason);
-      });
+      .pipe(
+        catchError(handleError)
+      );
   }
 
-  queryEventsPaginated = (paginator: IPaginator): Promise<IEventResponse> => {
+  queryEventsPaginated = (paginator: IPaginator): Observable<IEventResponse> => {
     // paginator.exactFilter.group = eventName;
     return this.httpClient.get(`${environment.serverPath}${this.eventPath}`, {
       params: {
         ...preparePaginator(paginator)
       }
-    }).toPromise()
-      .then((parseResponsePaginated))
-      .catch((reason) => {
-        return Promise.reject(reason);
-      });
+    })
+      .pipe(
+        catchError(handleError)
+      );
   }
 
-  editEvent = (id: string, eventData: IEventSchema): Promise<IEventSchema> => {
+  editEvent = (id: string, eventData: IEventSchema): Observable<IEventSchema> => {
     return this.httpClient.put(`${environment.serverPath}${this.eventPath}/${id}`, { eventData })
-      .toPromise()
-      .then(parseResponse)
-      .catch((reason) => {
-        return Promise.reject(reason);
-      });
+      .pipe(
+        catchError(handleError)
+      );
   }
 
-  deleteEvent = (eventData: IEventSchema, paginated: IPaginator): Promise<IEventResponse> => {
+  deleteEvent = (eventData: IEventSchema, paginated: IPaginator): Observable<IEventResponse> => {
     return this.httpClient.delete(`${environment.serverPath}${this.eventPath}/${eventData._id}`,
     {
       params: {
         ...preparePaginator(paginated)
       }
    })
-      .toPromise()
-      .then(parseResponsePaginated)
-      .catch((reason) => {
-        return Promise.reject(reason);
-      });
+    .pipe(
+      catchError(handleError)
+    );
   }
 
 }
