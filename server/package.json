@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "start": "node ./dist/express.bundle.js",
+    "tslint": "node node_modules/tslint/bin/tslint --project .",
     "build": "webpack",
     "watch": "npm-run-all clean build --parallel watch:server watch:build --print-label",
     "watch:build": "webpack --watch",
@@ -45,6 +46,7 @@
     "nodemon": "^1.12.7",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2",
+    "tslint": "~5.9.1",
     "ts-loader": "^3.3.0",
     "typescript": "~2.5.3",
     "webpack": "~3.10.0",

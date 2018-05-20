@@ -2,7 +2,7 @@ import * as express from 'express';
 // import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as session from 'express-session';
-import * as logger from "morgan";
+import * as logger from 'morgan';
 import * as path from 'path';
 import * as mongo from 'connect-mongo';
 import * as mongoose from 'mongoose';
@@ -55,16 +55,16 @@ class App {
   }
 
   private mountRoutes(): void {
-    console.log('isProduction: ',isProduction);
+    console.log('isProduction: ', isProduction);
     this.app.use(function(req: Request, res: Response, next: NextFunction) {
       if (!isProduction) {
-        res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
       }
       next();
     });
- 
+
     this.app.use('/api', api);
     this.app.use(function (req: Request, res: Response) {
       const error: Error = new Error('Not Found');

@@ -20,7 +20,7 @@ class ApiRoute {
         // Responds request with 200 & the json inside of it
         // res.json({message: 'Middleware responds'});
         // You can also set the response code.
-        //res.status(404).json({message: 'we returned 404'});
+        // res.status(404).json({message: 'we returned 404'});
     }
 
     getEmpty(req: Request, res: Response, next: NextFunction) {

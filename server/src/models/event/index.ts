@@ -13,7 +13,7 @@ class EventRouter extends GeneralRouter {
 
     async getParticipants(params: any) {
         let event = await this.model.findById(params.id)
-        return event ? event.participants: null; 
+        return event ? event.participants: null;
     }
 }
 
