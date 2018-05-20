@@ -46,7 +46,7 @@ export class EventEditComponent implements OnInit {
   }
 
   edit() {
-    this.eventService.editEvent(this.event)
+    this.eventService.editEvent(this.route.snapshot.params['id'], this.event)
       .then((event) => {
         this.router.navigate(['/']);
       })

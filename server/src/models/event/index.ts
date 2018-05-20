@@ -8,10 +8,10 @@ class EventRoute {
         this.router = express.Router();
 
         this.router.get('/:id', eventController.get);
-        this.router.post('/create', eventController.create);
-        this.router.post('/filters', eventController.queryPaginated);
-        this.router.put('/update', eventController.update);
-        this.router.post('/delete', eventController.delete);
+        this.router.post('', eventController.create);
+        this.router.get('', eventController.queryPaginated);
+        this.router.put('/:id', eventController.update);
+        this.router.delete('/:id', eventController.delete);
     }
 
 }

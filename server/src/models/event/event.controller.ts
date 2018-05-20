@@ -32,7 +32,7 @@ const EventController: any = {
 
     queryPaginated: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const eventResponse = await EventController.queryDataPaginated(req.body);
+            const eventResponse = await EventController.queryDataPaginated(req.query);
             return respondSuccess(res, [])(eventResponse);
         } catch (err) {
             return handleError(res)(err);
@@ -41,10 +41,12 @@ const EventController: any = {
 
     update: async function (req: Request, res: Response, next: NextFunction) {
         try {
+            const { id } = req.params;
             const { eventData } = req.body;
-            if (await EventModel.findById(eventData._id)) {
-                if (await EventModel.findByIdAndUpdate(eventData._id, eventData, { upsert: true })) {
-                    const event = await EventModel.findById(eventData._id, allowedEventFields);
+            delete eventData._id;
+            if (await EventModel.findById(id)) {
+                if (await EventModel.findByIdAndUpdate(id, eventData, { upsert: true })) {
+                    const event = await EventModel.findById(id, allowedEventFields);
                     return respondSuccess(res, [])(event);
                 }
                 throw new Error('Problem with updating event');
@@ -57,9 +59,11 @@ const EventController: any = {
 
     delete: async function (req: Request, res: Response, next: NextFunction) {
         try {
-            const { paginated, eventData} = req.body;
-            if (await EventModel.findById(eventData._id)) {
-                if (await EventModel.findOneAndRemove(eventData._id)) {
+            const { id } = req.params;
+
+            const paginated = req.query;
+            if (await EventModel.findById(id)) {
+                if (await EventModel.findByIdAndRemove(id)) {
                     const eventResponse = await EventController.queryDataPaginated(paginated);
                     return respondSuccess(res, [])(eventResponse);
                 }
@@ -74,12 +78,24 @@ const EventController: any = {
     queryDataPaginated: async (filterInfo: any, reqUser: string, isAdmin: boolean) => {
         try {
             let { filter, size, index, sort} = filterInfo;
-            if (!filter) {
-                filter = {};
-            }
+            delete filterInfo.size;
+            delete filterInfo.index;
             size = (typeof size === 'number' && size > 0) ? size : 10;
             index = (typeof index === 'number') ? index : 0;
-            sort = (typeof sort === 'undefined') ? sort : <any>{ way: '', field: 'date' };
+            sort = (typeof sort !== 'undefined') ? sort : <any>{ way: '', field: 'date' };
+            filter = {};
+            for (const key of Object.keys(filterInfo)) {
+                switch (key) {
+                    case 'qi':
+                        break;
+                    case 'way':
+                    case 'field':
+                        sort[key] = filterInfo[key];
+                        break;
+                    default:
+                        filter[key] = filterInfo[key];
+                }
+            }
             const mongoFilter: any = {};
             let counter = 10;
             for (const property of Object.keys(filter)) {
