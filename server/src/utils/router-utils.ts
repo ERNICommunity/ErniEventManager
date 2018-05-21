@@ -6,6 +6,7 @@ import { Response, Request, NextFunction } from "express";
 interface GeneralRouter {
     router: Router,
     model: Model<any>,
+    controller: any,
     [propName: string]: Function
 }
 
@@ -13,37 +14,40 @@ class GeneralRouter {
     public router: Router;
     public model: Model<any>;
 
-    constructor(Model: Model<any>) {
+    constructor(Model: Model<any>, Controller: any) {
         this.router = express.Router();
         this.model = Model;
+        this.controller = Controller;
 
         this.router.get('/', async (req: Request, res: Response, next?: NextFunction) => this.handleRoute(req, res, 'getAll', true));
+        this.router.get('/:id', async (req: Request, res: Response, next?: NextFunction) => this.handleRoute(req, res, 'get', false));
         //this.router.post('/', this.create(Model));
         //this.router.get('/:id', this.get(Model));
         //this.router.post('/:id', this.update(Model));
+        //this.router.delete('/:id', this.update(Model));
 
     }
+    
     async getAll(params: Object) {
-        try{
-            let result = await this.model.find({}).exec();
-            return result;
-        }
-        catch(err) {
-            return err;
-        }
+        let result = await this.model.find({}).exec();
+        return result;
     }
 
     getParams(req: Request) {
         const params = req.params;
         const query = req.query;
-        Object.assign(params, query);
-        return params;
+        const body = req.body;
+        return Object.assign({}, params, query, body);
     }
 
     async handleRoute(req: Request, res: Response, method: string, array: boolean) {
         let result;
         try {
-             result = await this[method](this.getParams, req)
+            if(typeof this.controller[method] !== 'function') {
+                throw new Error(`Unknown method: ${method}`);
+            }
+            
+            result = await this.controller[method](this.getParams(req));
         }
         catch(err) {
             return res.status(500).json({error: err.message});

@@ -4,75 +4,61 @@ import { IEventSchema, IFindOption } from '../../interfaces';
 import { Response, Request, NextFunction } from 'express';
 
 const EventController: any = {
-    create: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const { eventData } = req.body;
-            const newEvent = new EventModel(eventData);
-            if (await EventModel.create(newEvent)) {
-                const event = await EventModel.findById(eventData._id, allowedEventFields);
-                return respondSuccess(res, [])(event);
-            }
-            throw new Error('Problem with creating event');
-        } catch (err) {
-            return handleError(res)(err);
+    create: async (params: any) => {
+        const newEvent = new EventModel(params);
+        if (await EventModel.create(newEvent)) {
+            const event = await EventModel.findById(params._id, allowedEventFields);
+            return event;
+        }
+        throw new Error('Problem with creating event');
+        
+    },
+
+    get: async (params: any) => {
+        const event = await EventModel.findById(params.id, allowedEventFields);
+        if (event) {
+            return event;
+        }
+        throw new Error('Unable to find event');
+    },
+
+    getParticipants: async (params: any) => {
+        const event = await EventModel.findById(params.id);
+        if (event) {
+            return event.participants;
         }
     },
 
-    get: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const event = await EventModel.findById(req.params.id, allowedEventFields);
-            if (event) {
-                return respondSuccess(res, [])(event);
-            }
-            throw new Error('Unable to find event');
-        } catch (err) {
-            return handleError(res)(err);
-        }
+    getAll: async (params: any) => {
+        const eventResponse = await EventController.queryDataPaginated(params);
+        return eventResponse;
     },
 
-    queryPaginated: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const eventResponse = await EventController.queryDataPaginated(req.query);
-            return respondSuccess(res, [])(eventResponse);
-        } catch (err) {
-            return handleError(res)(err);
+    update: async function (params: any) {
+        const { id } = params;
+        const { eventData } = params;
+        delete eventData._id;
+        if (await EventModel.findById(id)) {
+            if (await EventModel.findByIdAndUpdate(id, eventData, { upsert: true })) {
+                const event = await EventModel.findById(id, allowedEventFields);
+                return event;
+            }
+            throw new Error('Problem with updating event');
         }
+        throw new Error('Event not found');
     },
 
-    update: async function (req: Request, res: Response, next: NextFunction) {
-        try {
-            const { id } = req.params;
-            const { eventData } = req.body;
-            delete eventData._id;
-            if (await EventModel.findById(id)) {
-                if (await EventModel.findByIdAndUpdate(id, eventData, { upsert: true })) {
-                    const event = await EventModel.findById(id, allowedEventFields);
-                    return respondSuccess(res, [])(event);
-                }
-                throw new Error('Problem with updating event');
+    delete: async function (params: any) {
+        const { id } = params;
+        const paginated = params;
+        if (await EventModel.findById(id)) {
+            if (await EventModel.findByIdAndRemove(id)) {
+                const eventResponse = await EventController.queryDataPaginated(paginated);
+                return eventResponse;
             }
-            throw new Error('Event not found');
-        } catch (err) {
-            return handleError(res)(err);
+            throw new Error('Problem with deleting event');
         }
-    },
-
-    delete: async function (req: Request, res: Response, next: NextFunction) {
-        try {
-            const { id } = req.params;
-
-            const paginated = req.query;
-            if (await EventModel.findById(id)) {
-                if (await EventModel.findByIdAndRemove(id)) {
-                    const eventResponse = await EventController.queryDataPaginated(paginated);
-                    return respondSuccess(res, [])(eventResponse);
-                }
-                throw new Error('Problem with deleting event');
-            }
-            throw new Error ('You are not allowed to delete this entry');
-        } catch (err) {
-            return handleError(res)(err);
-        }
+        throw new Error ('You are not allowed to delete this entry');
     },
 
     queryDataPaginated: async (filterInfo: any, reqUser: string, isAdmin: boolean) => {
