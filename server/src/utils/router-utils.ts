@@ -21,10 +21,9 @@ class GeneralRouter {
 
         this.router.get('/', async (req: Request, res: Response, next?: NextFunction) => this.handleRoute(req, res, 'getAll', true));
         this.router.get('/:id', async (req: Request, res: Response, next?: NextFunction) => this.handleRoute(req, res, 'get', false));
-        //this.router.post('/', this.create(Model));
-        //this.router.get('/:id', this.get(Model));
-        //this.router.post('/:id', this.update(Model));
-        //this.router.delete('/:id', this.update(Model));
+        this.router.post('/', async (req: Request, res: Response, next?: NextFunction) => this.handleRoute(req, res, 'create', false));
+        this.router.put('/:id', async (req: Request, res: Response, next?: NextFunction) => this.handleRoute(req, res, 'update', false));
+        this.router.delete('/:id', async (req: Request, res: Response, next?: NextFunction) => this.handleRoute(req, res, 'delete', false));
 
     }
     
@@ -36,7 +35,7 @@ class GeneralRouter {
     getParams(req: Request) {
         const params = req.params;
         const query = req.query;
-        const body = req.body;
+        const body = req.body; 
         return Object.assign({}, params, query, body);
     }
 

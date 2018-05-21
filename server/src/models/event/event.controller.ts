@@ -5,9 +5,9 @@ import { Response, Request, NextFunction } from 'express';
 
 const EventController: any = {
     create: async (params: any) => {
-        const newEvent = new EventModel(params);
+        const newEvent = new EventModel(params.eventData);
         if (await EventModel.create(newEvent)) {
-            const event = await EventModel.findById(params._id, allowedEventFields);
+            const event = await EventModel.findById(newEvent._id, allowedEventFields);
             return event;
         }
         throw new Error('Problem with creating event');
@@ -25,7 +25,7 @@ const EventController: any = {
     getParticipants: async (params: any) => {
         const event = await EventModel.findById(params.id);
         if (event) {
-            return event.participants;
+            return event//.participants;
         }
     },
 
