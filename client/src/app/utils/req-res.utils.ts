@@ -1,6 +1,6 @@
 import { IEventSchema, IEventResponse, IPaginator } from '../interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export function parseResponse(response: IEventSchema): IEventSchema {
     return response;
