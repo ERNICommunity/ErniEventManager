@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-$body__bg-color: rgb(221, 234, 238);;
+$body__bg-color: rgb(221, 234, 238);
+$gray-100: #bebcbc !default;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
@@ -26,11 +27,7 @@ body {
 
 html {
     min-height: 100%;
-    background-color: $body__bg-color;
-}
-
-body {
-    background-color: $body__bg-color;
+    // background-color: $body__bg-color;
 }
 
 .img-flag {

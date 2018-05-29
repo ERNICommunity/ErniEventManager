@@ -1,28 +1,9 @@
-<nav class="navbar navbar-expand navbar-light bg-light">
-  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+<nav class="navbar navbar-expand navbar-light bg-white">
+  <div class="navbar-collapse collapse w-100 order-1 dual-collapse2">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <img class="img__medium" [src]="'/assets/images/erni-logo.png'">
-      </li>
-      <!--li class="nav-item active">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active" [innerHtml]="'HOME' | translate"></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/event" routerLinkActive="active" [innerHtml]="'MY_EVENTS' | translate"></a>
-      </li-->
-    </ul>
-  </div>
-  <div class="mx-auto order-0">
-    <a class="navbar-brand mx-auto" href="#" [innerHtml]="'ERNI_EVENT_MANAGER' | translate"></a>
-    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-      <span class="navbar-toggler-icon"></span>
-    </button>-->
-  </div>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-light btn-sm" id="dropdownBasic1" ngbDropdownToggle>
+          <button class="btn btn-link btn-sm border-0" id="dropdownBasic1" ngbDropdownToggle>
             <img [src]="'/assets/flags/' + translate.currentLang + '.svg'" class="img-flag"><!--{{translate.currentLang}}-->
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -33,4 +14,21 @@
       </li>
     </ul>
   </div>
+  <!--div class="mx-auto order-0">
+    <a class="navbar-brand mx-auto" href="#" [innerHtml]="'ERNI_EVENT_MANAGER' | translate"></a>
+  </div-->
+  <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <img class="img__medium pull-right" [src]="'/assets/images/erni-logo.png'">
+      </li>
+      <!--li class="nav-item active">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active" [innerHtml]="'HOME' | translate"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/event" routerLinkActive="active" [innerHtml]="'MY_EVENTS' | translate"></a>
+      </li-->
+    </ul>
+  </div>
+
 </nav>

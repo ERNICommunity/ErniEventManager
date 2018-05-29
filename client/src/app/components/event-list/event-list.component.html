@@ -3,8 +3,6 @@
   <h4 [innerHtml]="headerMessage | translate" class="col-12"></h4>
 </div>
 
-<button type="button" class="btn btn-secondary" (click)="create()"[innerHtml]="'CREATE' | translate"></button>
-
 <div *ngIf="!retreiveData">
   <app-event-card [event]="event" (delete)="deleteEvent($event)" (edit)="openEvent($event)" *ngFor="let event of events; let i = index;"></app-event-card>
 </div>

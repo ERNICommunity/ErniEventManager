@@ -29,6 +29,12 @@ export class EventListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.route.snapshot.params['type'] === undefined) {
+      this.headerMessage = 'EVENT_LIST';
+      this.paginator.filter = {};
+    } else {
+      console.log(this.route.snapshot.params['type'] );
+    }
     this.retreiveData = true;
     this.eventService.queryEventsPaginated(this.paginator)
       .subscribe((eventRes: IEventResponse) => {
@@ -63,10 +69,6 @@ export class EventListComponent implements OnInit {
         this.retreiveData = false;
       }
     );
-  }
-
-  create() {
-    this.openEvent('new');
   }
 
   displayError(reason: any) {
