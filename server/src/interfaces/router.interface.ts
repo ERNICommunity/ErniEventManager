@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Router } from 'express';
 
 export interface IRouter extends Router {
-    [key: string]: any
+    [key: string]: any;
 }
 
-export interface RouteParameters {
-    method: string,
-    route: string,
-    fn: string
+export interface IRouteParameters {
+    method: string;
+    route: string;
+    fn: string;
 }

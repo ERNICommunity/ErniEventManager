@@ -17,7 +17,7 @@ class GeneralController {
             return event;
         }
         throw new Error('Problem with creating event');
-        
+
     }
 
     async get(params: any) {
@@ -26,13 +26,6 @@ class GeneralController {
             return event;
         }
         throw new Error('Unable to find event');
-    }
-
-    async getParticipants(params: any) {
-        const event = await this.model.findById(params.id);
-        if (event) {
-            return event//.participants;
-        }
     }
 
     async getAll(params: any) {
@@ -118,6 +111,6 @@ class GeneralController {
         }
     }
 
-};
+}
 
 export default GeneralController;
