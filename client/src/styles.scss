@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+$layout-sm: 576px;
+$layout-md: 768px;
+$layout-lg: 992px;
+$layout-xl: 1200px;
+
 $body__bg-color: rgb(221, 234, 238);
 $gray-100: #bebcbc !default;
 $blue: #123372 !default;
@@ -39,3 +44,23 @@ html {
 app-event-list {
     width: 100% !important;
 }
+
+.sidebar__layout {
+    position: relative;
+     
+    z-index:10;
+    
+    @media screen and (min-width: $layout-md) {
+        position: fixed;
+        opacity:0.9;
+        
+    }
+}
+
+/* .sidebar__scroll {
+    overflow-y: auto;
+    @media screen and (min-width: $layout-md) {
+        overflow-y: hidden;
+    }    
+    
+} */

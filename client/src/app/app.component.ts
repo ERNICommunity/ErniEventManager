@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
+import { LeftSidebarService } from './services/left-sidebar/left-sidebar.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,10 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   private defaultLanguage = 'en';
+  leftSidebarVisible: boolean;
   constructor(
-    private translate: TranslateService
+    private translate: TranslateService,
+    private leftSidebarService: LeftSidebarService
   ) {
     translate.setDefaultLang(this.defaultLanguage);
     const eem = localStorage.getItem('erniEventManager');
@@ -23,6 +26,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.leftSidebarVisible = true;
+    this.leftSidebarService.sidebarSubject.subscribe(
+      status => {
+        console.log('changed to: ' + status);
+         this.leftSidebarVisible = status;
+    });
   }
 }

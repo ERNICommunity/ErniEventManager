@@ -19,6 +19,7 @@ import { EventListComponent } from './components/event-list/event-list.component
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventEditComponent } from './components/event-edit/event-edit.component';
 import { EventsComponent } from './components/events/events.component';
+import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { EventsComponent } from './components/events/events.component';
     EventListComponent,
     EventCardComponent,
     EventEditComponent,
-    EventsComponent
+    EventsComponent,
+    LeftSidebarComponent
   ],
   imports: [
     BrowserModule,
