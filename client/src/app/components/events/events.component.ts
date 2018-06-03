@@ -15,8 +15,4 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
   }
 
-  create() {
-    this.router.navigate(['/event/edit/new']);
-  }
-
 }

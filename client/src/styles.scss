@@ -17,6 +17,7 @@ $blue: #123372 !default;
 
 body {
     margin-bottom: -20px;
+    min-width: 300px;
 }
 
 .app-footer {
@@ -28,7 +29,7 @@ body {
 }
 
 .img__medium {
-    width: 50%
+    width: 100px;
 }
 
 html {
@@ -56,6 +57,10 @@ app-event-list {
         
     }
 }
+
+.sidebar__active {
+    color: #00a5db !important;
+  }
 
 /* .sidebar__scroll {
     overflow-y: auto;
