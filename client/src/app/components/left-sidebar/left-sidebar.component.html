@@ -1,4 +1,5 @@
-<div class="row h-100 w-100 m-0 sidebar__main">
+
+<div class="row h-100 m-0 sidebar__main">
     <aside class="col-12 col-md-4 p-0 bg-dark w-100 sidebar__scroll">
         <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start py-2 w-100">
             <div class="collapse navbar-collapse w-100">
@@ -8,26 +9,26 @@
                         <a class="nav-link text-nowrap pull-right cursor-click pr-0" (click)="toggleMenu()"><i class="fa fa-times fa-fw"></i> <span class="d-none d-sm-inline" [innerHtml]="'CLOSE' | translate"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-0 w-100 {{currentPage==='/events' ? 'sidebar__active' : ''}} pointer-click" (click)="navigate('/events/')">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ALL' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/')">
                           <i class="fa fa-globe fa-fw"></i>
                           <span class="d-inline" [innerHtml]="'ALL' | translate"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-0 w-100 {{currentPage==='/events/joined' ? 'sidebar__active' : ''}} pointer-click" (click)="navigate('/events/joined')">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='EVENTS_I_JOINED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/joined')">
                           <i class="fa fa-user fa-fw"></i>
                           <span class="d-inline" [innerHtml]="'EVENTS_I_JOINED' | translate"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-0 w-100 {{currentPage==='/events/archived' ? 'sidebar__active' : ''}} pointer-click" (click)="navigate('/events/archived')">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ARCHIVED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/archived')">
                           <i class="fa fa-archive fa-fw"></i>
                           <span class="d-inline" [innerHtml]="'ARCHIVED' | translate"></span>
                         </a>
                     </li>
                     <li>
                         <hr>
-                        <a class="nav-link pl-0 w-100 pointer-click" (click)="navigate('/event/edit/new')">
+                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate('/event/edit/new')">
                           <i class="fa fa-plus fa-fw"></i>
                           <span class="d-inline" [innerHtml]="'CREATE' | translate"></span>
                         </a>
