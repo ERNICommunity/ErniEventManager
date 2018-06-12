@@ -1,0 +1,40 @@
+
+<div class="row h-100 m-0 sidebar__main">
+    <aside class="col-12 col-md-4 p-0 bg-dark w-100 sidebar__scroll">
+        <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start py-2 w-100">
+            <div class="collapse navbar-collapse w-100">
+                <ul class="flex-column flex-row navbar-nav w-100 justify-content-between">
+                    <li class="nav-item sidebar__close">
+                        <u class="nav-link pull-left font-weight-bold d-inline d-md-none">Jurko Vychodniare</u>
+                        <a class="nav-link text-nowrap pull-right cursor-click pr-0" (click)="toggleMenu()"><i class="fa fa-times fa-fw"></i> <span class="d-none d-sm-inline" [innerHtml]="'CLOSE' | translate"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ALL' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/')">
+                          <i class="fa fa-globe fa-fw"></i>
+                          <span class="d-inline" [innerHtml]="'ALL' | translate"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='EVENTS_I_JOINED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/joined')">
+                          <i class="fa fa-user fa-fw"></i>
+                          <span class="d-inline" [innerHtml]="'EVENTS_I_JOINED' | translate"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ARCHIVED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/archived')">
+                          <i class="fa fa-archive fa-fw"></i>
+                          <span class="d-inline" [innerHtml]="'ARCHIVED' | translate"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr>
+                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate('/event/edit/new')">
+                          <i class="fa fa-plus fa-fw"></i>
+                          <span class="d-inline" [innerHtml]="'CREATE' | translate"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+</div>

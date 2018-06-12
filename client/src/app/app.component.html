@@ -1,18 +1,24 @@
-<div class="layout-overflow">
-  <div class="layout-canvas" [ngClass]="{'nav-open': navOpen, 'nav-closed': !navOpen}" [style.min-height]="minHeight">
+<app-left-sidebar class="container-fluid p-0 m-0 h-100 sidebar__layout" *ngIf="leftSidebarVisible"></app-left-sidebar>
 
-    <app-header (navToggled)="navToggledHandler($event)"></app-header>
+<div class="layout-canvas" [ngClass]="{'nav-open': navOpen, 'nav-closed': !navOpen}" [style.min-height]="minHeight">
+
+  <app-header (navToggled)="navToggledHandler($event)"></app-header>
+</div>
+
+<div class="layout-overflow ">
+
 
     <!--div id="layout-view" class="layout-view">
       <router-outlet></router-outlet>
     </div-->
-
+    
     <div class="container main-content">
       <router-outlet></router-outlet>
     </div>
 
-    <app-footer></app-footer>
+    
 
-  </div>
+
 </div>
 
+<app-footer></app-footer>

@@ -43,3 +43,8 @@ export class ISort {
 export class IPaginatorFilter {
     project?: String;
 }
+
+export class ICurrentPage {
+    name: String;
+    path: String;
+}

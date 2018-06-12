@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICountryInfo } from '../../interfaces';
 import { TranslateService } from '@ngx-translate/core';
+import { LeftSidebarService } from '../../services/left-sidebar/left-sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,10 @@ export class HeaderComponent implements OnInit {
 
   countries: Array<ICountryInfo>;
 
-  constructor(public translate: TranslateService) { }
+  constructor(
+    public translate: TranslateService,
+    private leftSidebarService: LeftSidebarService
+  ) { }
 
   ngOnInit() {
     this.countries = [
@@ -22,6 +26,10 @@ export class HeaderComponent implements OnInit {
   switchLanguage(language: string) {
     this.translate.use(language);
     localStorage.setItem('erniEventManager', language);
+  }
+
+  toggleMenu() {
+    this.leftSidebarService.update();
   }
 
 }

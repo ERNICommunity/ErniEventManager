@@ -1,13 +1,37 @@
-<section class="row mt-2 mb-2" >
-  <div class="col-sm-12">
-    <div class="card mx-auto">
-      <div class="card-header">
-          <i class="pull-left fa fa-trash cursor-click" (click)="deleteEvent()"></i>
-          <i class="pull-left fa fa-edit cursor-click" (click)="editEvent()"></i>
-        <small class="pull-left"><span [innerHtml]="'EVENT' | translate"></span> - {{event.name}}</small>
-      </div>
+<section class="row mt-2 mb-2 w-100 px-0 mx-0" >
+  <div class="col-sm-12 px-0">
+    <div class="card bg-primary text-white">
       <div class="card-body">
-        <p class="card-text" [innerHTML]=event.description></p>
+        <div class="row">
+          <div class="col-12 col-sm-8">
+            <div class="row ml-2">
+              <span>{{event.name}}</span>
+            </div>
+            <div class="row ml-2">
+              <small [innerHTML]=event.description></small>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="row w-100">
+              <span class="text-right w-100">1.1.2018 - 1.1.2018</span>
+            </div>
+            <div class="row w-100">
+              <span class="text-right w-100">Bratislava</span>
+            </div>
+            <div class="row w-100">
+              <span class="text-right w-100">
+                  <i class="pull-right fa fa-times cursor-click" (click)="alert('add leave logic')"></i>
+                  <i class="pull-right fa fa-eye cursor-click" (click)="alert('add view logic')"></i>
+                  <i class="pull-right fa fa-trash cursor-click" (click)="deleteEvent()"></i>
+                  <i class="pull-right fa fa-edit cursor-click" (click)="editEvent()"></i>
+              </span>
+                
+            </div>
+
+          </div>
+        </div>
+
+        
       </div>
     </div>
   </div>

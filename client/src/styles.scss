@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-$body__bg-color: rgb(221, 234, 238);;
+$layout-sm: 576px;
+$layout-md: 768px;
+$layout-lg: 992px;
+$layout-xl: 1200px;
+
+$body__bg-color: rgb(221, 234, 238);
+$gray-100: #bebcbc !default;
+$blue: #123372 !default;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
@@ -10,6 +17,7 @@ $body__bg-color: rgb(221, 234, 238);;
 
 body {
     margin-bottom: -20px;
+    min-width: 300px;
 }
 
 .app-footer {
@@ -21,19 +29,78 @@ body {
 }
 
 .img__medium {
-    width: 50%
+    width: 100px;
 }
 
 html {
     min-height: 100%;
-    background-color: $body__bg-color;
-}
-
-body {
-    background-color: $body__bg-color;
+    // background-color: $body__bg-color;
 }
 
 .img-flag {
     width:20px;
     height:15px;
-  }
+}
+
+app-event-list {
+    width: 100% !important;
+}
+
+.sidebar__layout {
+    position: relative;
+     
+    z-index:10;
+    
+    @media screen and (min-width: $layout-md) {
+        position: fixed;
+        opacity:0.9;
+        
+    }
+}
+
+.sidebar__active {
+    color: #00a5db !important;
+}
+
+.erni__shape:after {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    content: "";
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 15px 300px;
+    border-color: transparent transparent #00a5db transparent;
+}
+
+.erni__shape:before {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    content: "";
+    height: 0;
+    border-style: solid;
+    border-width: 0 300px 15px 0;
+    border-color: transparent #00a5db transparent transparent;
+}
+
+.erni__shape {
+    background: #00a5db;
+    position: absolute;
+    right: 0;
+    //bottom: 50px;
+    //z-index: 5;
+
+    width: 300px;
+    height: 50px;
+    // padding: 20px 10px;
+    top: 70px;
+}
+
+/* .sidebar__scroll {
+    overflow-y: auto;
+    @media screen and (min-width: $layout-md) {
+        overflow-y: hidden;
+    }    
+    
+} */

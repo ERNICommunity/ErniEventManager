@@ -4,7 +4,7 @@ Application to handle Erni events - backend part
 
 ## Prerequisites
 
-node > 7.6.0
+node -> 10.1.0
 
 ## Setup
 
