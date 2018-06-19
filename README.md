@@ -8,5 +8,5 @@ Client & Server folder contains instructions how to run the applications separat
 
 ## Feature branch naming
 
-For each new branch use this pattern: ISSUE_<issue number>
+For each new branch use this pattern: "ISSUE_<issue number>"
   For Example: ISSUE_13
