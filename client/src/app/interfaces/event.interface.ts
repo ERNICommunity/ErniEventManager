@@ -1,5 +1,5 @@
 export class IEventRequest {
-    eventData: IEventSchema;
+    data: IEventSchema;
 }
 
 export class IEventLocation {
