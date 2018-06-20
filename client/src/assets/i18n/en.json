@@ -1,9 +1,12 @@
 {
     "ALL": "All",
     "ARCHIVED": "Archived",
+    "ATTENDEES": "Attendees",
     "CANCEL": "Cancel",
     "CLOSE": "Close",
     "CREATE": "Create",
+    "DATE_START": "Start Date",
+    "DATE_END": "End Date",
     "DESCRIPTION": "Description",
     "EDIT": "Edit",
     "ERNI_EVENT_MANAGER": "ERNI EVENT MANAGER",
@@ -13,7 +16,8 @@
     "HOME": "Home",
     "INSERT_EVENT_DESCRIPTION": "Insert event description",
     "INSERT_EVENT_NAME": "Insert event name",
-    "MY_EVENTS" : "My Events",
+    "INVITE": "Invite",
+    "LOCATION": "Location",
+    "MY_EVENTS": "My Events",
     "NAME": "Name"
-    
 }
