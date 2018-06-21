@@ -1,19 +1,20 @@
-import { respondSuccess, handleError, allowedEventFields, pickProps, paginateProps } from '../utils';
-import { IEventSchema, IFindOption } from '../interfaces';
-import { Response, Request, NextFunction } from 'express';
+import { allowedFields } from '../utils';
 import { Model } from 'mongoose';
 
 class GeneralController {
     public model: Model<any>;
+    public name: string;
 
-    constructor(model: Model<any>) {
+    constructor(model: Model<any>, name: string) {
         this.model = model;
+        this.name = name;
     }
 
     async create(params: any) {
-        const newEvent = new this.model(params.eventData);
+        const newEvent = new this.model(params.data);
         if (await this.model.create(newEvent)) {
-            const event = await this.model.findById(newEvent._id, allowedEventFields);
+            console.log(allowedFields[this.name]);
+            const event = await this.model.findById(newEvent._id, allowedFields[this.name]);
             return event;
         }
         throw new Error('Problem with creating event');
@@ -21,7 +22,7 @@ class GeneralController {
     }
 
     async get(params: any) {
-        const event = await this.model.findById(params.id, allowedEventFields);
+        const event = await this.model.findById(params.id, allowedFields[this.name]);
         if (event) {
             return event;
         }
@@ -35,11 +36,11 @@ class GeneralController {
 
     async update(params: any) {
         const { id } = params;
-        const { eventData } = params;
-        delete eventData._id;
+        const { data } = params;
+        delete data._id;
         if (await this.model.findById(id)) {
-            if (await this.model.findByIdAndUpdate(id, eventData, { upsert: true })) {
-                const event = await this.model.findById(id, allowedEventFields);
+            if (await this.model.findByIdAndUpdate(id, data, { upsert: true })) {
+                const event = await this.model.findById(id, allowedFields[this.name]);
                 return event;
             }
             throw new Error('Problem with updating event');
@@ -95,7 +96,7 @@ class GeneralController {
                     mongoFilter[property] = `/.*${propValue}*/i`;
                 }
             }
-            const list = await this.model.find(mongoFilter, allowedEventFields)
+            const list = await this.model.find(mongoFilter, allowedFields[this.name])
                 .skip(size * index)
                 .limit(size)
                 .sort(sort.way + sort.field)

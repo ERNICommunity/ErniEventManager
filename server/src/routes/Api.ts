@@ -1,6 +1,7 @@
 import * as express from 'express';
-import { NextFunction, Request, Response, Router } from "express";
+import { NextFunction, Request, Response, Router } from 'express';
 const eventRouter = require('../models/event');
+const userRouter = require('../models/user');
 
 class ApiRoute {
     public router: Router;
@@ -8,7 +9,8 @@ class ApiRoute {
     constructor() {
         this.router = express.Router();
 
-        this.router.use('/event', this.addGreeting, eventRouter)
+        this.router.use('/event', eventRouter);
+        this.router.use('/user', userRouter);
         this.router.get('/', this.getEmpty);
         this.router.get('/:params', this.getParams);
     }

@@ -1,8 +1,8 @@
-import { Response, Request } from 'express';
-import { handleError } from '../utils';
 
-
-export const allowedEventFields = 'id name description';
+export const allowedFields: any = {
+    Event: 'id name description',
+    User: 'id email firstName lastName type avatar'
+};
 
 export const usernameReg = {
     reg: /^[a-zA-Z0-9\+\.\_\-]{4,15}$/,

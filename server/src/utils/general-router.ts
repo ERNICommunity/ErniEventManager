@@ -1,6 +1,5 @@
 import * as express from 'express';
 import { IRouter, IRouteParameters } from '../interfaces';
-import { Schema, Model } from 'mongoose';
 import { Response, Request, NextFunction } from 'express';
 
 class GeneralRouter {
@@ -48,7 +47,10 @@ class GeneralRouter {
 
             result = await router.controller[fn](router.getParams(req));
         } catch (err) {
-            return res.status(500).json({error: err.message});
+            if (err instanceof Error) {
+                err = err.message;
+            }
+            return res.status(500).json({error: err});
         }
 
         if (result instanceof Error) {
