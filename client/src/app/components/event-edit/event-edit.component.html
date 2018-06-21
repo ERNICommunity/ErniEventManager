@@ -1,17 +1,53 @@
 <form #eventForm="ngForm">
   <div class="row">
-    <div class="form-group col-md-6">
-      <label for="formGroupInput" class="form-control-label" [innerHtml]="'NAME' | translate"></label>
-      <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_EVENT_NAME' | translate }}" name="group" [(ngModel)]="event.name"
-            required minlength="5" maxlength="140" [disabled]="!isCreate">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="formDescInput" [innerHtml]="'DESCRIPTION' | translate"></label>
-      <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' | translate }}" 
+    <div class="col-md-8 pl-0" id="eventInfo">
+      <div class="container">
+        <div class="row form-group">
+          <label for="formGroupInput" class="form-control-label" [translate]="'NAME'"></label>
+          <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_EVENT_NAME' }}" name="group"
+            [(ngModel)]="event.name" required minlength="5" maxlength="140" [disabled]="!isCreate">
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6 pl-0">
+            <label for="date_start" class="form-control-label" [translate]="'DATE_START'"></label>
+            <input type="text" class="form-control" id="date_start" placeholder="12.11.2017" [(ngModel)]="event.startDate" name="date">
+          </div>
+          <div class="form-group col-md-6 pr-0">
+            <label for="date_end" class="form-control-label" [translate]="'DATE_END'"></label>
+            <input type="text" class="form-control" id="date_end" placeholder="12.11.2017" [(ngModel)]="event.endDate" name="date">
+          </div>
+        </div>
+        <div class="row form-group">
+          <label for="location" class="form-control-label" [translate]="'LOCATION'"></label>
+          <input type="text" class="form-control" id="location" placeholder="Ševčenkova 34" [(ngModel)]="event.location" name="location">
+        </div>
+        <div class="row form-group">
+          <label for="formDescInput" [translate]="'DESCRIPTION'"></label>
+          <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' }}"
             name="description" [(ngModel)]="event.description"></textarea>
+        </div>
+      </div>
     </div>
-    <button type="button" class="btn btn-secondary" (click)="cancel()" [innerHtml]="'CANCEL' | translate"></button>
-    <button type="button" *ngIf="isCreate" class="btn btn-primary" (click)="create()" [disabled]="!eventForm.form.valid" [innerHtml]="'CREATE' | translate"></button>
-    <button type="button" *ngIf="!isCreate" class="btn btn-primary" (click)="edit()" [disabled]="!eventForm.form.valid" [innerHtml]="'EDIT' | translate"></button>
+    <div class="col-md-4 pr-0 pl-0" id="atendeeList">
+      <div class="container">
+        <div class="row justify-content-between mb-2 align-items-end">
+          <div class="col-md-4 pl-0">
+            <span class="form-control-label" [translate]="'ATTENDEES'"></span>
+          </div>
+          <div class="col-md-4 pr-0 text-right">
+            <button type="button" class="btn btn-secondary" [translate]="'INVITE'"></button>
+          </div>
+        </div>
+        <div class="row border">
+          <div class="pt-1" *ngFor="let attendee of event.participants; let i = index;">
+            <div class="col-md-12" [translate]="attendee"></div>
+            <!-- <div class="col-md-3 text-truncate" [translate]="attendee.avatar"></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="cancel()" [translate]="'CANCEL'"></button>
+    <button type="button" *ngIf="isCreate" class="btn btn-primary" (click)="create()" [disabled]="!eventForm.form.valid" [translate]="'CREATE'"></button>
+    <button type="button" *ngIf="!isCreate" class="btn btn-primary" (click)="edit()" [disabled]="!eventForm.form.valid" [translate]="'EDIT'"></button>
   </div>
 </form>
