@@ -1,11 +1,10 @@
 //card header
 //------------------------------------------
-.card-header{
-  background: #123372;
-}
 
-.card-header:hover{
-  color: #00a5db;
+.card:hover{
+  .card-header, .card-body {
+    color: #00a5db;
+  }
 }
 
 //card body

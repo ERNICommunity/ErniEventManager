@@ -1,7 +1,7 @@
 <section class="row mt-2 mb-2 w-100 px-0 mx-0" >
   <div class="col-sm-12 px-0">
     <div class="card bg-primary text-white" (mouseenter)="toggleButtonMenu()" (mouseleave)="toggleButtonMenu()">
-      <div class="card-header" (click)="editEvent()" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
+      <div class="card-header cursor-click" (click)="editEvent()" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
         <div class="row">
           <div class="col-12 col-sm-9"><h3>{{event.name}}</h3></div>
           <div class="col-12 col-sm-3">
@@ -10,8 +10,8 @@
           </div>
         </div>
       </div>
-      <div class="card-body">
-        <div class="row">
+      <div class="card-body cursor-click" (click)="editEvent()">
+        <div class="row w-100">
           <div class="col-12">
             <div class="row ml-2">
               <small [innerHTML]=event.description></small>
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="card-footer d-none d-sm-block">
-        <div class="row">
+        <div class="row w-100">
           <div class="col-4" [@buttonMenuSlideInOut]="buttonMenuState">
              <button type="button" class="btn btn-outline-success">Join</button>
              <!--TODO delete will be visible only for user with admin role-->
