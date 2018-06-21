@@ -19,11 +19,11 @@
           </div>
         </div>
       </div>
-      <div class="card-footer">
+      <div class="card-footer d-none d-sm-block">
         <div class="row">
-          <div class="col-12 card-buttons" [@buttonMenuSlideInOut]="buttonMenuState">
-            <button type="button" class="btn btn-outline-success">Join</button>
-            <!--TODO delete will be visible only for user with admin role-->
+          <div class="col-4" [@buttonMenuSlideInOut]="buttonMenuState">
+             <button type="button" class="btn btn-outline-success">Join</button>
+             <!--TODO delete will be visible only for user with admin role-->
             <button type="button" class="btn btn-outline-danger" (click)="deleteEvent()">Delete</button>
           </div>
         </div>

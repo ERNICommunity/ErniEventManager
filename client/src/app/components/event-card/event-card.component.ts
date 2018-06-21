@@ -13,7 +13,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         opacity: 1
       })),
       state('out', style({
-        transform: 'translate3d(25%, 0, 0)',
+        transform: 'translate3d(20%, 0, 0)',
         opacity: 0
       })),
       transition('in => out', animate('2000ms ease-in-out')),

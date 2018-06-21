@@ -1,11 +1,11 @@
 //card header
 //------------------------------------------
 .card-header{
-  background: #00a5db;
+  background: #123372;
 }
 
 .card-header:hover{
-  color: red;
+  color: #00a5db;
 }
 
 //card body
@@ -17,10 +17,12 @@
 //card footer
 //------------------------------------------
 .card-footer {
-  padding: 0px;
+  padding: 0px 0px 2px 10px;
 }
 
-.card-buttons button{
-  min-width: 10%;
-  top: -10px;
+.card-footer button{
+  padding: 0px;
+  width: 70px;
+  height: 30px;
 }
+
