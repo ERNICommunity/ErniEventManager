@@ -21,6 +21,7 @@ import { EventEditComponent } from './components/event-edit/event-edit.component
 import { EventsComponent } from './components/events/events.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
     }),
     routing,
     NgbModule.forRoot(),
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [EventService],
   bootstrap: [AppComponent]

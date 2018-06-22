@@ -1,37 +1,32 @@
 <section class="row mt-2 mb-2 w-100 px-0 mx-0" >
   <div class="col-sm-12 px-0">
-    <div class="card bg-primary text-white">
-      <div class="card-body">
+    <div class="card bg-primary text-white" (mouseenter)="toggleButtonMenu()" (mouseleave)="toggleButtonMenu()">
+      <div class="card-header cursor-click" (click)="editEvent()" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
         <div class="row">
-          <div class="col-12 col-sm-8">
-            <div class="row ml-2">
-              <span>{{event.name}}</span>
-            </div>
+          <div class="col-12 col-sm-9"><h3>{{event.name}}</h3></div>
+          <div class="col-12 col-sm-3">
+            <h5 class="text-left w-100 fa fa-calendar"> 1.1.2018 - 1.1.2018</h5>
+            <h5 class="text-left w-100 fa fa-location-arrow"> Bratislava</h5>
+          </div>
+        </div>
+      </div>
+      <div class="card-body cursor-click" (click)="editEvent()">
+        <div class="row w-100">
+          <div class="col-12">
             <div class="row ml-2">
               <small [innerHTML]=event.description></small>
             </div>
           </div>
-          <div class="col-12 col-sm-4">
-            <div class="row w-100">
-              <span class="text-right w-100">1.1.2018 - 1.1.2018</span>
-            </div>
-            <div class="row w-100">
-              <span class="text-right w-100">Bratislava</span>
-            </div>
-            <div class="row w-100">
-              <span class="text-right w-100">
-                  <i class="pull-right fa fa-times cursor-click" (click)="alert('add leave logic')"></i>
-                  <i class="pull-right fa fa-eye cursor-click" (click)="alert('add view logic')"></i>
-                  <i class="pull-right fa fa-trash cursor-click" (click)="deleteEvent()"></i>
-                  <i class="pull-right fa fa-edit cursor-click" (click)="editEvent()"></i>
-              </span>
-                
-            </div>
-
+        </div>
+      </div>
+      <div class="card-footer d-none d-sm-block">
+        <div class="row w-100">
+          <div class="col-4" [@buttonMenuSlideInOut]="buttonMenuState">
+             <button type="button" class="btn btn-outline-success">Join</button>
+             <!--TODO delete will be visible only for user with admin role-->
+            <button type="button" class="btn btn-outline-danger" (click)="deleteEvent()">Delete</button>
           </div>
         </div>
-
-        
       </div>
     </div>
   </div>
