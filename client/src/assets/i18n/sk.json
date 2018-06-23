@@ -9,16 +9,22 @@
     "DATE_END" : "Dátum DO",
     "DESCRIPTION": "Popis",
     "EDIT": "Uprav",
+    "EMAIL": "Email",
     "ERNI_EVENT_MANAGER": "ERNI EVENT MANAGER",
     "EVENT": "Udalost",
     "EVENT_LIST": "Zoznam Udalosti",
     "EVENTS_I_JOINED": "Zucastnim sa udalosti",
+    "FIRST_NAME": "Krstne meno",
     "HOME": "Domov",
     "INSERT_EVENT_DESCRIPTION": "Vlozte popis udalosti",
+    "INSERT_USER_EMAIL": "Vlozte email pouzivatela",
     "INSERT_EVENT_NAME": "Vlozte meno udalosti",
     "INVITE": "Pozvať",
+    "LAST_NAME": "Priezvisko",
     "LOCATION" : "Poloha",
     "MY_EVENTS" : "Moje Udalosti",
-    "NAME": "Nazov"
-    
+    "NAME": "Nazov",
+    "ROLE": "Rola",
+    "TYPE": "Druh",
+    "USERS": "Uzivatelia"
 }

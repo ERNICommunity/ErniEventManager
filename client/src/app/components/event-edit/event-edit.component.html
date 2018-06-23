@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row form-group">
           <label for="formGroupInput" class="form-control-label" [translate]="'NAME'"></label>
-          <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_EVENT_NAME' }}" name="group"
+          <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_EVENT_NAME' | translate }}" name="group"
             [(ngModel)]="event.name" required minlength="5" maxlength="140" [disabled]="!isCreate">
         </div>
         <div class="row">
@@ -23,7 +23,7 @@
         </div>
         <div class="row form-group">
           <label for="formDescInput" [translate]="'DESCRIPTION'"></label>
-          <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' }}"
+          <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' | translate }}"
             name="description" [(ngModel)]="event.description"></textarea>
         </div>
       </div>

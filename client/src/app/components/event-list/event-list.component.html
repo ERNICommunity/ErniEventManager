@@ -1,7 +1,4 @@
 <!--div class="text-danger">{{errorMessage}}</div-->
-<!--div class="row">
-  <h4 [innerHtml]="headerMessage | translate" class="col-12"></h4>
-</div-->
 
 <div *ngIf="!retreiveData">
   <app-event-card class="w-100" [event]="event" (delete)="deleteEvent($event)" (edit)="openEvent($event)" *ngFor="let event of events; let i = index;"></app-event-card>

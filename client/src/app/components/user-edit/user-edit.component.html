@@ -1,0 +1,40 @@
+<form #userForm="ngForm">
+  <div class="row">
+    <div class="col-md-8 pl-0" id="userInfo">
+      <div class="container">
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="email" class="form-control-label" [translate]="'EMAIL'"></label>
+            <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_USER_EMAIL' | translate }}" name="email"
+              [(ngModel)]="user.email" required [disabled]="!isCreate">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="first_name" class="form-control-label" [translate]="'FIRST_NAME'"></label>
+            <input type="text" class="form-control" id="first_name" [(ngModel)]="user.firstName" name="first_name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="last_name" class="form-control-label" [translate]="'LAST_NAME'"></label>
+            <input type="text" class="form-control" id="last_name" [(ngModel)]="user.lastName" name="last_name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="type" class="form-control-label" [translate]="'TYPE'"></label>
+            <input type="text" class="form-control" id="type" [(ngModel)]="user.type" name="type">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="role" class="form-control-label" [translate]="'ROLE'"></label>
+            <input type="text" class="form-control" id="role" [(ngModel)]="user.role" name="role">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-secondary" (click)="cancel()" [translate]="'CANCEL'"></button>
+    <button type="button" *ngIf="isCreate" class="btn btn-primary" (click)="create()" [disabled]="!userForm.form.valid" [translate]="'CREATE'"></button>
+    <button type="button" *ngIf="!isCreate" class="btn btn-primary" (click)="edit()" [disabled]="!userForm.form.valid" [translate]="'EDIT'"></button>
+  </div>
+</form>

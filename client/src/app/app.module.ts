@@ -22,6 +22,9 @@ import { EventsComponent } from './components/events/events.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserComponent } from './components/user/user.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EventCardComponent,
     EventEditComponent,
     EventsComponent,
-    LeftSidebarComponent
+    LeftSidebarComponent,
+    UserEditComponent,
+    UserComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
