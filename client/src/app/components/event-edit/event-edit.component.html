@@ -1,18 +1,18 @@
 <form #eventForm="ngForm">
   <div class="row">
-    <div class="col-md-8 pl-0" id="eventInfo">
+    <div class="col-md-8 pl-md-0" id="eventInfo">
       <div class="container">
         <div class="row form-group">
           <label for="formGroupInput" class="form-control-label" [translate]="'NAME'"></label>
-          <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_EVENT_NAME' }}" name="group"
+          <input type="text" class="form-control" id="formGroupInput" placeholder="{{ 'INSERT_EVENT_NAME' | translate }}" name="group"
             [(ngModel)]="event.name" required minlength="5" maxlength="140" [disabled]="!isCreate">
         </div>
         <div class="row">
-          <div class="form-group col-md-6 pl-0">
+          <div class="col-md-6 pl-0 pr-0 pr-md-1 form-group">
             <label for="date_start" class="form-control-label" [translate]="'DATE_START'"></label>
             <input type="text" class="form-control" id="date_start" placeholder="12.11.2017" [(ngModel)]="event.startDate" name="date">
           </div>
-          <div class="form-group col-md-6 pr-0">
+          <div class="col-md-6 pr-0 pl-0 pl-md-1 form-group">
             <label for="date_end" class="form-control-label" [translate]="'DATE_END'"></label>
             <input type="text" class="form-control" id="date_end" placeholder="12.11.2017" [(ngModel)]="event.endDate" name="date">
           </div>
@@ -23,12 +23,18 @@
         </div>
         <div class="row form-group">
           <label for="formDescInput" [translate]="'DESCRIPTION'"></label>
-          <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' }}"
+          <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' | translate }}"
             name="description" [(ngModel)]="event.description"></textarea>
+        </div>
+        <div class="row justify-content-end">
+          <button type="button" class="btn btn-secondary ml-1" (click)="cancel()" [translate]="'CANCEL'"></button>
+          <button type="button" class="btn btn-primary ml-1" *ngIf="isCreate" (click)="create()" [disabled]="!eventForm.form.valid" [translate]="'CREATE'"></button>
+          <button type="button" class="btn btn-primary ml-1" *ngIf="!isCreate" (click)="edit()" [disabled]="!eventForm.form.valid" [translate]="'EDIT'"></button>
         </div>
       </div>
     </div>
-    <div class="col-md-4 pr-0 pl-0" id="atendeeList">
+    <!-- Attendee list -->
+    <div class="col-md-4 pr-md-0 pl-md-0" id="atendeeList">
       <div class="container">
         <div class="row justify-content-between mb-2 align-items-end">
           <div class="col-md-4 pl-0">
@@ -46,8 +52,5 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-secondary" (click)="cancel()" [translate]="'CANCEL'"></button>
-    <button type="button" *ngIf="isCreate" class="btn btn-primary" (click)="create()" [disabled]="!eventForm.form.valid" [translate]="'CREATE'"></button>
-    <button type="button" *ngIf="!isCreate" class="btn btn-primary" (click)="edit()" [disabled]="!eventForm.form.valid" [translate]="'EDIT'"></button>
   </div>
 </form>
