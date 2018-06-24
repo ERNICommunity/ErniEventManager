@@ -41,4 +41,18 @@ export class UserService {
         catchError(handleError)
       );
   }
+
+  edit = (id: string, data: IUserSchema): Observable<IUserSchema> => {
+    return <Observable<IUserSchema>> this.httpClient.put(`${environment.serverPath}${this.userPath}/${id}`, { data })
+      .pipe(
+        catchError(handleError)
+      );
+  }
+
+  delete = (data: IUserSchema): Observable<IUserResponse> => {
+    return <Observable<IUserResponse>> this.httpClient.delete(`${environment.serverPath}${this.userPath}/${data._id}`)
+    .pipe(
+      catchError(handleError)
+    );
+  }
 }

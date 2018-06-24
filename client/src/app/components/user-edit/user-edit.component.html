@@ -34,6 +34,7 @@
   </div>
   <div class="row">
     <button type="button" class="btn btn-secondary" (click)="cancel()" [translate]="'CANCEL'"></button>
+    <button type="button" *ngIf="!isCreate" class="btn btn-danger" (click)="delete()" [translate]="'DELETE'"></button>
     <button type="button" *ngIf="isCreate" class="btn btn-primary" (click)="create()" [disabled]="!userForm.form.valid" [translate]="'CREATE'"></button>
     <button type="button" *ngIf="!isCreate" class="btn btn-primary" (click)="edit()" [disabled]="!userForm.form.valid" [translate]="'EDIT'"></button>
   </div>

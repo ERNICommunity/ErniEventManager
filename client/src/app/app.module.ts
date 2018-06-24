@@ -25,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserComponent } from './components/user/user.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { UserListComponent } from './components/user-list/user-list.component';
     LeftSidebarComponent,
     UserEditComponent,
     UserComponent,
-    UserListComponent
+    UserListComponent,
+    UserCardComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
