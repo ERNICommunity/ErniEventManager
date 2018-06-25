@@ -12,20 +12,23 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
+import { AttributeCreatorComponent } from './components/attribute-creator/attribute-creator.component';
 import { Page404Component } from './components/page-404/page-404.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { EventListComponent } from './components/event-list/event-list.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventEditComponent } from './components/event-edit/event-edit.component';
+import { EventListComponent } from './components/event-list/event-list.component';
 import { EventsComponent } from './components/events/events.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
+import { ParticipantListComponent } from './components/participant-list/participant-list.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AttributeCreatorComponent,
     Page404Component,
     FooterComponent,
     HeaderComponent,
@@ -33,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EventCardComponent,
     EventEditComponent,
     EventsComponent,
-    LeftSidebarComponent
+    LeftSidebarComponent,
+    ParticipantListComponent
   ],
   imports: [
     BrowserModule,

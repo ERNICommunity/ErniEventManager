@@ -9,6 +9,14 @@ export class IEventLocation {
     description?: string;
 }
 
+export class IEventAttributeSchema {
+    name: String;
+    mandatory: Boolean;
+    multipleChoice: Boolean;
+    choices: Array<String>;
+    subAttributes?: Array<IEventAttributeSchema>;
+}
+
 export class IEventSchema {
     _id: string;
     name: string;
@@ -22,6 +30,7 @@ export class IEventSchema {
     editors: Array<string>;
     participants: Array<string>;
     limit?: Number;
+    customAttributes?: Array<IEventAttributeSchema>;
 }
 
 export class IEventResponse {

@@ -1,7 +1,6 @@
 {
     "ALL": "All",
     "ARCHIVED": "Archived",
-    "ATTENDEES": "Attendees",
     "CANCEL": "Cancel",
     "CLOSE": "Close",
     "CREATE": "Create",
@@ -18,6 +17,8 @@
     "INSERT_EVENT_NAME": "Insert event name",
     "INVITE": "Invite",
     "LOCATION": "Location",
+    "MORE_OPTIONS": "More options",
     "MY_EVENTS": "My Events",
-    "NAME": "Name"
+    "NAME": "Name",
+    "PARTICIPANTS": "Participants"
 }
