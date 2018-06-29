@@ -55,7 +55,7 @@ class GeneralRouter {
 
         if (result instanceof Error) {
             return res.status(500).json({error: result.message});
-        } else if (!result || (Array.isArray(result) && !result.length)) {
+        } else if (result === undefined || result === null || (Array.isArray(result) && !result.length)) {
             return res.status(404).json({error: 'Not found.'});
         } else {
             return res.status(200).json(result);
