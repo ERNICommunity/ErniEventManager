@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IEventAttributeSchema, IEventSchema } from '../../interfaces';
 
 @Component({
@@ -7,12 +7,10 @@ import { IEventAttributeSchema, IEventSchema } from '../../interfaces';
     styleUrls: ['./attribute-creator.component.scss']
 })
 export class AttributeCreatorComponent implements OnInit {
-    event = IEventSchema;
+    @Input() event: IEventSchema;
     eventAttributes = Array<IEventAttributeSchema>();
 
-    constructor(event) {
-        this.event = event;
-    }
+    constructor() {}
 
     ngOnInit() {}
 

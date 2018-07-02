@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { EventService } from '../../services/event/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEventSchema } from '../../interfaces';
@@ -9,7 +9,7 @@ import { IEventSchema } from '../../interfaces';
   styleUrls: ['./event-edit.component.scss']
 })
 export class EventEditComponent implements OnInit {
-  event: IEventSchema;
+  @Output() event: IEventSchema;
   isCreate = false;
 
   constructor(

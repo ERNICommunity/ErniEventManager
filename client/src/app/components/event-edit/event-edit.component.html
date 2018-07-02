@@ -22,15 +22,19 @@
           <input type="text" class="form-control" id="location" placeholder="Ševčenkova 34" [(ngModel)]="event.location" name="location">
         </div>
         <div class="row form-group">
-          <label for="formDescInput" [translate]="'DESCRIPTION'"></label>
+          <label for="formDescInput" class="form-control-label" [translate]="'DESCRIPTION'"></label>
           <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' | translate }}"
             name="description" [(ngModel)]="event.description"></textarea>
         </div>
         <div class="row">
-          <label for="moreOptions" class="form-control-label" [translate]="'MORE_OPTIONS'"></label>
-          <input type="checkbox" id="moreOptions" value="moreOptions" class="form-control" checked>
+          <div class="col form-group">
+            <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample" [translate]="!isCollapsed ? 'MORE_OPTIONS' : 'LESS_OPTIONS'"></button>
+          </div>
         </div>
-        <app-attribute-creator *ngIf="moreOptions.isChecked"></app-attribute-creator>
+        <div id="collapseExample" [ngbCollapse]="!isCollapsed">
+          <app-attribute-creator [event]="event"></app-attribute-creator>
+        </div>
         <div class="row justify-content-end">
           <button type="button" class="btn btn-secondary ml-1" (click)="cancel()" [translate]="'CANCEL'"></button>
           <button type="button" class="btn btn-primary ml-1" *ngIf="isCreate" (click)="create()" [disabled]="!eventForm.form.valid"
@@ -42,6 +46,6 @@
     </form>
   </div>
   <div class="col-md-4 pr-md-0 pl-md-0" id="participantList">
-    <app-participant-list></app-participant-list>
+    <app-participant-list [event]="event"></app-participant-list>
   </div>
 </div>

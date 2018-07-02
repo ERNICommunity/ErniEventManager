@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IEventSchema } from '../../interfaces';
 
 @Component({
@@ -7,11 +7,9 @@ import { IEventSchema } from '../../interfaces';
     styleUrls: ['./participant-list.component.scss']
 })
 export class ParticipantListComponent implements OnInit {
-    event = IEventSchema;
+    @Input() event: IEventSchema;
 
-    constructor(event) {
-        this.event = event;
-    }
+    constructor() {}
 
     ngOnInit() {}
 
