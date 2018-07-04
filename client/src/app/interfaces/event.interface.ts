@@ -9,12 +9,14 @@ export class IEventLocation {
     description?: string;
 }
 
-export class IEventAttributeSchema {
-    name: String;
-    mandatory: Boolean;
-    multipleChoice: Boolean;
-    choices: Array<String>;
-    subAttributes?: Array<IEventAttributeSchema>;
+export enum IEventTransportType {
+    bus, car
+}
+
+export class IEventTransportSchema {
+    type: IEventTransportType;
+    freePlaces: number;
+    isReturning: boolean;
 }
 
 export class IEventSchema {
@@ -26,11 +28,11 @@ export class IEventSchema {
     endDate: Date;
     location: IEventLocation;
     description?: string;
+    transport?: IEventTransportSchema;
     owner: string;
     editors: Array<string>;
     participants: Array<string>;
     limit?: Number;
-    customAttributes?: Array<IEventAttributeSchema>;
 }
 
 export class IEventResponse {

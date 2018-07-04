@@ -16,15 +16,14 @@
             <div class="form-group">
               <label for="date_start" class="form-control-label" [translate]="'DATE_START'"></label>
               <input type="text" class="form-control" id="date_start" name="group" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()"
-                mindate="{year: today.getYear(), month: today.getMonth(), day: today.getDay()}" [(ngModel)]="event.startDate"
-                readonly/>
+                [(ngModel)]="startDate" readonly/>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="date_end" class="form-control-label" [translate]="'DATE_END'"></label>
               <input type="text" class="form-control" id="date_end" name="group" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()"
-                minDate="new Date()" [(ngModel)]="event.endDate" readonly/>
+                [(ngModel)]="endDate" readonly/>
             </div>
           </div>
         </div>
@@ -42,6 +41,14 @@
               <label for="formDescInput" class="form-control-label" [translate]="'DESCRIPTION'"></label>
               <textarea type="text" class="form-control" id="formDescInput" rows="6" placeholder="{{ 'INSERT_EVENT_DESCRIPTION' | translate }}"
                 name="group" [(ngModel)]="event.description"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="transport" class="form-control-label" [translate]="'TRANSPORT'"></label>
+
             </div>
           </div>
         </div>
