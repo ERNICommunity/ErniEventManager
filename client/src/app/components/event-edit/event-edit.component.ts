@@ -11,6 +11,7 @@ import { IEventSchema } from '../../interfaces';
 export class EventEditComponent implements OnInit {
   @Output() event: IEventSchema;
   isCreate = false;
+  today: Date;
 
   constructor(
     private eventService: EventService,
@@ -18,6 +19,7 @@ export class EventEditComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.event = new IEventSchema();
+    this.today = new Date();
    }
 
   ngOnInit() {
