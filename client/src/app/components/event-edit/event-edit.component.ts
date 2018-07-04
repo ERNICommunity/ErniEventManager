@@ -3,7 +3,6 @@ import { EventService } from '../../services/event/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEventSchema } from '../../interfaces';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
-import { start } from 'repl';
 
 @Component({
   selector: 'app-event-edit',
