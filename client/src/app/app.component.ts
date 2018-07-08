@@ -5,6 +5,7 @@ import { LeftSidebarService } from './services/left-sidebar/left-sidebar.service
 import { PageNameService } from './services/page-name/page-name.service';
 import { filter, map } from 'rxjs/operators';
 import { Router, NavigationStart } from '@angular/router';
+import { storedLanguage } from './app.constants';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +22,11 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {
     translate.setDefaultLang(this.defaultLanguage);
-    const eem = localStorage.getItem('erniEventManager');
+    const eem = localStorage.getItem(storedLanguage);
     if (eem) {
       translate.use(eem);
     } else {
-      localStorage.setItem('erniEventManager', this.defaultLanguage);
+      localStorage.setItem(storedLanguage, this.defaultLanguage);
       translate.use(this.defaultLanguage);
     }
     this.router.events.pipe(

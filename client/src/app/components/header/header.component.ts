@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICountryInfo } from '../../interfaces';
 import { TranslateService } from '@ngx-translate/core';
 import { LeftSidebarService } from '../../services/left-sidebar/left-sidebar.service';
+import { storedLanguage } from '../../app.constants';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
   switchLanguage(language: string) {
     this.translate.use(language);
-    localStorage.setItem('erniEventManager', language);
+    localStorage.setItem(storedLanguage, language);
   }
 
   toggleMenu() {
