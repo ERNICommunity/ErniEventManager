@@ -28,10 +28,10 @@ export class AppComponent implements OnInit {
       localStorage.setItem('erniEventManager', this.defaultLanguage);
       translate.use(this.defaultLanguage);
     }
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationStart))
-      .pipe(map((navigationStart: NavigationStart) => navigationStart.url))
-      .subscribe( (url: String) => {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationStart),
+      map((navigationStart: NavigationStart) => navigationStart.url))
+      .subscribe((url: String) => {
         console.log('changepage to ' + url);
         this.pageNameService.changePage(url);
       });
