@@ -5,7 +5,7 @@ import { LeftSidebarService } from './services/left-sidebar/left-sidebar.service
 import { PageNameService } from './services/page-name/page-name.service';
 import { filter, map } from 'rxjs/operators';
 import { Router, NavigationStart } from '@angular/router';
-import { storedLanguage } from './app.constants';
+import { storedLanguage, defaultLanguage } from './app.constants';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +13,22 @@ import { storedLanguage } from './app.constants';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  private defaultLanguage = 'en';
+
   leftSidebarVisible: boolean;
+
   constructor(
     private translate: TranslateService,
     private leftSidebarService: LeftSidebarService,
     private pageNameService: PageNameService,
     private router: Router
   ) {
-    translate.setDefaultLang(this.defaultLanguage);
-    const eem = localStorage.getItem(storedLanguage);
-    if (eem) {
-      translate.use(eem);
+    translate.setDefaultLang(defaultLanguage);
+    const lang = localStorage.getItem(storedLanguage);
+    if (lang) {
+      translate.use(lang);
     } else {
-      localStorage.setItem(storedLanguage, this.defaultLanguage);
-      translate.use(this.defaultLanguage);
+      localStorage.setItem(storedLanguage, defaultLanguage);
+      translate.use(defaultLanguage);
     }
     this.router.events.pipe(
       filter(event => event instanceof NavigationStart),
