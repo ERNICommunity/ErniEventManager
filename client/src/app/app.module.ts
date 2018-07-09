@@ -60,7 +60,7 @@ import { ClientErrorHandler } from './error-handling/client.error.handler';
       multi: true
     },
     {
-      provide: ErrorHandler, 
+      provide: ErrorHandler,
       useClass: ClientErrorHandler
     }
   ],

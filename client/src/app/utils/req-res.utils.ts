@@ -1,6 +1,6 @@
 import { IEventSchema, IEventResponse, IPaginator } from '../interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 
 export function parseResponse(response: IEventSchema): IEventSchema {
     return response;
@@ -38,5 +38,5 @@ export function handleError(error: HttpErrorResponse) {
         `body was: ${error.error}`);
         errMsg = error.error;
     }
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }

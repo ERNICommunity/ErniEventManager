@@ -10,7 +10,7 @@ export class ClientErrorHandler implements ErrorHandler {
     // Here we can use our own service that will redirect or show some error notification on UI
 
     // ==== Left here as an example: ====
-    
+
     //    const notificationService = this.injector.get(NotificationService);
     //    const router = this.injector.get(Router);
     // if (error instanceof HttpErrorResponse) {
