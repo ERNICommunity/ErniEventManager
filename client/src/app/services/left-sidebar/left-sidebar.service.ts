@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class LeftSidebarService {
 
   sidebarSubject: Subject<boolean> = new Subject();
-  
+
   private sidebarStatus = false;
 
   constructor() {}
