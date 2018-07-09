@@ -13,21 +13,16 @@ export class EventService {
   constructor(private httpClient: HttpClient) {}
 
   createEvent(data: IEventSchema): Observable<IEventSchema> {
-    return <Observable<IEventSchema>>(
-      this.httpClient.post(`${environment.serverPath}${this.eventPath}`, { data })
-    );
+    return this.httpClient.post<IEventSchema>(`${environment.serverPath}${this.eventPath}`, { data });
   }
 
   getEvent(id: string): Observable<IEventSchema> {
-    return <Observable<IEventSchema>>(
-      this.httpClient.get(`${environment.serverPath}${this.eventPath}/${id}`)
-    );
+    return this.httpClient.get<IEventSchema>(`${environment.serverPath}${this.eventPath}/${id}`);
   }
 
   queryEventsPaginated(paginator: IPaginator): Observable<IEventResponse> {
     // paginator.exactFilter.group = eventName;
-    return <Observable<IEventResponse>>this.httpClient.get(
-      `${environment.serverPath}${this.eventPath}`,
+    return this.httpClient.get<IEventResponse>(`${environment.serverPath}${this.eventPath}`,
       {
         params: {
           ...preparePaginator(paginator)
@@ -37,14 +32,11 @@ export class EventService {
   }
 
   editEvent(id: string, data: IEventSchema): Observable<IEventSchema> {
-    return <Observable<IEventSchema>>(
-      this.httpClient.put(`${environment.serverPath}${this.eventPath}/${id}`, { data })
-    );
+    return this.httpClient.put<IEventSchema>(`${environment.serverPath}${this.eventPath}/${id}`, { data });
   }
 
   deleteEvent (data: IEventSchema, paginated: IPaginator): Observable<IEventResponse> {
-    return <Observable<IEventResponse>>this.httpClient
-      .delete(`${environment.serverPath}${this.eventPath}/${data._id}`, {
+    return this.httpClient.delete<IEventResponse>(`${environment.serverPath}${this.eventPath}/${data._id}`, {
         params: {
           ...preparePaginator(paginated)
         }
