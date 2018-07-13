@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-  @Input() headerMessage: string;
   errorMessage: any;
   events = [];
   retreiveData = false;
@@ -29,12 +28,6 @@ export class EventListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.route.snapshot.params['type'] === undefined) {
-      this.headerMessage = 'EVENT_LIST';
-      this.paginator.filter = {};
-    } else {
-      console.log(this.route.snapshot.params['type'] );
-    }
     this.retreiveData = true;
     this.eventService.queryEventsPaginated(this.paginator)
       .subscribe((eventRes: IEventResponse) => {
@@ -51,8 +44,8 @@ export class EventListComponent implements OnInit {
     );
   }
 
-  openEvent(event: string) {
-    this.router.navigate(['/event/edit/' + event]);
+  openEvent(id: string) {
+    this.router.navigate(['/event/edit/' + id]);
   }
 
   deleteEvent(event: IEventSchema) {

@@ -10,6 +10,6 @@ const config: Array<IRouteParameters> = [
     {route: '/:id', method: 'delete', fn: 'delete'},
 ];
 
-const eventRouter  = new GeneralRouter(config, userController);
+const userRouter  = new GeneralRouter(config, userController);
 
-module.exports = eventRouter.router;
+module.exports = userRouter.router;

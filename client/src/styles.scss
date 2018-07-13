@@ -7,7 +7,8 @@ $layout-xl: 1200px;
 
 $body__bg-color: rgb(221, 234, 238);
 $gray-100: #bebcbc !default;
-$blue: #123372 !default;
+$blue: #123372 !default;        //primary
+$red: #e40428 !default;         //warning
 
 @import "~bootstrap/scss/bootstrap.scss";
 
@@ -43,6 +44,10 @@ html {
 }
 
 app-event-list {
+    width: 100% !important;
+}
+
+app-user-list {
     width: 100% !important;
 }
 

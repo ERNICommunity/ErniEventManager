@@ -10,7 +10,6 @@ import { parseResponse, parseResponsePaginated, preparePaginator, handleError } 
 @Injectable()
 export class EventService {
   eventPath = 'api/event';
-  eventsFromFile: Array<IEventSchema> = [];
 
   constructor(private httpClient: HttpClient) {
   }

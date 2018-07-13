@@ -1,0 +1,28 @@
+<section class="row mt-2 mb-2 w-100 px-0 mx-0" >
+  <div class="col-sm-12 px-0">
+    <div class="card bg-primary text-white">
+      <div class="card-body cursor-click" (click)="editUser()">
+        <div class="row">
+          <div class="col-12">
+            <span><i class="fa fa-user fa-fw"></i>{{user.lastName}} {{user.firstName}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="row ml-2">
+              <small>{{user.email}}</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <small class="row">
+              <span class="w-100 text-right">{{user.type}}</span>
+            </small>
+            <small class="row">
+                <span class="w-100 text-right">{{user.role}}</span>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
