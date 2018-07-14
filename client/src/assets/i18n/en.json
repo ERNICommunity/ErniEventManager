@@ -9,15 +9,22 @@
     "DATE_END": "End Date",
     "DESCRIPTION": "Description",
     "EDIT": "Edit",
+    "EMAIL": "Email",
     "ERNI_EVENT_MANAGER": "ERNI EVENT MANAGER",
     "EVENT": "Event",
     "EVENT_LIST": "Events List",
     "EVENTS_I_JOINED": "Events I joined",
+    "FIRST_NAME": "First name",
     "HOME": "Home",
     "INSERT_EVENT_DESCRIPTION": "Insert event description",
+    "INSERT_USER_EMAIL": "Insert user email",
     "INSERT_EVENT_NAME": "Insert event name",
     "INVITE": "Invite",
+    "LAST_NAME": "Last name",
     "LOCATION": "Location",
     "MY_EVENTS": "My Events",
-    "NAME": "Name"
+    "NAME": "Name",
+    "ROLE": "Role",
+    "TYPE": "Type",
+    "USERS": "Users"
 }

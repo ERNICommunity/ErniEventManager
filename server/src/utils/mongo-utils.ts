@@ -1,7 +1,7 @@
 
 export const allowedFields: any = {
     Event: 'id name description location startDate endDate',
-    User: 'id email firstName lastName type avatar'
+    User: 'id email firstName lastName type avatar role'
 };
 
 export const usernameReg = {

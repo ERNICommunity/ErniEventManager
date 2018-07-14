@@ -24,6 +24,11 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServerErrorInterceptor } from './error-handling/server.error.interceptor';
 import { ClientErrorHandler } from './error-handling/client.error.handler';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserComponent } from './components/user/user.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { ClientErrorHandler } from './error-handling/client.error.handler';
     EventCardComponent,
     EventEditComponent,
     EventsComponent,
-    LeftSidebarComponent
+    LeftSidebarComponent,
+    UserEditComponent,
+    UserComponent,
+    UserListComponent,
+    UserCardComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

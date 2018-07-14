@@ -30,6 +30,8 @@ export class PageNameService {
         return { name: 'EVENTS_I_JOINED', path };
       case '/events/archived':
         return { name: 'ARCHIVED', path };
+      default:
+       return { name: 'DEFAULT', path};
     }
   }
 }
