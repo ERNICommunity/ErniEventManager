@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { routing } from './app.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { EventService } from './services/event/event.service';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -22,6 +22,8 @@ import { EventsComponent } from './components/events/events.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServerErrorInterceptor } from './error-handling/server.error.interceptor';
+import { ClientErrorHandler } from './error-handling/client.error.handler';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserComponent } from './components/user/user.component';
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -60,7 +62,18 @@ import { LoaderComponent } from './components/loader/loader.component';
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [EventService],
+  providers: [
+    EventService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: ClientErrorHandler
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
