@@ -57,6 +57,7 @@
     "@types/node": "^6.0.93",
     "@types/request": "^2.0.9",
     "jest": "^23.1.0",
+    "mockingoose": "^2.10.1",
     "node-mocks-http": "^1.7.0",
     "nodemon": "^1.12.7",
     "npm-run-all": "^4.1.2",
