@@ -5,12 +5,14 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class LeftSidebarService {
-  public sidebarSubject: Subject<any> = new Subject();
-  sidebarStatus = false;
+
+  sidebarSubject: Subject<boolean> = new Subject();
+
+  private sidebarStatus = false;
 
   constructor() {}
 
-  update = () => {
+  update(): void {
     this.sidebarSubject.next(this.sidebarStatus = !this.sidebarStatus);
   }
 }

@@ -8,6 +8,7 @@ export type UserModel = mongoose.Document & {
     lastName: string;
     type: string;
     avatar: string;
+    role: string;
 };
 
 const UserSchema = new mongoose.Schema({
@@ -16,6 +17,7 @@ const UserSchema = new mongoose.Schema({
     lastName: {type: String},
     type: {type: String},
     avatar: {type: String},
+    role: {type: String}
 });
 
 UserSchema.index({ email: 1 }, { unique: true });
