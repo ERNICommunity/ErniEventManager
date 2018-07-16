@@ -29,3 +29,16 @@ export class IEventResponse {
     length: number;
     qi: string;
 }
+
+export const eventSchema1 = {
+    _id: '111111111',
+    name: 'Name',
+    type: 'Type',
+    state: 'State',
+    startDate: new Date(),
+    endDate: new Date(),
+    location: {},
+    owner: 'Owner',
+    editors: [],
+    participants: []
+};
