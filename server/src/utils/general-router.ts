@@ -13,11 +13,11 @@ class GeneralRouter {
     /**
      * Calls route registration process for each route
      * @param routes {Array<IRouteParameters>} array of routes
-     * @param Controller {object} object that contains implementation of functions, that should be called on routes
+     * @param controller {object} object that contains implementation of functions, that should be called on routes
      */
-    constructor(routes: Array<IRouteParameters>, Controller: any) {
+    constructor(routes: Array<IRouteParameters>, controller: any) {
         this.router = express.Router();
-        this.controller = Controller;
+        this.controller = controller;
 
         routes.forEach(route => {
             this.createRoute(route);

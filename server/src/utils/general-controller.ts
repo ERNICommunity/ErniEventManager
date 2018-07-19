@@ -16,7 +16,7 @@ class GeneralController {
      * @param params.data {object} data to store
      * @returns {Promise<object>} created item
      */
-    async create(params: any) {
+    async create(params: {data: any}) {
         const newItem = new this.model(params.data);
         if (await this.model.create(newItem)) {
             const item = await this.model.findById(newItem._id, allowedFields[this.name]);
