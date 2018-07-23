@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { NextFunction, Request, Response, Router } from 'express';
 const eventRouter = require('../models/event');
+const subEventRouter = require('../models/subEvent');
 const userRouter = require('../models/user');
 
 class ApiRoute {
@@ -10,6 +11,7 @@ class ApiRoute {
         this.router = express.Router();
 
         this.router.use('/event', eventRouter);
+        this.router.use('/subEvent', subEventRouter);
         this.router.use('/user', userRouter);
         this.router.get('/', this.getEmpty);
         this.router.get('/:params', this.getParams);
@@ -35,7 +37,6 @@ class ApiRoute {
         Object.assign(params, query);
         res.json(params);
     }
-
 }
 
 module.exports = new ApiRoute().router;
