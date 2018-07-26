@@ -8,30 +8,22 @@ import { HttpClient } from 'selenium-webdriver/http';
 import { EventService } from '../../services/event/event.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { eventSchema1 } from '../../interfaces';
+import { eventSchemaMock } from '../../interfaces';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { Injector } from '@angular/core';
-
-class FakeLoader implements TranslateLoader {
-  getTranslation(lang: string): Observable<any> {
-    return of({'CARDS_TITLE': 'This is a test'});
-  }
-}
+import { routerSpy, translateLoaderSpy, eventServiceSpy } from '../../utils-test/index.spec';
 
 describe('EventEditComponent', () => {
   let component: EventEditComponent;
   let fixture: ComponentFixture<EventEditComponent>;
   let getEventSpy: any;
   let translate: TranslateService;
-  let injector:  Injector;
+  let http: HttpTestingController;
 
   beforeEach(async(() => {
 
-    const eventService = jasmine.createSpyObj('EventService', ['getEvent']);
-    const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-  // Make the spy return a synchronous Observable with the test data
-    getEventSpy = eventService.getEvent.and.returnValue( eventSchema1 );
+    getEventSpy = eventServiceSpy.getEvent.and.returnValue( of(eventSchemaMock) );
     TestBed.configureTestingModule({
       declarations: [ EventEditComponent ],
       imports: [
@@ -39,14 +31,15 @@ describe('EventEditComponent', () => {
         FormsModule,
         TranslateModule.forRoot({
           loader: {
-            provide: FakeLoader,
+            provide: TranslateLoader,
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
           }
         }),
       ],
       providers: [
-        {provide: EventService, useValue: eventService},
+        {provide: TranslateLoader, useValue: translateLoaderSpy},
+        {provide: EventService, useValue: eventServiceSpy},
         {provide: Router, useValue: routerSpy},
         {provide: ActivatedRoute,
           useValue: {
@@ -54,10 +47,12 @@ describe('EventEditComponent', () => {
               params: of({id: 'new'})
             }
           }
-        }
+        },
+        TranslateService
       ]
     }).compileComponents();
-    translate = injector.get(TranslateService);
+    translate = TestBed.get(TranslateService);
+    http = TestBed.get(HttpTestingController);
   }));
 
   beforeEach(() => {

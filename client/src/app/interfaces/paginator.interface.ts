@@ -48,3 +48,9 @@ export class ICurrentPage {
     name: String;
     path: String;
 }
+
+
+export const currenPageMock1: ICurrentPage = {
+    name: 'John Tester',
+    path: '/path'
+};

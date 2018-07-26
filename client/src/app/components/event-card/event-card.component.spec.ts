@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventCardComponent } from './event-card.component';
 import { By } from '@angular/platform-browser';
 import { Predicate, DebugElement } from '@angular/core';
-import { IEventSchema, eventSchema1 } from '../../interfaces';
+import { IEventSchema, eventSchemaMock } from '../../interfaces';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -31,12 +31,12 @@ describe('EventCardComponent', () => {
     delDe  = fixture.debugElement.query(By.css('#test-delete'));
     nameDe = fixture.debugElement.query(By.css('#test-event-name'));
     nameEl = nameDe.nativeElement;
-    component.event = eventSchema1;
+    component.event = eventSchemaMock;
     fixture.detectChanges();
   });
 
   it('should display event name in correct element', () => {
-    const expectedName = eventSchema1.name;
+    const expectedName = eventSchemaMock.name;
     expect(nameEl.textContent).toContain(expectedName);
   });
 
@@ -44,14 +44,14 @@ describe('EventCardComponent', () => {
     let eventId: string;
     component.edit.subscribe((id: string) => eventId = id);
     editDe.triggerEventHandler('click', null);
-    expect(eventId).toBe(eventSchema1._id);
+    expect(eventId).toBe(eventSchemaMock._id);
   });
 
   it('should raise delete event when clicked (triggerEventHandler)', () => {
     let delEvent: IEventSchema;
     component.delete.subscribe((event: IEventSchema) => delEvent = event);
     delDe.triggerEventHandler('click', null);
-    expect(delEvent).toBe(eventSchema1);
+    expect(delEvent).toBe(eventSchemaMock);
   });
 
   it('should create', () => {

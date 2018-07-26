@@ -31,7 +31,7 @@ export class EventListComponent implements OnInit {
     this.retreiveData = true;
     this.eventService.queryEventsPaginated(this.paginator)
       .subscribe((eventRes: IEventResponse) => {
-        if (eventRes.qi === this.paginator.qi) {
+        if (eventRes.qi === this.paginator.qi || eventRes.qi === null) {
           this.retreiveData = false;
           this.paginator.length = eventRes.length;
           this.events = eventRes.list;
