@@ -1,4 +1,7 @@
 {
+    "ACCOMMODATION": "Ubytovanie",
+    "ACCOMMODATION_YES": "Zabezpečené",
+    "ACCOMMODATION_NO": "Bez ubytovania",
     "ALL": "Všetky",
     "ARCHIVED": "Archivované",
     "CANCEL": "Zrušiť",
@@ -22,5 +25,7 @@
     "MY_EVENTS" : "Moje Udalosti",
     "NAME": "Názov",
     "PARTICIPANTS": "Účastníci",
-    "TRANSPORT": "Doprava"
+    "TRANSPORT": "Doprava",
+    "TRANSPORT_BUS": "Autobusom",
+    "TRANSPORT_CAR": "Autom"
 }

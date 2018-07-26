@@ -1,4 +1,7 @@
 {
+    "ACCOMMODATION": "Accommodation",
+    "ACCOMMODATION_YES": "Provided",
+    "ACCOMMODATION_NO": "Without accommodation",
     "ALL": "All",
     "ARCHIVED": "Archived",
     "CANCEL": "Cancel",
@@ -22,5 +25,7 @@
     "MY_EVENTS": "My Events",
     "NAME": "Name",
     "PARTICIPANTS": "Participants",
-    "TRANSPORT": "Transport"
+    "TRANSPORT": "Transport",
+    "TRANSPORT_BUS": "By bus",
+    "TRANSPORT_CAR": "By car"
 }

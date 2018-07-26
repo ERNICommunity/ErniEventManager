@@ -2,6 +2,15 @@ export class IEventRequest {
     data: IEventSchema;
 }
 
+export class IRoomSchema {
+    beds: number;
+    people: Array<String>;
+}
+
+export class IEventAccommodationSchema {
+    rooms: Array<IRoomSchema>;
+}
+
 export class IEventLocation {
     address?: string;
     gps?: string;
@@ -28,7 +37,8 @@ export class IEventSchema {
     endDate: Date;
     location: IEventLocation;
     description?: string;
-    transport?: IEventTransportSchema;
+    transport?: Array<IEventTransportSchema>;
+    accommodation?: IEventAccommodationSchema;
     owner: string;
     editors: Array<string>;
     participants: Array<string>;

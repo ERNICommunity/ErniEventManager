@@ -45,10 +45,30 @@
           </div>
         </div>
         <div class="row">
-          <div class="col">
+          <div class="col-md-6">
             <div class="form-group">
               <label for="transport" class="form-control-label" [translate]="'TRANSPORT'"></label>
-
+              <div id="transport" class="form-check">
+                <input id="car" type="checkbox" class="form-check-input" name="group" value="car" [(ngModel)]="transportCar">
+                <label for="car" class="form-check-label" [translate]="'TRANSPORT_CAR'"></label>
+              </div>
+              <div id="transport" class="form-check">
+                <input id="bus" type="checkbox" class="form-check-input" name="group" value="bus" [(ngModel)]="transportBus">
+                <label for="bus" class="form-check-label" [translate]="'TRANSPORT_BUS'"></label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="accommodation" class="form-control-label" [translate]="'ACCOMMODATION'"></label>
+              <div id="accommodation" class="form-check">
+                <input id="accommodation_yes" type="radio" class="form-check-input" name="group" value="accommodation_yes" [(ngModel)]="withAccommodation">
+                <label for="accommodation_yes" class="form-check-label" [translate]="'ACCOMMODATION_YES'"></label>
+              </div>
+              <div id="accommodation" class="form-check">
+                <input id="accommodation_no" type="radio" class="form-check-input" name="group" value="accommodation_no" checked [(ngModel)]="withAccommodation">
+                <label for="accommodation_no" class="form-check-label" [translate]="'ACCOMMODATION_NO'"></label>
+              </div>
             </div>
           </div>
         </div>

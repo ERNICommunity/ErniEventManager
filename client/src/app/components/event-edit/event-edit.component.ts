@@ -78,7 +78,7 @@ export class EventEditComponent implements OnInit {
     const endDate = new Date();
     endDate.setFullYear(this.endDate.year);
     endDate.setMonth(this.endDate.month - 1);
-    endDate.setDate(this.endDate.day)
+    endDate.setDate(this.endDate.day);
     return event;
   }
 
