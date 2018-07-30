@@ -14,7 +14,7 @@ export type subEventModel = mongoose.Document & {
 };
 
 const subEventSchema = new mongoose.Schema({
-    name: {type: String, required: true},
+    name: {type: String},
     event: {type: mongoose.Schema.Types.ObjectId },
     timeEvent: {
         startDate: Date,
