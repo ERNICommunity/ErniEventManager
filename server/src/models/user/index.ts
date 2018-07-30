@@ -7,7 +7,7 @@ const config: Array<IRouteParameters> = [
     {route: '/:id', method: 'get', fn: 'get'},
     {route: '/', method: 'post', fn: 'create'},
     {route: '/:id', method: 'put', fn: 'update'},
-    {route: '/:id', method: 'delete', fn: 'delete'},
+    {route: '/:id', method: 'delete', fn: 'delete'}
 ];
 
 const userRouter  = new GeneralRouter(config, userController);

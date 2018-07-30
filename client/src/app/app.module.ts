@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, ErrorHandler } from '@angular/core';
 
 import { routing } from './app.routing';
@@ -23,12 +23,14 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServerErrorInterceptor } from './error-handling/server.error.interceptor';
+import { TokenInterceptor } from './services/auth/auth.interceptor';
 import { ClientErrorHandler } from './error-handling/client.error.handler';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserComponent } from './components/user/user.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     UserComponent,
     UserListComponent,
     UserCardComponent,
-    LoaderComponent
+    LoaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { LoaderComponent } from './components/loader/loader.component';
         deps: [HttpClient]
       }
     }),
+    ReactiveFormsModule,
     routing,
     NgbModule.forRoot(),
     FormsModule,
@@ -67,6 +71,11 @@ import { LoaderComponent } from './components/loader/loader.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true
     },
     {

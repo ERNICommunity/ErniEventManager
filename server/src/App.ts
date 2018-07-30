@@ -7,8 +7,8 @@ import * as path from 'path';
 import * as mongo from 'connect-mongo';
 import * as mongoose from 'mongoose';
 
-import { Request, Response, NextFunction, Application } from 'express';
-import { SessionOptions } from 'express-session';
+import {Request, Response, NextFunction, Application} from 'express';
+import {SessionOptions} from 'express-session';
 
 const env: string = process.env.NODE_ENV || 'local';
 const secret: string = process.env.cookieSecret || 'erni_secret';
@@ -42,7 +42,7 @@ class App {
 
   private setupParsing(): void {
     this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.urlencoded({extended: true}));
   }
 
   private setupCookies(inProdMode: boolean): void {
@@ -56,10 +56,12 @@ class App {
 
   private mountRoutes(): void {
     console.log('isProduction: ', isProduction);
-    this.app.use(function(req: Request, res: Response, next: NextFunction) {
+    this.app.use(function (req: Request, res: Response, next: NextFunction) {
       if (!isProduction) {
+        const allowedHeaders = ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Access-Control-Allow-Origin', 'Authorization'];
+
         res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.header('Access-Control-Allow-Headers', allowedHeaders.join(','));
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
       }
       next();
