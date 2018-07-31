@@ -2,35 +2,59 @@ import * as express from 'express';
 import { IRouter, IRouteParameters } from '../interfaces';
 import { Response, Request, NextFunction } from 'express';
 
+/**
+ * GeneralRouter handles registering routes to express router based on given configuration
+ */
+
 class GeneralRouter {
     public router: IRouter;
     public controller: any;
 
-    constructor(options: Array<IRouteParameters>, Controller: any) {
+    /**
+     * Calls route registration process for each route
+     * @param routes {Array<IRouteParameters>} array of routes
+     * @param controller {object} object that contains implementation of functions, that should be called on routes
+     */
+    constructor(routes: Array<IRouteParameters>, controller: any) {
         this.router = express.Router();
-        this.controller = Controller;
+        this.controller = controller;
 
-        options.forEach(route => {
+        routes.forEach(route => {
             this.createRoute(route);
         });
     }
 
-    createRoute(params: IRouteParameters) {
-        params.method = params.method.toLowerCase();
-        if (['get', 'post', 'put', 'delete', 'head'].indexOf(params.method) === -1) {
+    /**
+     * Register route to express router
+     * @param route {IRouteParameters} route to register
+     */
+    createRoute(route: IRouteParameters) {
+        route.method = route.method.toLowerCase();
+        if (['get', 'post', 'put', 'delete', 'head'].indexOf(route.method) === -1) {
             throw new Error('Method not recognized.');
         }
 
-        this.router[params.method](
-            params.route,
-            this.middlewareFactory(this.handleRoute, params.fn)
+        this.router[route.method](
+            route.route,
+            this.middlewareFactory(this.handleRoute, route.fn)
         );
     }
 
+    /**
+     * Returns middleware that calls handler with req, res, router and function to call
+     * @param handler {(req: Request, res: Response, router: any, fn: string) => any} function that handles calling function
+     * @param fn {string} name of funcion to be called
+     * @returns {(req: Request, res: Response, next?: NextFunction) => any} middleware that can be sent to router
+     */
     middlewareFactory(handler: (req: Request, res: Response, router: any, fn: string) => any, fn: string) {
         return (req: Request, res: Response, next?: NextFunction) => handler(req, res, this, fn);
     }
 
+    /**
+     * Groups all parameters (from param, query, body) to one object
+     * @param {Request} req
+     * @returns {{} & any & any & any}
+     */
     getParams(req: Request) {
         const params = req.params;
         const query = req.query;
@@ -55,7 +79,7 @@ class GeneralRouter {
 
         if (result instanceof Error) {
             return res.status(500).json({error: result.message});
-        } else if (!result || (Array.isArray(result) && !result.length)) {
+        } else if (result === undefined || result === null || (Array.isArray(result) && !result.length)) {
             return res.status(404).json({error: 'Not found.'});
         } else {
             return res.status(200).json(result);

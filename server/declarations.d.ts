@@ -1,1 +1,2 @@
-declare module "morgan";
+declare module 'morgan';
+declare module 'mockingoose';
