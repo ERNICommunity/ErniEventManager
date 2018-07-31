@@ -42,3 +42,7 @@ export const eventSchema1 = {
     editors: [],
     participants: []
 };
+
+export class IEventFilter {
+  name: string;
+}

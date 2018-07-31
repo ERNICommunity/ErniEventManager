@@ -29,6 +29,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     routing,
     NgbModule.forRoot(),
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FilterPipeModule,
   ],
   providers: [
     EventService,

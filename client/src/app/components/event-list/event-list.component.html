@@ -1,7 +1,10 @@
 <!--div class="text-danger">{{errorMessage}}</div-->
 
 <div *ngIf="!retreiveData">
-  <app-event-card class="w-100" [event]="event" (delete)="deleteEvent($event)" (edit)="openEvent($event)" *ngFor="let event of events; let i = index;"></app-event-card>
+  <label for="eventFilter" class="form-control-label p-1"><i class="fa fa-search"></i></label>
+  <input type="text" id="eventFilter" [(ngModel)]="eventFilter.name" placeholder="{{ 'QUICK_EVENT_SEARCH' | translate }}">
+  <span *ngIf="eventFilter && eventFilter.name.length > 0"> <span class="pl-2 font-weight-bold">{{ 'ACTIVE_EVENT_FILTER' | translate }}</span><span class="pl-2 text-danger font-weight-bold">{{eventFilter.name}}</span> </span>
+  <app-event-card class="w-100" [event]="event" (delete)="deleteEvent($event)" (edit)="openEvent($event)" *ngFor="let event of events | filterBy: eventFilter; let i = index;"></app-event-card>
   <div *ngIf="events && events.length === 0">No results found</div>
 </div>
 <div *ngIf="retreiveData">

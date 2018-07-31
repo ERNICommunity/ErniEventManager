@@ -26,5 +26,7 @@
     "NAME": "Nazov",
     "ROLE": "Rola",
     "TYPE": "Druh",
-    "USERS": "Uzivatelia"
+    "USERS": "Uzivatelia",
+    "ACTIVE_EVENT_FILTER": "Aktivny Filter:",
+    "QUICK_EVENT_SEARCH": "Rychle Vyhladavanie Udalosti"
 }

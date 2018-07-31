@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+  eventFilter: any = { name: '' };
   errorMessage: any;
   events = [];
   retreiveData = false;

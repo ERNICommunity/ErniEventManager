@@ -26,5 +26,7 @@
     "NAME": "Name",
     "ROLE": "Role",
     "TYPE": "Type",
-    "USERS": "Users"
+    "USERS": "Users",
+    "ACTIVE_EVENT_FILTER": "Active Filter:",
+    "QUICK_EVENT_SEARCH": "Quick Event Search"
 }

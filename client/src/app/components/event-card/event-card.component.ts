@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IEventSchema} from '../../interfaces';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import {IEventFilter} from '../../interfaces/event.interface';
 
 @Component({
   selector: 'app-event-card',
@@ -23,6 +24,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class EventCardComponent implements OnInit {
   @Input() event: IEventSchema;
+  @Input() eventFilter: IEventFilter;
   @Output() delete: EventEmitter<IEventSchema> = new EventEmitter();
   @Output() edit: EventEmitter<string> = new EventEmitter();
 
