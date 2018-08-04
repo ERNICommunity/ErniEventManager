@@ -12,6 +12,7 @@ const loginPath = 'api/login';
 })
 export class AuthService {
   @Output() isLoggedIn = new EventEmitter();
+  @Output() authError = new EventEmitter();
   constructor(private http: HttpClient, private router: Router) {
     const user = localStorage.getItem('user_email');
     if (user) {
@@ -22,8 +23,8 @@ export class AuthService {
 
   }
 
-  authenticateOnBackend(email: string, password: string): Observable<ILoginResultSchema> {
-    return this.http.post<ILoginResultSchema>(`${environment.serverPath}${loginPath}`, {email, password});
+  authenticateOnBackend(login: string, password: string): Observable<ILoginResultSchema> {
+    return this.http.post<ILoginResultSchema>(`${environment.serverPath}${loginPath}`, {login: login, password: password});
   }
 
   logout() {
@@ -35,9 +36,9 @@ export class AuthService {
     this.router.navigateByUrl('/login');
   }
 
-  login(email: string, password: string) {
-    if (email && password) {
-      this.authenticateOnBackend(email, password)
+  login(login: string, password: string) {
+    if (login && password) {
+      return this.authenticateOnBackend(login, password)
         .subscribe(
           (result: ILoginResultSchema) => {
             localStorage.setItem('auth_token', result.token);
@@ -45,9 +46,9 @@ export class AuthService {
             localStorage.setItem('user_lastName', result.lastName);
             localStorage.setItem('user_email', result.email);
             this.isLoggedIn.emit(result.email);
+            this.authError.emit(false);
             this.router.navigateByUrl('/');
-          }
-        );
+          });
     }
   }
 }

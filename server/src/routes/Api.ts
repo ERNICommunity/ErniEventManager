@@ -1,8 +1,9 @@
 import * as express from 'express';
 import { NextFunction, Request, Response, Router } from 'express';
+import {default as Auth} from './../middleware/auth';
+
 const eventRouter = require('../models/event');
 const userRouter = require('../models/user');
-const authMiddleware = require('../middleware/auth');
 
 class ApiRoute {
     public router: Router;
@@ -10,12 +11,12 @@ class ApiRoute {
     constructor() {
         this.router = express.Router();
 
-        this.router.use('*', authMiddleware.allowOptions);
-        this.router.post('/login', authMiddleware.login);
-        this.router.use('/event', authMiddleware.authorize, eventRouter);
-        this.router.use('/user', authMiddleware.authorize, userRouter);
-        this.router.get('/', authMiddleware.authorize, this.getEmpty);
-        this.router.get('/:params', authMiddleware.authorize, this.getParams);
+        this.router.use('*', Auth.allowOptions);
+        this.router.post('/login', Auth.login);
+        this.router.use('/event', Auth.authorize, eventRouter);
+        this.router.use('/user', Auth.authorize, userRouter);
+        this.router.get('/', Auth.authorize, this.getEmpty);
+        this.router.get('/:params', Auth.authorize, this.getParams);
     }
 
     getEmpty(req: Request, res: Response, next: NextFunction) {

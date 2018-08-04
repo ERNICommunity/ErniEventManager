@@ -6,11 +6,14 @@
             </div>
             <form [formGroup]="form" class="content">
                 <h1>Event Manager</h1>
+                <div [hidden]='!error' class="alert alert-danger" role="alert">
+                    Incorrect credentials
+                </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="user-name"><i class="fa fa-user"></i></span>
                     </div>
-                    <input class="form-control" name="email" placeholder="Login" formControlName="email" aria-label="Login" aria-describedby="user-name">
+                    <input class="form-control" name="login" placeholder="Login" formControlName="login" aria-label="Login" aria-describedby="user-name">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
