@@ -1,8 +1,16 @@
+import DateTimeFormat = Intl.DateTimeFormat;
+
 export class IEventLocation {
     address?: string;
     gps?: string;
     room?: string;
     description?: string;
+}
+
+export class ITimeWindow{
+    startDate: DateTimeFormat;
+    endDate: DateTimeFormat;
+    name: string;
 }
 
 export class IEventSchema {
@@ -30,6 +38,27 @@ export class IEventSchema {
         this.owner = 'Unknown';
         this.editors = [];
         this.participants = [];
+    }
+}
+
+export class ISubEventSchema {
+    name: string;
+    event: string;
+    timeWindow: ITimeWindow;
+    location: IEventLocation;
+    description?: string;
+    owner: string;
+    participants: Array<String>;
+    limit?: number;
+
+    constructor() {
+        this.name = '';
+        this.event = 'Unknown';
+        this.timeWindow = new ITimeWindow();
+        this.location = new IEventLocation();
+        this.owner = 'Unknown';
+        this.participants = [];
+        this.limit = 5;
     }
 }
 
