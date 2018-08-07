@@ -40,7 +40,7 @@ export class AuthService {
     if (login && password) {
       return this.authenticateOnBackend(login, password)
         .subscribe(
-          (result: ILoginResultSchema) => {
+          result => {
             localStorage.setItem('auth_token', result.token);
             localStorage.setItem('user_firstName', result.firstName);
             localStorage.setItem('user_lastName', result.lastName);
