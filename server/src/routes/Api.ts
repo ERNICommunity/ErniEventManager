@@ -3,6 +3,7 @@ import { NextFunction, Request, Response, Router } from 'express';
 import {default as Auth} from './../middleware/auth';
 
 const eventRouter = require('../models/event');
+const subEventRouter = require('../models/subEvent');
 const userRouter = require('../models/user');
 
 class ApiRoute {
@@ -13,6 +14,7 @@ class ApiRoute {
 
         this.router.use('*', Auth.allowOptions);
         this.router.post('/login', Auth.login);
+        this.router.use('/subEvent', Auth.authorize, subEventRouter);
         this.router.use('/event', Auth.authorize, eventRouter);
         this.router.use('/user', Auth.authorize, userRouter);
         this.router.get('/', Auth.authorize, this.getEmpty);
@@ -29,7 +31,6 @@ class ApiRoute {
         Object.assign(params, query);
         res.json(params);
     }
-
 }
 
 module.exports = new ApiRoute().router;
