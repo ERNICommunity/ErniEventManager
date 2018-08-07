@@ -11,6 +11,8 @@ import { UserComponent } from './components/user/user.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 
+import { LoginComponent } from './components/login/login.component';
+
 export const routes: Routes = [
     {
         path: 'events',
@@ -39,6 +41,7 @@ export const routes: Routes = [
     { path: 'user/edit/:id', component: UserEditComponent },
     { path: '', redirectTo: '/events', pathMatch: 'full' },
     { path: 'event/edit/:id', component: EventEditComponent },
+    { path: 'login', component: LoginComponent },
     { path: '**', component: Page404Component }
 ];
 
