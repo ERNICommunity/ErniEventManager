@@ -1,10 +1,13 @@
-export const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+export const routerSpy = {
+  navigate: jasmine.createSpy('navigate'),
+  navigateByUrl: jasmine.createSpy('navigateByUrl')
+};
 
 export const translateLoaderSpy = jasmine.createSpyObj('TranslateLoader', ['get', 'getBrowserLang']);
 
-export const eventServiceSpy = jasmine.createSpyObj('EventService',
-  ['getEvent', 'createEvent', 'queryEventsPaginated', 'editEvent', 'deleteEvent']
-);
+// export const eventServiceSpy = jasmine.createSpyObj('EventService',
+//   ['getEvent', 'createEvent', 'queryEventsPaginated', 'editEvent', 'deleteEvent']
+// );
 
 export const pageNameServiceSpy = jasmine.createSpyObj('PageNameService',
   ['getPageName', 'getPageText', 'changePage', 'resolveName']

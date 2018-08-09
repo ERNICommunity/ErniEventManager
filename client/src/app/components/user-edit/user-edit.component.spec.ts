@@ -5,9 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
-import { translateLoaderSpy, userServiceSpy, routerSpy } from '../../utils-test/index.spec';
+import { translateLoaderSpy, userServiceSpy, routerSpy, userSchemaMock1 } from '../../utils-test/index.spec';
 import { of } from 'rxjs';
-import { userSchemaMock1 } from '../../interfaces/user.interface';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 

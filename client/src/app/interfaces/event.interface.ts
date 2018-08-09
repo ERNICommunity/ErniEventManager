@@ -30,22 +30,3 @@ export class IEventResponse {
     qi: string;
 }
 
-export const eventSchemaMock: IEventSchema = {
-    _id: '111111111',
-    name: 'Name',
-    type: 'Type',
-    state: 'State',
-    startDate: new Date(),
-    endDate: new Date(),
-    location: {},
-    owner: 'Owner',
-    editors: [],
-    participants: []
-};
-
-export const eventResponseMock: IEventResponse = {
-    list: [eventSchemaMock],
-    length: 1,
-    qi: null
-};
-
