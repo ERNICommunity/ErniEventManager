@@ -11,6 +11,7 @@ node -> 10.1.0
 To install:
  * Create a .env file based on .env-example and fill it with development data
  * Run `npm install` from root server directory.
+ * Add SSH private key to /key/private.key for authorization
 
 To run locally:
  * Setup & make sure you have mongo running.
@@ -25,4 +26,16 @@ TBD
 
 ## Testing
 
-TBD
+Testing is done with jest framework: https://jestjs.io/
+
+Configuration of jest can be found in `jest.config.json`. Framework can do mocking, stubbing and asserting without other external plugin.
+
+Debugging in tests: TBD
+
+Tests can be run by `npm test`
+
+Test files are in the same folder as implementation js file with name `*-test.ts`
+
+Test packages:
+
+mockingoose: https://www.npmjs.com/package/mockingoose - used for creating mocking mongo model

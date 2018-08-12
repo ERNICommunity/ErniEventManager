@@ -10,7 +10,7 @@
             "request": "attach",
             "port": 3000,
             "sourceMaps": true,
-            "outFiles": ["${workspaceRoot}/dist/**/*.js"],
+            "outFiles": ["${workspaceRoot}/server/dist/**/*.js"],
             "smartStep":true,
             "restart": true
         }

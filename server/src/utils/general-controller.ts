@@ -10,30 +10,53 @@ class GeneralController {
         this.name = name;
     }
 
-    async create(params: any) {
-        const newEvent = new this.model(params.data);
-        if (await this.model.create(newEvent)) {
-            console.log(allowedFields[this.name]);
-            const event = await this.model.findById(newEvent._id, allowedFields[this.name]);
-            return event;
+    /**
+     * Creates new item in model
+     * @param params {object}
+     * @param params.data {object} data to store
+     * @returns {Promise<object>} created item
+     */
+    async create(params: {data: any}) {
+        const newItem = new this.model(params.data);
+        if (await this.model.create(newItem)) {
+            const item = await this.model.findById(newItem._id, allowedFields[this.name]);
+            return item;
         }
-        throw new Error('Problem with creating event');
+        throw new Error(`Problem with creating item in ${this.name}`);
 
     }
 
+    /**
+     * Returns item from model based on id
+     * @param params {object}
+     * @param params.id {string} id of item to find
+     * @returns {Promise<Object>}
+     */
     async get(params: any) {
-        const event = await this.model.findById(params.id, allowedFields[this.name]);
-        if (event) {
-            return event;
+        const item = await this.model.findById(params.id, allowedFields[this.name]);
+        if (item) {
+            return item;
         }
         throw new Error('Unable to find event');
     }
 
+    /**
+     * Returns all items that match filter
+     * @param params {object}
+     * @returns {Promise<array>}
+     */
     async getAll(params: any) {
-        const eventResponse = await this.queryDataPaginated(params);
-        return eventResponse;
+        const response = await this.queryDataPaginated(params);
+        return response;
     }
 
+    /**
+     * Updates item in model
+     * @param params {object}
+     * @param params.id {string} id of item to update
+     * @param params.data {object} data to update
+     * @returns {Promise<object>}
+     */
     async update(params: any) {
         const { id } = params;
         const { data } = params;
@@ -48,20 +71,35 @@ class GeneralController {
         throw new Error('Event not found');
     }
 
+    /**
+     * Deletes item from model
+     * @param params {object}
+     * @param params.id {string} id of item to remove
+     * @returns {Promise<array>}
+     */
     async delete(params: any) {
         const { id } = params;
         const paginated = params;
         if (await this.model.findById(id)) {
             if (await this.model.findByIdAndRemove(id)) {
-                const eventResponse = await this.queryDataPaginated(params);
-                return eventResponse;
+                const response = await this.queryDataPaginated(params);
+                return response;
             }
             throw new Error('Problem with deleting event');
         }
         throw new Error ('You are not allowed to delete this entry');
     }
 
-    async queryDataPaginated(filterInfo: any, reqUser?: string, isAdmin?: boolean) {
+    /**
+     * Returns items based on filter data
+     * @param filterInfo {object} object with filter data
+     * @param filterInfo.size {number} size of one page
+     * @param filterInfo.index {number} which page to get
+     * @param filterInfo.sort {object} sorting specification
+     * @param filterInfo.* {any} any other parameter for find function
+     * @returns {Promise<{list: any[]; length: number; qi: (any | string | string)}>}
+     */
+    async queryDataPaginated(filterInfo: any) {
         try {
             let { filter, size, index, sort} = filterInfo;
             delete filterInfo.size;
@@ -96,6 +134,7 @@ class GeneralController {
                     mongoFilter[property] = `/.*${propValue}*/i`;
                 }
             }
+
             const list = await this.model.find(mongoFilter, allowedFields[this.name])
                 .skip(size * index)
                 .limit(size)

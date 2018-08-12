@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { routing } from './app.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { EventService } from './services/event/event.service';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -23,6 +23,15 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
 import { ParticipantListComponent } from './components/participant-list/participant-list.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServerErrorInterceptor } from './error-handling/server.error.interceptor';
+import { TokenInterceptor } from './services/auth/auth.interceptor';
+import { ClientErrorHandler } from './error-handling/client.error.handler';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserComponent } from './components/user/user.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +44,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EventEditComponent,
     EventsComponent,
     LeftSidebarComponent,
-    ParticipantListComponent
+    ParticipantListComponent,
+    UserEditComponent,
+    UserComponent,
+    UserListComponent,
+    UserCardComponent,
+    LoaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,12 +62,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         deps: [HttpClient]
       }
     }),
+    ReactiveFormsModule,
     routing,
     NgbModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [EventService],
+  providers: [
+    EventService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: ClientErrorHandler
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@
     "DATE_END" : "Dátum DO",
     "DESCRIPTION": "Popis",
     "EDIT": "Uprav",
+    "EMAIL": "Email",
     "ERNI_EVENT_MANAGER": "ERNI EVENT MANAGER",
     "EVENT": "Udalosť",
     "EVENT_LIST": "Zoznam Udalostí",
@@ -20,6 +21,9 @@
     "INSERT_EVENT_NAME": "Vložte meno udalosti",
     "INVITE": "Pozvať",
     "LESS_OPTIONS": "Menej možností",
+    "FIRST_NAME": "Krstne meno",
+    "INSERT_USER_EMAIL": "Vlozte email pouzivatela",
+    "LAST_NAME": "Priezvisko",
     "LOCATION" : "Poloha",
     "MORE_OPTIONS": "Viac možností",
     "MY_EVENTS" : "Moje Udalosti",
@@ -27,5 +31,8 @@
     "PARTICIPANTS": "Účastníci",
     "TRANSPORT": "Doprava",
     "TRANSPORT_BUS": "Autobusom",
-    "TRANSPORT_CAR": "Autom"
+    "TRANSPORT_CAR": "Autom",
+    "ROLE": "Rola",
+    "TYPE": "Druh",
+    "USERS": "Uzivatelia"
 }
