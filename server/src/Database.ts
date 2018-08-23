@@ -11,7 +11,7 @@ const mongoOptions: any = {
     reconnectTries: 5,
     // useMongoClient: true,
 };
-mongoose.connect(process.env.MONGO_URL, mongoOptions).then(function () {
+mongoose.connect(`${process.env.MONGO_SERVER}/${process.env.MONGO_DATABASE}`, mongoOptions).then(function () {
     console.log('Connected to MongoDB');
 }, function (error) {
     console.error('failed to connect to MongoDB...', error);

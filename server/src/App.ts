@@ -6,6 +6,7 @@ import * as logger from 'morgan';
 import * as path from 'path';
 import * as mongo from 'connect-mongo';
 import * as mongoose from 'mongoose';
+import { exec } from 'child_process';
 
 import {Request, Response, NextFunction, Application} from 'express';
 import {SessionOptions} from 'express-session';
@@ -30,10 +31,23 @@ class App {
   constructor() {
     this.app = express();
     this.enableLogging();
+    this.migrateMongo();
     this.setupParsing();
     this.setupCookies(isProduction);
     this.enableStaticFiles();
     this.mountRoutes();
+  }
+
+  private migrateMongo(): void {
+    exec('migrate-mongo up -f migrations/config.js', (error, stdout, stderr) => {
+      if (error) {
+        console.error(error);
+      } else if (stderr) {
+        console.error(error);
+      } else {
+        console.log(stdout);
+      }
+    });
   }
 
   private enableLogging(): void {
