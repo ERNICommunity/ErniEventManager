@@ -6,6 +6,14 @@ class UserController extends GeneralController {
     constructor(model: Model<any>, name: string) {
         super(model, name);
     }
+
+    async getByEmail(email: string) {
+      const item = await this.model.find({email: email});
+      if (item) {
+        return item;
+      }
+      throw new Error('Unable to find event');
+    }
 }
 
 module.exports = new UserController(UserModel, 'User');

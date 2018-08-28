@@ -3,6 +3,8 @@ import { ICountryInfo } from '../../interfaces';
 import { TranslateService } from '@ngx-translate/core';
 import { LeftSidebarService } from '../../services/left-sidebar/left-sidebar.service';
 import { storedLanguageKey } from '../../app.constants';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,16 +14,27 @@ import { storedLanguageKey } from '../../app.constants';
 export class HeaderComponent implements OnInit {
 
   countries: Array<ICountryInfo>;
+  userName: string;
+  isLoggedIn: boolean;
 
   constructor(
     public translate: TranslateService,
-    private leftSidebarService: LeftSidebarService
+    private leftSidebarService: LeftSidebarService,
+    private authService: AuthService,
+    public router: Router
   ) { }
 
   ngOnInit() {
     this.countries = [
       { country: 'England', short: 'en' },
       { country: 'Slovakia', short: 'sk' }];
+    this.authService.isLoggedIn.subscribe(() => {
+      this.userName = `${localStorage.getItem('user_firstName')} ${localStorage.getItem('user_lastName')}`;
+      this.isLoggedIn = !!localStorage.getItem('auth_token');
+    });
+
+    this.userName = `${localStorage.getItem('user_firstName')} ${localStorage.getItem('user_lastName')}`;
+    this.isLoggedIn = !!localStorage.getItem('auth_token');
   }
 
   switchLanguage(language: string) {
@@ -33,4 +46,7 @@ export class HeaderComponent implements OnInit {
     this.leftSidebarService.update();
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }

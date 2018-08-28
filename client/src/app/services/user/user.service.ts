@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IUserResponse, IUserSchema } from '../../interfaces/user.interface';
+import { IUserResponse, IUserSchema, ILoginSchema } from '../../interfaces/user.interface';
 import { IPaginator } from '../../interfaces';
 import { environment } from '../../../environments/environment';
 import { preparePaginator, handleError } from '../../utils';
@@ -12,6 +12,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class UserService {
   userPath = 'api/user';
+  loginPath = 'api/user/login';
 
   constructor(
     private httpClient: HttpClient
@@ -54,5 +55,9 @@ export class UserService {
     .pipe(
       catchError(handleError)
     );
+  }
+
+  login(data: ILoginSchema): Observable<ILoginSchema> {
+    return this.httpClient.post<ILoginSchema>(`${environment.serverPath}${this.loginPath}`, { data });
   }
 }

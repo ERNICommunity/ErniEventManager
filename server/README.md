@@ -11,6 +11,8 @@ node -> 10.1.0
 To install:
  * Create a .env file based on .env-example and fill it with development data
  * Run `npm install` from root server directory.
+ * Run `npm install -g migrate-mongo`
+ * Add SSH private key to /key/private.key for authorization
 
 To run locally:
  * Setup & make sure you have mongo running.
@@ -19,6 +21,22 @@ To run locally:
 
 To run on server:
 TBD
+
+## Mongo migrations
+
+Package: https://www.npmjs.com/package/migrate-mongo
+
+Install: `npm install -g migrate-mongo`
+
+If package is installed globaly, it will automatically up migrations on application startup
+
+New script: `migrate-mongo create name_of_script -f migrations/config.js`
+
+Up: `migrate-mongo up -f migrations/config.js`
+
+Down: `migrate-mongo down -f migrations/config.js`
+
+Status: `migrate-mongo status -f migrations/config.js`
 
 ## Debug 
  In VS Code, Open the Debug tab & launch the `Attach to ts project`.

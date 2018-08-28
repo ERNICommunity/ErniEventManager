@@ -13,3 +13,15 @@ export class IUserResponse {
     length: number;
     qi: string;
 }
+
+export class ILoginSchema {
+  login: string;
+  password: string;
+}
+
+export class ILoginResultSchema {
+  email: string;
+  token: string;
+  firstName: string;
+  lastName: string;
+}

@@ -1,5 +1,7 @@
 import * as express from 'express';
 import { NextFunction, Request, Response, Router } from 'express';
+import {default as Auth} from './../middleware/auth';
+
 const eventRouter = require('../models/event');
 const subEventRouter = require('../models/subEvent');
 const userRouter = require('../models/user');
@@ -10,21 +12,13 @@ class ApiRoute {
     constructor() {
         this.router = express.Router();
 
-        this.router.use('/event', eventRouter);
-        this.router.use('/subEvent', subEventRouter);
-        this.router.use('/user', userRouter);
-        this.router.get('/', this.getEmpty);
-        this.router.get('/:params', this.getParams);
-    }
-
-    addGreeting(req: Request, res: Response, next: NextFunction) {
-        console.log('Hello Erni');
-        // Continues to process the next route
-        next();
-        // Responds request with 200 & the json inside of it
-        // res.json({message: 'Middleware responds'});
-        // You can also set the response code.
-        // res.status(404).json({message: 'we returned 404'});
+        this.router.use('*', Auth.allowOptions);
+        this.router.post('/login', Auth.login);
+        this.router.use('/subEvent', Auth.authorize, subEventRouter);
+        this.router.use('/event', Auth.authorize, eventRouter);
+        this.router.use('/user', Auth.authorize, userRouter);
+        this.router.get('/', Auth.authorize, this.getEmpty);
+        this.router.get('/:params', Auth.authorize, this.getParams);
     }
 
     getEmpty(req: Request, res: Response, next: NextFunction) {
