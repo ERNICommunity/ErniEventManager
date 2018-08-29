@@ -1,89 +1,27 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { EventService } from './event.service';
+import { AuthService } from './auth.service';
 import { IEventSchema, IPaginator, ISort, IEventResponse } from '../../interfaces';
+import { Router } from '@angular/router';
+import { routerSpy } from '../../utils-test/index.spec';
 
-describe('EventService', () => {
-  let service: EventService;
+describe('AuthService', () => {
+  let service: AuthService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [EventService]
+      providers: [
+        AuthService,
+        {provide: Router, useValue: routerSpy},
+      ]
     });
-    service = TestBed.get(EventService);
+    service = TestBed.get(AuthService);
     httpMock = TestBed.get(HttpTestingController);
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
-
-  const dummyEvent = <IEventSchema>{
-    _id: '1000',
-    name: 'Event 101'
-  };
-
-  const dummyPaginator = <IPaginator>{
-    index: 1,
-    size: 1,
-    sort: <ISort>{ field: 'field', way: 'way' }
-  };
-
-  const dummyEventResponse = <IEventResponse>{
-    length: 1,
-    list: [dummyEvent]
-  };
-
-  describe('getEvent()', () => {
-    it('should return an Observable<IEventSchema>', () => {
-      service.getEvent(dummyEvent._id).subscribe(event => {
-        expect(event).toEqual(dummyEvent);
-      });
-
-      const req = httpMock.expectOne(`/${service.eventPath}/${dummyEvent._id}`);
-      expect(req.request.method).toBe('GET');
-      req.flush(dummyEvent);
-    });
-  });
-
-  describe('createEvent()', () => {
-    it('should return an Observable<IEventSchema>', () => {
-      service.createEvent(dummyEvent).subscribe(event => {
-        expect(event).toEqual(dummyEvent);
-      });
-
-      const req = httpMock.expectOne(`/${service.eventPath}`);
-      expect(req.request.method).toBe('POST');
-      req.flush(dummyEvent);
-    });
-  });
-
-  describe('editEvent()', () => {
-    it('should return an Observable<IEventSchema>', () => {
-      service.editEvent(dummyEvent._id, dummyEvent).subscribe(event => {
-        expect(event).toEqual(dummyEvent);
-      });
-
-      const req = httpMock.expectOne(`/${service.eventPath}/${dummyEvent._id}`);
-      expect(req.request.method).toBe('PUT');
-      req.flush(dummyEvent);
-    });
-  });
-
-  // Don't know why this fails
-  xdescribe('deleteEvent()', () => {
-    it('should return an Observable<IEventResponse>', () => {
-      service.deleteEvent(dummyEvent, dummyPaginator).subscribe(eventRes => {
-        expect(eventRes).toEqual(dummyEventResponse);
-      });
-
-      const req = httpMock.expectOne({
-        method: 'DELETE',
-        url: `/${service.eventPath}/${dummyEvent._id}`
-      });
-      req.flush(dummyEventResponse);
-    });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 });

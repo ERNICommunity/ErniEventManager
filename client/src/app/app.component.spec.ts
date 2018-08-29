@@ -11,7 +11,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
 import { EventListComponent } from './components/event-list/event-list.component';
 import { EventEditComponent } from './components/event-edit/event-edit.component';
 import { EventsComponent } from './components/events/events.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -31,7 +31,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { LoaderComponent } from './components/loader/loader.component';
 
 import { HttpLoaderFactory } from './app.module';
-import {APP_BASE_HREF} from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
+import { LoginComponent } from './components/login/login.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -50,7 +51,8 @@ describe('AppComponent', () => {
         UserComponent,
         UserListComponent,
         UserCardComponent,
-        LoaderComponent
+        LoaderComponent,
+        LoginComponent
       ],
       imports: [
         BrowserModule,
@@ -65,7 +67,8 @@ describe('AppComponent', () => {
         routing,
         NgbModule.forRoot(),
         FormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        ReactiveFormsModule
       ],
       providers: [
         EventService,

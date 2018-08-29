@@ -2,9 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
 import { TranslateService, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { translateLoaderSpy } from '../../utils-test/index.spec';
+import { translateLoaderSpy, routerSpy, leftSidebarServiceSpy, authServiceSpy, localStorageMock } from '../../utils-test/index.spec';
 import { HttpClient } from 'selenium-webdriver/http';
 import { HttpLoaderFactory } from '../../app.module';
+import { Router } from '@angular/router';
+import { LeftSidebarService } from '../../services/left-sidebar/left-sidebar.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -12,6 +15,8 @@ describe('HeaderComponent', () => {
   let translate: TranslateService;
 
   beforeEach(async(() => {
+    spyOn(localStorage, 'getItem').and.callFake(localStorageMock.getItem);
+    spyOn(localStorage, 'setItem').and.callFake(localStorageMock.setItem);
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
       imports: [
@@ -24,8 +29,10 @@ describe('HeaderComponent', () => {
         }),
       ],
       providers: [
-        TranslateService,
         {provide: TranslateLoader, useValue: translateLoaderSpy},
+        {provide: Router, useValue: routerSpy},
+        {provide: LeftSidebarService, useValue: leftSidebarServiceSpy},
+        {provide: AuthService, useValue: authServiceSpy},
       ]
     })
     .compileComponents();
