@@ -12,6 +12,10 @@ export class LeftSidebarService {
 
   constructor() {}
 
+  getSidebarSubject(): Subject<boolean> {
+    return this.sidebarSubject;
+  }
+
   update(): void {
     this.sidebarSubject.next(this.sidebarStatus = !this.sidebarStatus);
   }

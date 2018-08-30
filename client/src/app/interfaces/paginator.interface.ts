@@ -15,7 +15,8 @@ export class IPaginator {
         index: number,
         filter: Object,
         sort: ISort,
-        exactFilter: Object
+        exactFilter: Object,
+        qi?: string
     ) {
         this.length = length;
         this.size = size;
@@ -24,13 +25,13 @@ export class IPaginator {
         this.filter = filter;
         this.sort = sort;
         this.exactFilter = exactFilter;
-        this.setQueryIndex();
+        this.qi = qi ? qi : this.setQueryIndex();
     }
 
-    setQueryIndex = () => {
+    setQueryIndex = (): string => {
         const min: number = Math.ceil(0);
         const max: number = Math.floor(1000000);
-        this.qi = (Math.floor(Math.random() * (max - min + 1)) + min).toString();
+        return (Math.floor(Math.random() * (max - min + 1)) + min).toString();
     }
 
 }
@@ -48,3 +49,9 @@ export class ICurrentPage {
     name: String;
     path: String;
 }
+
+
+export const currenPageMock1: ICurrentPage = {
+    name: 'John Tester',
+    path: '/path'
+};

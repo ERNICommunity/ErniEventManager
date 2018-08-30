@@ -23,15 +23,14 @@ export class EventListComponent implements OnInit {
   );
   constructor(
     private router: Router,
-    private eventService: EventService,
-    private route: ActivatedRoute
+    private eventService: EventService
   ) { }
 
   ngOnInit() {
     this.retreiveData = true;
     this.eventService.queryEventsPaginated(this.paginator)
       .subscribe((eventRes: IEventResponse) => {
-        if (eventRes.qi === this.paginator.qi) {
+        if (eventRes.qi === this.paginator.qi || eventRes.qi === null) {
           this.retreiveData = false;
           this.paginator.length = eventRes.length;
           this.events = eventRes.list;
