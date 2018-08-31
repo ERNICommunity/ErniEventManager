@@ -36,14 +36,14 @@ export class UserEditComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/user']);
+    this.router.navigate(['/users']);
   }
 
   create() {
     this.userService.create(this.user)
       .subscribe(
         (user) => {
-          this.router.navigate(['/user']); // success path
+          this.router.navigate(['/users']); // success path
         },
         (error) => {
           console.log('Following error appeared(CREATE USER): ', error);

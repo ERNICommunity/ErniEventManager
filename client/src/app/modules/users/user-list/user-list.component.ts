@@ -45,7 +45,7 @@ export class UserListComponent implements OnInit {
   }
 
   openUser(id: string) {
-    this.router.navigate(['/user/edit/' + id]);
+    this.router.navigate(['/users/edit/' + id]);
   }
 
   displayError(reason: any) {

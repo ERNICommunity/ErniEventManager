@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/events', pathMatch: 'full' },
+    { path: 'events', loadChildren: './modules/events/events.module#EventsModule'} ,
+    { path: 'users', loadChildren: './modules/users/users.module#UsersModule'},
     { path: 'login', component: LoginComponent },
     { path: '**', component: Page404Component }
 ];

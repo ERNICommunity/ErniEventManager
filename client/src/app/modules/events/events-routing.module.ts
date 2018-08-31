@@ -6,7 +6,7 @@ import { EventEditComponent } from './event-edit/event-edit.component';
 
 const eventsRoutes: Routes = [
     {
-        path: 'events',
+        path: '',
         component: EventsComponent,
         children: [
             {
@@ -14,12 +14,15 @@ const eventsRoutes: Routes = [
                 component: EventListComponent
             },
             {
+                path: 'edit/:id',
+                component: EventEditComponent
+            },
+            {
                 path: ':type',
                 component: EventListComponent
             },
         ]
     },
-    { path: 'event/edit/:id', component: EventEditComponent },
 ];
 
 @NgModule({

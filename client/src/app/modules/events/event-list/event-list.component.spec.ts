@@ -59,6 +59,6 @@ describe('EventListComponent', () => {
 
   it('open event', () => {
     component.openEvent(eventSchemaMock._id);
-    expect(routerSpy.navigate).toHaveBeenCalledWith([`/event/edit/${eventSchemaMock._id}`]);
+    expect(routerSpy.navigate).toHaveBeenCalledWith([`/events/edit/${eventSchemaMock._id}`]);
   });
 });

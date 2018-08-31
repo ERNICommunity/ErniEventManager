@@ -44,7 +44,7 @@ export class EventListComponent implements OnInit {
   }
 
   openEvent(id: string) {
-    this.router.navigate(['/event/edit/' + id]);
+    this.router.navigate(['/events/edit/' + id]);
   }
 
   deleteEvent(event: IEventSchema) {

@@ -20,7 +20,6 @@ import { TokenInterceptor } from './services/auth/auth.interceptor';
 import { ClientErrorHandler } from './error-handling/client.error.handler';
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { EventsModule } from './modules/events/events.module';
 import { LoaderModule } from './modules/loader/loader.module';
 import { UsersModule } from './modules/users/users.module';
 
@@ -35,6 +34,7 @@ import { UsersModule } from './modules/users/users.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -45,8 +45,6 @@ import { UsersModule } from './modules/users/users.module';
     }),
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    EventsModule,
-    UsersModule,
     LoaderModule,
     AppRoutingModule,
   ],
