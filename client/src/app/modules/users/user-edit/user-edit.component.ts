@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IUserSchema } from '../../interfaces/user.interface';
+import { IUserSchema } from '../../../interfaces/user.interface';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../../services/user/user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-user-edit',

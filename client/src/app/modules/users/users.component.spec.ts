@@ -1,17 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserComponent } from './user.component';
+import { UsersComponent } from './users.component';
 import { MockComponent } from '../../utils';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('UserComponent', () => {
-  let component: UserComponent;
-  let fixture: ComponentFixture<UserComponent>;
+describe('UsersComponent', () => {
+  let component: UsersComponent;
+  let fixture: ComponentFixture<UsersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        UserComponent,
+        UsersComponent,
         MockComponent
       ],
       imports: [
@@ -27,7 +27,7 @@ describe('UserComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserComponent);
+    fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

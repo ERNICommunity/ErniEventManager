@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IPaginator } from '../../interfaces';
-import { UserService } from '../../services/user/user.service';
-import { IUserResponse } from '../../interfaces/user.interface';
+import { IPaginator, IUserResponse } from '../../../interfaces';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-user-list',

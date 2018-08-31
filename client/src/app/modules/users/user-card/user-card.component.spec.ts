@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserCardComponent } from './user-card.component';
-import { userSchemaMock1 } from '../../utils-test/index.spec';
+import { userSchemaMock1 } from '../../../utils-test/index.spec';
 
 describe('UserCardComponent', () => {
   let component: UserCardComponent;

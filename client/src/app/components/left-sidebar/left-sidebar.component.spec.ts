@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeftSidebarComponent } from './left-sidebar.component';
 import { TranslateService, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { translateLoaderSpy, routerSpy, pageNameServiceSpy } from '../../utils-test/index.spec';
+import { translateLoaderSpy, routerSpy, pageNameServiceSpyReal } from '../../utils-test/index.spec';
 import { HttpClient } from '@angular/common/http';
 import { HttpLoaderFactory } from '../../app.module';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,10 +16,8 @@ describe('LeftSidebarComponent', () => {
   let component: LeftSidebarComponent;
   let fixture: ComponentFixture<LeftSidebarComponent>;
   let translate: TranslateService;
-  let getPageNameSpy: any;
 
   beforeEach(async(() => {
-    getPageNameSpy = pageNameServiceSpy.getPageName.and.returnValue( of( {subscribe: () => currenPageMock1 }) );
     TestBed.configureTestingModule({
       declarations: [
         LeftSidebarComponent,
@@ -44,7 +42,7 @@ describe('LeftSidebarComponent', () => {
         TranslateService,
         {provide: Router, useValue: routerSpy},
         {provide: TranslateLoader, useValue: translateLoaderSpy},
-        {provide: PageNameService, useValue: pageNameServiceSpy}
+        {provide: PageNameService, useValue: pageNameServiceSpyReal}
       ]
     })
     .compileComponents();

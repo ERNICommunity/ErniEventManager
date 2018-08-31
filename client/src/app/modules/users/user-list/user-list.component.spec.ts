@@ -3,10 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserListComponent } from './user-list.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { userServiceSpy, routerSpy, userSchemaMock1 } from '../../utils-test/index.spec';
+import { userServiceSpy, routerSpy, userSchemaMock1 } from '../../../utils-test/index.spec';
 import { of } from 'rxjs';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { Router } from '@angular/router';
+import { LoaderModule } from '../../loader/loader.module';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -20,7 +21,8 @@ describe('UserListComponent', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        FormsModule
+        FormsModule,
+        LoaderModule
       ],
       providers: [
         {provide: Router, useValue: routerSpy},

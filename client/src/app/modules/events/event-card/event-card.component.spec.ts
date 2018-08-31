@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventCardComponent } from './event-card.component';
 import { By } from '@angular/platform-browser';
 import { Predicate, DebugElement } from '@angular/core';
-import { IEventSchema  } from '../../interfaces';
+import { IEventSchema  } from '../../../interfaces';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { eventSchemaMock } from '../../utils-test/index.spec';
+import { eventSchemaMock } from '../../../utils-test/index.spec';
 
 
 describe('EventCardComponent', () => {

@@ -3,15 +3,15 @@ import { async, ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angu
 import { EventEditComponent } from './event-edit.component';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../../app.module';
+import { HttpLoaderFactory } from '../../../app.module';
 import { HttpClient } from 'selenium-webdriver/http';
-import { EventService } from '../../services/event/event.service';
+import { EventService } from '../../../services/event/event.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Router, ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { Injector, DebugElement } from '@angular/core';
-import { translateLoaderSpy, routerSpy, eventSchemaMock, eventSchemaMock2, eventServiceSpy } from '../../utils-test/index.spec';
+import { translateLoaderSpy, routerSpy, eventSchemaMock, eventSchemaMock2, eventServiceSpy } from '../../../utils-test/index.spec';
 
 
 

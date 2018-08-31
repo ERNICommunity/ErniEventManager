@@ -9,6 +9,7 @@ import { EventsRoutingModule } from './events-routing.module';
 import { FormsModule } from '@angular/forms';
 import { LoaderModule } from '../loader/loader.module';
 import { SharedModule } from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     imports: [
         CommonModule,
         EventsRoutingModule,
+        BrowserAnimationsModule,
         SharedModule,
         FormsModule,
         LoaderModule

@@ -17,10 +17,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServerErrorInterceptor } from './error-handling/server.error.interceptor';
 import { ClientErrorHandler } from './error-handling/client.error.handler';
-import { UserEditComponent } from './components/user-edit/user-edit.component';
-import { UserComponent } from './components/user/user.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
 
 import { HttpLoaderFactory } from './app.module';
 import { APP_BASE_HREF } from '@angular/common';
@@ -36,10 +32,6 @@ describe('AppComponent', () => {
         FooterComponent,
         HeaderComponent,
         LeftSidebarComponent,
-        UserEditComponent,
-        UserComponent,
-        UserListComponent,
-        UserCardComponent,
         LoginComponent
       ],
       imports: [

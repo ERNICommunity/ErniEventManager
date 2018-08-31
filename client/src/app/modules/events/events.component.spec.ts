@@ -8,7 +8,7 @@ import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from 'selenium-webdriver/http';
 import { Component, NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { translateLoaderSpy, pageNameServiceSpy, leftSidebarServiceSpy } from '../../utils-test/index.spec';
+import { translateLoaderSpy, pageNameServiceSpyAbstract, leftSidebarServiceSpy } from '../../utils-test/index.spec';
 import { MockComponent } from '../../utils';
 import { currenPageMock1, ICurrentPage } from '../../interfaces';
 import { of, Subject } from 'rxjs';
@@ -24,9 +24,9 @@ describe('EventsComponent', () => {
   let getLeftSidebarSpy: any;
 
   beforeEach(async(() => {
-    getPageTextSpy = pageNameServiceSpy.getPageText.and.returnValue( of(currenPageMock1) );
+    getPageTextSpy = pageNameServiceSpyAbstract.getPageText.and.returnValue( of(currenPageMock1) );
     getLeftSidebarSpy = leftSidebarServiceSpy.getSidebarSubject.and.returnValue( of({subscribe: () => false }) );
-    getPageNameSpy = pageNameServiceSpy.getPageName.and.returnValue( of( {subscribe: () => currenPageMock1 }) );
+    getPageNameSpy = pageNameServiceSpyAbstract.getPageName.and.returnValue( of( {subscribe: () => currenPageMock1 }) );
     TestBed.configureTestingModule({
       declarations: [
         EventsComponent,
@@ -51,7 +51,7 @@ describe('EventsComponent', () => {
       ],
       providers: [
         {provide: TranslateLoader, useValue: translateLoaderSpy},
-        {provide: PageNameService, useValue: pageNameServiceSpy},
+        {provide: PageNameService, useValue: pageNameServiceSpyAbstract},
         {provide: LeftSidebarService, useValue: leftSidebarServiceSpy}
       ]
     })

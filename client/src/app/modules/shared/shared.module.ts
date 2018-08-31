@@ -3,7 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   exports: [
-    TranslateModule
+    TranslateModule,
   ]
 })
 

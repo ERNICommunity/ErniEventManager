@@ -4,13 +4,13 @@ import { EventListComponent } from './event-list.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { EventCardComponent } from '../event-card/event-card.component';
-import { LoaderComponent } from '../loader/loader.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { routerSpy, eventResponseMock, paginatorMock,
-  eventSchemaMock, eventSchemaMock2, eventResponseMock2, eventServiceSpy } from '../../utils-test/index.spec';
+  eventSchemaMock, eventSchemaMock2, eventResponseMock2, eventServiceSpy } from '../../../utils-test/index.spec';
 import { of } from 'rxjs';
-import { EventService } from '../../services/event/event.service';
+import { EventService } from '../../../services/event/event.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoaderModule } from '../../loader/loader.module';
 
 describe('EventListComponent', () => {
   let component: EventListComponent;
@@ -20,13 +20,13 @@ describe('EventListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         EventListComponent,
-        EventCardComponent,
-        LoaderComponent
+        EventCardComponent
       ],
       imports: [
         HttpClientTestingModule,
         FormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        LoaderModule
       ],
       providers: [
         {provide: Router, useValue: routerSpy},

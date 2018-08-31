@@ -18,14 +18,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServerErrorInterceptor } from './error-handling/server.error.interceptor';
 import { TokenInterceptor } from './services/auth/auth.interceptor';
 import { ClientErrorHandler } from './error-handling/client.error.handler';
-import { UserEditComponent } from './components/user-edit/user-edit.component';
-import { UserComponent } from './components/user/user.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EventsModule } from './modules/events/events.module';
 import { LoaderModule } from './modules/loader/loader.module';
+import { UsersModule } from './modules/users/users.module';
 
 @NgModule({
   declarations: [
@@ -34,10 +31,6 @@ import { LoaderModule } from './modules/loader/loader.module';
     FooterComponent,
     HeaderComponent,
     LeftSidebarComponent,
-    UserEditComponent,
-    UserComponent,
-    UserListComponent,
-    UserCardComponent,
     LoginComponent
   ],
   imports: [
@@ -52,9 +45,8 @@ import { LoaderModule } from './modules/loader/loader.module';
     }),
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    FormsModule,
-    BrowserAnimationsModule,
     EventsModule,
+    UsersModule,
     LoaderModule,
     AppRoutingModule,
   ],

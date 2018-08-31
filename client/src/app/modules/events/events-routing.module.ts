@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EventsComponent } from './events.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { NgModule } from '@angular/core';
+import { EventEditComponent } from './event-edit/event-edit.component';
 
 const eventsRoutes: Routes = [
     {
@@ -18,6 +19,7 @@ const eventsRoutes: Routes = [
             },
         ]
     },
+    { path: 'event/edit/:id', component: EventEditComponent },
 ];
 
 @NgModule({
