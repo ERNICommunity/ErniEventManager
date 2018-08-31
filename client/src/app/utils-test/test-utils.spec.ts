@@ -17,10 +17,6 @@ export const leftSidebarServiceSpy = jasmine.createSpyObj('LeftSidebarService',
   ['getSidebarSubject', 'update']
 );
 
-export const userServiceSpy = jasmine.createSpyObj('UserService',
-  ['create', 'get', 'queryPaginated', 'edit', 'delete']
-);
-
 let store = {};
 export const localStorageMock = {
   getItem: (key: string): string => {

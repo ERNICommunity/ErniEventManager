@@ -14,10 +14,8 @@ describe('UserEditComponent', () => {
   let component: UserEditComponent;
   let fixture: ComponentFixture<UserEditComponent>;
   let translate: TranslateService;
-  let getUserSpy: any;
 
   beforeEach(async(() => {
-    getUserSpy = userServiceSpy.get.and.returnValue( of(userSchemaMock1) );
     TestBed.configureTestingModule({
       declarations: [ UserEditComponent ],
       imports: [

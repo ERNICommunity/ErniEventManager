@@ -5,17 +5,10 @@ import { AppComponent } from './app.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { routing } from './app.routing';
 import { Page404Component } from './components/page-404/page-404.component';
-import { EventCardComponent } from './components/event-card/event-card.component';
-import { EventListComponent } from './components/event-list/event-list.component';
-import { EventEditComponent } from './components/event-edit/event-edit.component';
-import { EventsComponent } from './components/events/events.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { EventService } from './services/event/event.service';
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -28,11 +21,11 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserComponent } from './components/user/user.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
-import { LoaderComponent } from './components/loader/loader.component';
 
 import { HttpLoaderFactory } from './app.module';
 import { APP_BASE_HREF } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -42,16 +35,11 @@ describe('AppComponent', () => {
         Page404Component,
         FooterComponent,
         HeaderComponent,
-        EventListComponent,
-        EventCardComponent,
-        EventEditComponent,
-        EventsComponent,
         LeftSidebarComponent,
         UserEditComponent,
         UserComponent,
         UserListComponent,
         UserCardComponent,
-        LoaderComponent,
         LoginComponent
       ],
       imports: [
@@ -64,14 +52,13 @@ describe('AppComponent', () => {
             deps: [HttpClient]
           }
         }),
-        routing,
         NgbModule.forRoot(),
         FormsModule,
         BrowserAnimationsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AppRoutingModule
       ],
       providers: [
-        EventService,
         {provide: APP_BASE_HREF, useValue : '/' }
       ]
     }).compileComponents();

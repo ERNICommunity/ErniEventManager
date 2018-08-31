@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IEventSchema} from '../../interfaces';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { IEventSchema } from '../../../interfaces';
 
 @Component({
   selector: 'app-event-card',
