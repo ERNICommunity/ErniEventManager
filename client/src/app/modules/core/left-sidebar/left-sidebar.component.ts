@@ -27,8 +27,9 @@ export class LeftSidebarComponent implements OnInit {
     this.leftSidebarService.update();
   }
 
-  navigate(path: String) {
+  navigate(path: Array<string>) {
+
     this.toggleMenu();
-    this.router.navigate([path]);
+    this.router.navigate(path);
   }
 }

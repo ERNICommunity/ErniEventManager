@@ -3,7 +3,8 @@ import { Page404Component } from './page-404/page-404.component';
 import { NgModule } from '@angular/core';
 
 const coreRoutes: Routes = [
-    { path: '**', component: Page404Component }
+    { path: '404', component: Page404Component },
+    { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

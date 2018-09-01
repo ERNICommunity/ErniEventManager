@@ -9,8 +9,8 @@ import { UserService } from '../../../services/user/user.service';
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
-  public user: IUserSchema;
-  public isCreate: boolean;
+  user: IUserSchema;
+  isCreate: boolean;
   constructor(
     private userService: UserService,
     private router: Router,

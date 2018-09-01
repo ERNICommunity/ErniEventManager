@@ -9,33 +9,33 @@
                         <a class="nav-link text-nowrap pull-right cursor-click pr-0" (click)="toggleMenu()"><i class="fa fa-times fa-fw"></i> <span class="d-none d-sm-inline" [innerHtml]="'CLOSE' | translate"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ALL' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/')">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ALL' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate(['/events/'])">
                           <i class="fa fa-globe fa-fw"></i>
                           <span class="d-inline" [translate]="'ALL'"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-0 w-100 {{currentPage.name==='EVENTS_I_JOINED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/joined')">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='EVENTS_I_JOINED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate(['/events', 'joined'])">
                           <i class="fa fa-user fa-fw"></i>
                           <span class="d-inline" [translate]="'EVENTS_I_JOINED'"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ARCHIVED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate('/events/archived')">
+                        <a class="nav-link pl-0 w-100 {{currentPage.name==='ARCHIVED' ? 'sidebar__active' : ''}} cursor-click" (click)="navigate(['/events', 'archived'])">
                           <i class="fa fa-archive fa-fw"></i>
                           <span class="d-inline" [translate]="'ARCHIVED'"></span>
                         </a>
                     </li>
                     <li>
                         <hr>
-                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate('/events/edit/new')">
+                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate(['/events', 'edit', 'new'])">
                           <i class="fa fa-plus fa-fw"></i>
                           <span class="d-inline" [translate]="'CREATE'"></span>
                         </a>
                     </li>
                     <li>
                         <hr>
-                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate('/users')">
+                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate(['/users'])">
                           <i class="fa fa-users fa-fw"></i>
                           <span class="d-inline" [translate]="'USERS'"></span>
                         </a>
