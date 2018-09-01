@@ -3,11 +3,13 @@ import { EventsComponent } from './events.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { NgModule } from '@angular/core';
 import { EventEditComponent } from './event-edit/event-edit.component';
+import { AuthGuard } from '../../services/auth/auth-guard.service';
 
 const eventsRoutes: Routes = [
     {
         path: '',
         component: EventsComponent,
+        canActivateChild: [AuthGuard],
         children: [
             {
                 path: '',

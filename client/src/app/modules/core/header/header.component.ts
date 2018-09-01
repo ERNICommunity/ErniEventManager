@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
 
   countries: Array<ICountryInfo>;
   userName: string;
-  isLoggedIn: boolean;
 
   constructor(
     public translate: TranslateService,
@@ -28,13 +27,11 @@ export class HeaderComponent implements OnInit {
     this.countries = [
       { country: 'England', short: 'en' },
       { country: 'Slovakia', short: 'sk' }];
-    this.authService.isLoggedIn.subscribe(() => {
+    this.authService.loginChange.subscribe(() => {
       this.userName = `${localStorage.getItem('user_firstName')} ${localStorage.getItem('user_lastName')}`;
-      this.isLoggedIn = !!localStorage.getItem('auth_token');
     });
 
     this.userName = `${localStorage.getItem('user_firstName')} ${localStorage.getItem('user_lastName')}`;
-    this.isLoggedIn = !!localStorage.getItem('auth_token');
   }
 
   switchLanguage(language: string) {
