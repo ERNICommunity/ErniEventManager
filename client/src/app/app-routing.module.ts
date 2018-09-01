@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -12,7 +12,7 @@ const appRoutes: Routes = [
 // export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: false });
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes)],
+    imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
     exports: [RouterModule]
 })
 export class AppRoutingModule {
