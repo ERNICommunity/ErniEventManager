@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
-import { ICurrentPage } from '../../interfaces';
-import { LeftSidebarService } from '../../services/left-sidebar/left-sidebar.service';
-import { PageNameService } from '../../services/page-name/page-name.service';
+import { ICurrentPage } from '../../../interfaces';
+import { LeftSidebarService } from '../../../services/left-sidebar/left-sidebar.service';
+import { PageNameService } from '../../../services/page-name/page-name.service';
 import { filter, map } from 'rxjs/operators';
 
 @Component({

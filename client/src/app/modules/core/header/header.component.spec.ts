@@ -2,12 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
 import { TranslateService, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { translateLoaderSpy, routerSpy, leftSidebarServiceSpy, authServiceSpy, localStorageMock } from '../../utils-test/index.spec';
+import { translateLoaderSpy, routerSpy, leftSidebarServiceSpy, authServiceSpy, localStorageMock } from '../../../utils-test/index.spec';
 import { HttpClient } from 'selenium-webdriver/http';
-import { HttpLoaderFactory } from '../../app.module';
+import { HttpLoaderFactory } from '../../../app.module';
 import { Router } from '@angular/router';
-import { LeftSidebarService } from '../../services/left-sidebar/left-sidebar.service';
-import { AuthService } from '../../services/auth/auth.service';
+import { LeftSidebarService } from '../../../services/left-sidebar/left-sidebar.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

@@ -2,10 +2,6 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { Page404Component } from './components/page-404/page-404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,19 +16,14 @@ import { ClientErrorHandler } from './error-handling/client.error.handler';
 
 import { HttpLoaderFactory } from './app.module';
 import { APP_BASE_HREF } from '@angular/common';
-import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './modules/core/core.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        Page404Component,
-        FooterComponent,
-        HeaderComponent,
-        LeftSidebarComponent,
-        LoginComponent
+        AppComponent
       ],
       imports: [
         BrowserModule,
@@ -48,7 +39,8 @@ describe('AppComponent', () => {
         FormsModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        CoreModule
       ],
       providers: [
         {provide: APP_BASE_HREF, useValue : '/' }

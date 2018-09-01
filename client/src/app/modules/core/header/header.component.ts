@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ICountryInfo } from '../../interfaces';
+import { ICountryInfo } from '../../../interfaces';
 import { TranslateService } from '@ngx-translate/core';
-import { LeftSidebarService } from '../../services/left-sidebar/left-sidebar.service';
-import { storedLanguageKey } from '../../app.constants';
+import { LeftSidebarService } from '../../../services/left-sidebar/left-sidebar.service';
+import { storedLanguageKey } from '../../../app.constants';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',

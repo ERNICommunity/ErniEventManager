@@ -9,28 +9,21 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
-import { Page404Component } from './components/page-404/page-404.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServerErrorInterceptor } from './error-handling/server.error.interceptor';
 import { TokenInterceptor } from './services/auth/auth.interceptor';
 import { ClientErrorHandler } from './error-handling/client.error.handler';
-import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoaderModule } from './modules/loader/loader.module';
 import { UsersModule } from './modules/users/users.module';
+import { CoreModule } from './modules/core/core.module';
+import { CoreRoutingModule } from './modules/core/core-routing.module';
+import { LoginModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    Page404Component,
-    FooterComponent,
-    HeaderComponent,
-    LeftSidebarComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +36,11 @@ import { UsersModule } from './modules/users/users.module';
         deps: [HttpClient]
       }
     }),
-    ReactiveFormsModule,
     NgbModule.forRoot(),
     LoaderModule,
+    LoginModule,
     AppRoutingModule,
+    CoreModule,
   ],
   providers: [
     {
