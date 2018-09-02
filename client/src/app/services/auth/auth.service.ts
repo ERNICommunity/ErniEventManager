@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {ILoginResultSchema} from '../../interfaces';
+import * as jwt_decode from 'jwt-decode';
 
 const loginPath = 'api/login';
 
@@ -14,9 +15,8 @@ export class AuthService {
   @Output() loginChange = new EventEmitter();
   @Output() authError = new EventEmitter();
   constructor(private http: HttpClient, private router: Router) {
-    const user = localStorage.getItem('user_email');
-    if (user) {
-      this.loginChange.emit(user);
+    if (this.isAuthenticated()) {
+      this.loginChange.emit(localStorage.getItem('user_email'));
     }
   }
 
@@ -25,15 +25,50 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    if (localStorage.getItem('user_email')) {
+    if (this.isTokenValid()) {
       return true;
     } else {
       return false;
     }
   }
 
-  logout() {
+  getToken(): string {
+    return localStorage.getItem('auth_token');
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('auth_token', token);
+  }
+
+  removeToken() {
     localStorage.removeItem('auth_token');
+  }
+
+  isTokenValid(): boolean {
+    // Currently only the expiration date is compared for validation
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+    const decoded = jwt_decode(token);
+    const date = this.getTokenExpirationDate(decoded);
+    if (date === undefined) {
+      return false;
+    }
+    return (date.valueOf() > new Date().valueOf());
+  }
+
+  getTokenExpirationDate(decoded: {exp: number}): Date {
+    if (decoded.exp === undefined) {
+      return null;
+    }
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  logout() {
+    this.removeToken();
     localStorage.removeItem('user_firstName');
     localStorage.removeItem('user_lastName');
     localStorage.removeItem('user_email');
@@ -46,7 +81,7 @@ export class AuthService {
       return this.authenticateOnBackend(login, password)
         .subscribe(
           result => {
-            localStorage.setItem('auth_token', result.token);
+            this.setToken(result.token);
             localStorage.setItem('user_firstName', result.firstName);
             localStorage.setItem('user_lastName', result.lastName);
             localStorage.setItem('user_email', result.email);

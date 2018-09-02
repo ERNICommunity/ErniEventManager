@@ -13,8 +13,10 @@ export class AuthGuard implements CanActivateChild, CanActivate, CanLoad {
         private router: Router
     ) {}
 
-    canLoad(route: Route): boolean {
-        return this.authBoolean();
+    canLoad(route: Route): Observable<boolean> {
+        return this.authObservable().pipe(
+            take(1)
+        );
     }
 
     canActivate(
@@ -40,14 +42,5 @@ export class AuthGuard implements CanActivateChild, CanActivate, CanLoad {
                 observer.next(false);
             }
         });
-    }
-
-    authBoolean(): boolean {
-        if (this.authService.isAuthenticated()) {
-            return true;
-        } else {
-            this.router.navigate(['/login']);
-            return false;
-        }
     }
 }
