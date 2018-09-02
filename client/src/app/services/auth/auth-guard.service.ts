@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, Router, RouterStateSnapshot, CanActivateChild, CanLoad, Route } from '@angular/router';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
 @Injectable({
@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivateChild, CanActivate, CanLoad {
     }
 
     authObservable(): Observable<boolean> {
-        return Observable.create((observer) => {
+        return Observable.create((observer: Observer<boolean>) => {
             if (this.authService.isAuthenticated()) {
                 observer.next(true);
             } else {
