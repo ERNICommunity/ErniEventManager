@@ -4,9 +4,9 @@ import { EventListComponent } from './event-list.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { EventCardComponent } from '../event-card/event-card.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Data } from '@angular/router';
 import { routerSpy, eventResponseMock, paginatorMock,
-  eventSchemaMock, eventSchemaMock2, eventResponseMock2, eventServiceSpy } from '../../../utils-test/index.spec';
+  eventSchemaMock, eventResponseMock2, eventServiceSpy } from '../../../utils-test/index.spec';
 import { of } from 'rxjs';
 import { EventService } from '../../../services/event/event.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +30,17 @@ describe('EventListComponent', () => {
       ],
       providers: [
         {provide: Router, useValue: routerSpy},
-        {provide: EventService, useValue: eventServiceSpy}
+        {provide: EventService, useValue: eventServiceSpy},
+        {provide: ActivatedRoute, useValue: {
+          snapshot: {
+            params: {id: 'new'}
+          },
+          data: {
+            subscribe: (fn: (value: Data) => void) => fn({
+                events: eventResponseMock
+            })
+          }
+        }}
       ]
     })
     .compileComponents();
