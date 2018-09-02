@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivateChild, CanActivate, CanLoad {
     }
 
     authObservable(): Observable<boolean> {
-        return new Observable<boolean>((observer) => {
+        return Observable.create((observer) => {
             if (this.authService.isAuthenticated()) {
                 observer.next(true);
             } else {
