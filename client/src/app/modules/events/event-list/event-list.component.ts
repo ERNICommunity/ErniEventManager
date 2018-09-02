@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EventService } from '../../../services/event/event.service';
 import { IEventSchema, IPaginator, IEventResponse} from '../../../interfaces';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -23,18 +23,17 @@ export class EventListComponent implements OnInit {
   );
   constructor(
     private router: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.retreiveData = true;
-    this.eventService.queryEventsPaginated(this.paginator)
-      .subscribe((eventRes: IEventResponse) => {
-        if (eventRes.qi === this.paginator.qi || eventRes.qi === null) {
-          this.retreiveData = false;
-          this.paginator.length = eventRes.length;
-          this.events = eventRes.list;
-        }
+    this.route.data
+      .subscribe((data: Data) => {
+        const eventRes = data['events'];
+        this.retreiveData = false;
+        this.paginator.length = eventRes.length;
+        this.events = eventRes.list;
       },
       (reason) => {
         this.displayError(reason);
@@ -48,6 +47,7 @@ export class EventListComponent implements OnInit {
   }
 
   deleteEvent(event: IEventSchema) {
+    this.retreiveData = true;
     this.eventService.deleteEvent(event, this.paginator)
       .subscribe((eventRes: IEventResponse) => {
         if (eventRes.qi === this.paginator.qi) {
