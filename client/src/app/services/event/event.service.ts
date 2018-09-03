@@ -6,7 +6,9 @@ import { HttpClient } from '@angular/common/http';
 import { IEventSchema, IEventResponse, IPaginator } from '../../interfaces';
 import { preparePaginator } from '../../utils';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class EventService {
   readonly eventPath = 'api/event';
 
