@@ -10,7 +10,7 @@ const loginResultSchemaMock: ILoginResultSchema  = {
 };
 
 export const authServiceSpy = {
-    isLoggedIn: new EventEmitter(),
+    loginChange: new EventEmitter(),
     authError: new EventEmitter(),
     authenticateOnBackend() {
       return of(loginResultSchemaMock);

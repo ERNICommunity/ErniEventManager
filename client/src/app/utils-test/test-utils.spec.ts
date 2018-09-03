@@ -1,3 +1,6 @@
+import { of } from 'rxjs';
+import { currenPageMock1 } from '../interfaces';
+
 export const routerSpy = {
   navigate: jasmine.createSpy('navigate'),
   navigateByUrl: jasmine.createSpy('navigateByUrl')
@@ -9,16 +12,21 @@ export const translateLoaderSpy = jasmine.createSpyObj('TranslateLoader', ['get'
 //   ['getEvent', 'createEvent', 'queryEventsPaginated', 'editEvent', 'deleteEvent']
 // );
 
-export const pageNameServiceSpy = jasmine.createSpyObj('PageNameService',
+export const pageNameServiceSpyAbstract = jasmine.createSpyObj('PageNameService',
   ['getPageName', 'getPageText', 'changePage', 'resolveName']
 );
 
+export const pageNameServiceSpyReal = {
+  getPageName() {
+    return of( {subscribe: () => currenPageMock1 });
+  },
+  getPageText() {
+    return of(currenPageMock1);
+  }
+};
+
 export const leftSidebarServiceSpy = jasmine.createSpyObj('LeftSidebarService',
   ['getSidebarSubject', 'update']
-);
-
-export const userServiceSpy = jasmine.createSpyObj('UserService',
-  ['create', 'get', 'queryPaginated', 'edit', 'delete']
 );
 
 let store = {};
