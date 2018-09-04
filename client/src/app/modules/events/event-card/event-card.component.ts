@@ -18,14 +18,13 @@ import { IEventSchema } from '../../../interfaces';
       transition('out => in', animate('250ms ease-in-out'))
     ])
   ]
-  
 })
 export class EventCardComponent implements OnInit {
   @Input() event: IEventSchema;
   @Output() delete: EventEmitter<IEventSchema> = new EventEmitter();
   @Output() edit: EventEmitter<string> = new EventEmitter();
 
-  buttonMenuState: string = 'out';
+  buttonMenuState = 'out';
 
   constructor() { }
 

@@ -26,7 +26,7 @@ describe('EventCardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventCardComponent, EventDatePipe, EventLocationPipe ],
-      imports: [ 
+      imports: [
         BrowserAnimationsModule,
         TranslateModule.forRoot({
           loader: {
@@ -64,7 +64,9 @@ describe('EventCardComponent', () => {
 
   it('should raise edit event when clicked (triggerEventHandler)', () => {
     let eventId: string;
-    component.edit.subscribe((id: string) => eventId = id);
+    component.edit.subscribe((id: string) => {
+      eventId = id;
+    });
     editDe.triggerEventHandler('click', null);
     expect(eventId).toBe(eventSchemaMock._id);
   });

@@ -12,7 +12,7 @@ export class EventListComponent implements OnInit {
 
   errorMessage: any;
   events: IEventSchema[] = [];
-  retreiveData: boolean = false;
+  retreiveData = false;
   paginator: IPaginator = new IPaginator(
     100,
     5,

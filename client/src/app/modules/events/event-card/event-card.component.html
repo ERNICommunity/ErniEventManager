@@ -1,7 +1,7 @@
 <section class="row mt-2 mb-2 w-100 px-0 mx-0">
   <div class="col-sm-12 px-0">
-    <div class="card text-white cursor-click" (mouseenter)="toggleButtonMenu()" (mouseleave)="toggleButtonMenu()" (click)="editEvent()">
-      <div class="card-header" id="test-edit" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
+    <div class="card text-white cursor-click" id="test-edit" (mouseenter)="toggleButtonMenu()" (mouseleave)="toggleButtonMenu()" (click)="editEvent()">
+      <div class="card-header" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
         <div class="row">
           <div class="col-12 col-sm-9">
             <h3 id="test-event-name">{{event.name}}</h3>
