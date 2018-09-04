@@ -26,8 +26,5 @@
     "NAME": "Name",
     "ROLE": "Role",
     "TYPE": "Type",
-    "USERS": "Users",
-    "JOIN": "Join",
-    "DELETE": "Delete",
-    "NO_RESULTS": "No results found :("
+    "USERS": "Users"
 }

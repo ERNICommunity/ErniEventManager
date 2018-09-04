@@ -1,24 +1,16 @@
-<section class="row mt-2 mb-2 w-100 px-0 mx-0">
+<section class="row mt-2 mb-2 w-100 px-0 mx-0" >
   <div class="col-sm-12 px-0">
-    <div class="card bg-primary text-white cursor-click" (mouseenter)="toggleButtonMenu()" (mouseleave)="toggleButtonMenu()" (click)="editEvent()">
-      <div class="card-header" id="test-edit" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
+    <div class="card bg-primary text-white" (mouseenter)="toggleButtonMenu()" (mouseleave)="toggleButtonMenu()">
+      <div class="card-header cursor-click" id="test-edit" (click)="editEvent()" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
         <div class="row">
-          <div class="col-12 col-sm-9">
-            <h3 id="test-event-name">{{event.name}}</h3>
-          </div>
+          <div class="col-12 col-sm-9"><h3 id="test-event-name">{{event.name}}</h3></div>
           <div class="col-12 col-sm-3">
-            <h5 class="text-left w-100"> 
-              <i class="fa fa-calendar"></i>
-              {{event.startDate | eventDatePipe:event.endDate}}
-            </h5>
-            <h5 class="text-left w-100">
-              <i class="fa fa-location-arrow"></i>
-              {{event.location | eventLocationPipe}}
-            </h5>
+            <h5 class="text-left w-100 fa fa-calendar"> 1.1.2018 - 1.1.2018</h5>
+            <h5 class="text-left w-100 fa fa-location-arrow"> Bratislava</h5>
           </div>
         </div>
       </div>
-      <div class="card-body" (click)="editEvent()">
+      <div class="card-body cursor-click" (click)="editEvent()">
         <div class="row w-100">
           <div class="col-12">
             <div class="row ml-2">
@@ -30,17 +22,9 @@
       <div class="card-footer d-none d-sm-block">
         <div class="row w-100">
           <div class="col-4" [@buttonMenuSlideInOut]="buttonMenuState">
-            <div class="button-container">
-              <button type="button" class="btn btn-light join-button">
-                <i class="fa fa-user-plus"></i>
-                {{ 'JOIN' | translate }}
-              </button>
-              <!--TODO delete will be visible only for user with admin role-->
-              <button type="button" class="btn btn-light delete-button" id="test-delete" (click)="deleteEvent()">
-                <i class="fa fa-trash"></i>
-                {{ 'DELETE' | translate }}
-              </button>
-            </div>
+             <button type="button" class="btn btn-outline-success">Join</button>
+             <!--TODO delete will be visible only for user with admin role-->
+            <button type="button" class="btn btn-outline-danger" id="test-delete" (click)="deleteEvent()">Delete</button>
           </div>
         </div>
       </div>

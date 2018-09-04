@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../../services/event/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IEventSchema, IEventLocation } from '../../../interfaces';
+import { IEventSchema } from '../../../interfaces';
 
 @Component({
   selector: 'app-event-edit',
@@ -10,7 +10,7 @@ import { IEventSchema, IEventLocation } from '../../../interfaces';
 })
 export class EventEditComponent implements OnInit {
   event: IEventSchema;
-  isCreate: boolean = false;
+  isCreate = false;
 
   constructor(
     private eventService: EventService,
@@ -18,18 +18,14 @@ export class EventEditComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.event = new IEventSchema();
-    this.event.location = new IEventLocation();
    }
 
-  ngOnInit(): void {
+  ngOnInit() {
     if (this.route.snapshot.params['id'] === 'new') {
       this.isCreate = true;
     } else {
       this.eventService.getEvent(this.route.snapshot.params['id'])
         .subscribe((event) => {
-          if (!event.location) {
-            event.location = new IEventLocation();
-          }
           this.event = event;
         },
         (reason) => {
@@ -40,7 +36,7 @@ export class EventEditComponent implements OnInit {
     }
   }
 
-  create(): void {
+  create() {
     this.eventService.createEvent(this.event)
       .subscribe(
         (event) => {
@@ -52,7 +48,7 @@ export class EventEditComponent implements OnInit {
       );
   }
 
-  edit(): void {
+  edit() {
     this.eventService.editEvent(this.route.snapshot.params['id'], this.event)
       .subscribe((event) => {
         this.router.navigate(['/']);
@@ -63,7 +59,7 @@ export class EventEditComponent implements OnInit {
     );
   }
 
-  cancel(): void {
+  cancel() {
     this.router.navigate(['/']);
   }
 

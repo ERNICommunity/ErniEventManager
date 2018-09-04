@@ -16,8 +16,8 @@ import { IEventSchema } from '../../../interfaces';
         transform: 'translate3d(20%, 0, 0)',
         opacity: 0
       })),
-      transition('in => out', animate('250ms ease-out')),
-      transition('out => in', animate('500ms ease-out'))
+      transition('in => out', animate('2000ms ease-in-out')),
+      transition('out => in', animate('500ms ease-in-out'))
     ]),
   ]
 })
@@ -26,22 +26,22 @@ export class EventCardComponent implements OnInit {
   @Output() delete: EventEmitter<IEventSchema> = new EventEmitter();
   @Output() edit: EventEmitter<string> = new EventEmitter();
 
-  buttonMenuState: string = 'out';
+  buttonMenuState = 'out';
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  toggleButtonMenu(): void {
+  toggleButtonMenu() {
     this.buttonMenuState = this.buttonMenuState === 'out' ? 'in' : 'out';
   }
 
-  editEvent(): void {
+  editEvent() {
     this.edit.emit(this.event._id);
   }
 
-  deleteEvent(): void {
+  deleteEvent() {
     this.delete.emit(this.event);
   }
 
