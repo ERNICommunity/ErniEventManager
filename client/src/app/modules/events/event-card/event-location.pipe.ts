@@ -3,7 +3,7 @@ import { IEventLocation } from '../../../interfaces';
 
 /*
  * Formats given event location as single string.
- * 
+ *
  * Usage:
  *   value | eventLocationPipe
 */

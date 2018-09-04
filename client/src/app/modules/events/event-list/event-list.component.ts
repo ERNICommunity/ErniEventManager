@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../../services/event/event.service';
 import { IEventSchema, IPaginator, IEventResponse} from '../../../interfaces';
 import { ActivatedRoute, Router, Data } from '@angular/router';

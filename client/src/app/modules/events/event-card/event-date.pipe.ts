@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
 
 /*
- * Formats given event date using 'dd. MM. YYYY' format.
- * 
+ * Formats given event date using 'D.M. YYYY' format.
+ *
  * Usage:
  *   startDate | eventDatePipe:endDate
 */

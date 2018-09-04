@@ -1,5 +1,5 @@
-import { EventLocationPipe } from "./event-location.pipe";
-import { IEventLocation } from "../../../interfaces";
+import { EventLocationPipe } from './event-location.pipe';
+import { IEventLocation } from '../../../interfaces';
 
 describe('EventLocationPipe', () => {
 
@@ -13,7 +13,7 @@ describe('EventLocationPipe', () => {
         expect(pipe).toBeTruthy();
     });
 
-    it('should return N/A', () => {
+    it('should return empty string', () => {
         expect(pipe.transform(undefined)).toEqual('');
 
         expect(pipe.transform(<IEventLocation>{})).toEqual('');

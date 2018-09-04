@@ -10,7 +10,7 @@ import { IEventSchema, IEventLocation } from '../../../interfaces';
 })
 export class EventEditComponent implements OnInit {
   event: IEventSchema;
-  isCreate: boolean = false;
+  isCreate = false;
 
   constructor(
     private eventService: EventService,

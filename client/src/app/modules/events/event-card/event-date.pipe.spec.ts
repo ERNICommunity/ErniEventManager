@@ -1,4 +1,4 @@
-import { EventDatePipe } from "./event-date.pipe";
+import { EventDatePipe } from './event-date.pipe';
 
 describe('EventDatePipe', () => {
 
