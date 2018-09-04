@@ -7,19 +7,18 @@ import { IEventSchema } from '../../../interfaces';
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
   animations: [
-    trigger('buttonMenuSlideInOut', [
+    trigger('buttonGroupFadeInOut', [
       state('in', style({
-        transform: 'translate3d(0, 0, 0)',
         opacity: 1
       })),
       state('out', style({
-        transform: 'translate3d(20%, 0, 0)',
         opacity: 0
       })),
-      transition('in => out', animate('250ms ease-out')),
-      transition('out => in', animate('500ms ease-out'))
-    ]),
+      transition('in => out', animate('200ms ease-in-out')),
+      transition('out => in', animate('250ms ease-in-out'))
+    ])
   ]
+  
 })
 export class EventCardComponent implements OnInit {
   @Input() event: IEventSchema;

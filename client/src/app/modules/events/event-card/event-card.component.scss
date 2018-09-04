@@ -4,12 +4,17 @@
 //------------------------------------------
 
 .card {
+  background-color: $blue !important;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  // hover out effect
+  transition: all 200ms ease-in-out;
 }
 
 .card:hover{
   background-color: #00a5db !important;
   box-shadow: 0 3px 20px rgba(0,0,0,0.49), 0 3px 6px rgba(0,0,0,0.53);
+  transition: all 200ms ease-in-out;
 }
 
 //card body
