@@ -6,22 +6,26 @@ import { ICurrentPage } from '../../interfaces';
   providedIn: 'root'
 })
 export class PageNameService {
-  public pageName: Subject<any> = new Subject();
+  public pageName: Subject<ICurrentPage> = new Subject();
   public pageText: ICurrentPage;
 
   constructor( ) { }
+
+  getPageName(): Subject<ICurrentPage> {
+    return this.pageName;
+  }
 
   getPageText(): ICurrentPage {
     return this.pageText;
   }
 
-  changePage = (name) => {
+  changePage(name: String): void {
     const currentPage: ICurrentPage = this.resolveName(name);
     this.pageText = currentPage;
     this.pageName.next(currentPage);
   }
 
-  resolveName = (path) => {
+  resolveName(path: String): ICurrentPage {
     switch (path) {
       case '/events':
       case '/':

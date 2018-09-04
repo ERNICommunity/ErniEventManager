@@ -102,6 +102,17 @@ app-user-list {
     top: 70px;
 }
 
+// for footer
+.swall {
+    display: inline-block;
+    background: url("assets/images/coat-of-arms-01-white.png") center center no-repeat;
+    background-size: cover;
+    width: 14px;
+    height: 14px;
+    margin-right: 0px;
+    margin-top: 4px;
+  }
+
 /* .sidebar__scroll {
     overflow-y: auto;
     @media screen and (min-width: $layout-md) {

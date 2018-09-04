@@ -17,12 +17,8 @@ export class ServerErrorInterceptor implements HttpInterceptor {
       .pipe(
         retry(5),
         catchError((error, caught) => {
-          if (error.status === 401) {
-            if (error.error === 'Incorrect credentials') {
-              this.authService.authError.emit(true);
-            } else {
-              this.router.navigateByUrl('/login');
-            }
+          if (error.status === 401 && error.error === 'Incorrect credentials') {
+            this.authService.authError.emit(true);
           } else {
             handleError(error);
           }

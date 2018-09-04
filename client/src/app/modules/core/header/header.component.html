@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand navbar-light bg-white" [hidden]="router.url === '/login'">
+  <div class="navbar-collapse collapse w-100 order-1 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-link btn-sm border-0" id="dropdownBasic1" ngbDropdownToggle>
+            <img [src]="'/assets/flags/' + translate.currentLang + '.svg'" class="img-flag"><!--{{translate.currentLang}}-->
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button *ngFor="let country of countries" class="dropdown-item btn-sm" (click)="switchLanguage(country.short)">
+              {{country.short}}</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-brand" (click)="toggleMenu()"> <i class="pull-right fa fa-bars cursor-click"></i> </div>
+  <div class="navbar-brand d-none d-md-inline" >{{userName}} <span class="fa fa-power-off" (click)="logout()"></span></div>
+
+  <!--div class="mx-auto order-0">
+    <a class="navbar-brand mx-auto" href="#" [innerHtml]="'ERNI_EVENT_MANAGER' | translate"></a>
+  </div-->
+  <div class="navbar-collapse collapse w-100 order-10 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <img class="img__medium pull-right" [src]="'/assets/images/erni-logo.png'">
+      </li>
+      <!--li class="nav-item active">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active" [innerHtml]="'HOME' | translate"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/event" routerLinkActive="active" [innerHtml]="'MY_EVENTS' | translate"></a>
+      </li-->
+    </ul>
+  </div>
+
+</nav>

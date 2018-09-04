@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row justify-content-between mb-2 align-items-end">
+      <div class="col-md-4 pl-0">
+          <span class="form-control-label" [translate]="'PARTICIPANTS'"></span>
+      </div>
+      <div class="col-md-4 pr-0 text-right">
+          <button type="button" class="btn btn-secondary" [translate]="'INVITE'"></button>
+      </div>
+  </div>
+  <div class="row border">
+      <div class="pt-1" *ngFor="let participant of event.participants; let i = index;">
+          <div class="col-md-12" [translate]="participant"></div>
+          <!-- <div class="col-md-3 text-truncate" [translate]="attendee.avatar"></div> -->
+      </div>
+  </div>
+</div>

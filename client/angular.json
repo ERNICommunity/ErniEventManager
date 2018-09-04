@@ -75,7 +75,8 @@
             ],
             "assets": [
               "src/assets"
-            ]
+            ],
+            "codeCoverage": true
           }
         },
         "lint": {
