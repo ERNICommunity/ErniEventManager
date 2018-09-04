@@ -2,49 +2,52 @@
   background: center bottom no-repeat #ddeaee;
   clip-path: polygon(0 0,100vw 15%,100vw 100%,0 100%);
   -webkit-clip-path: polygon(0 0,100vw 15%,100vw 100%,0 100%);
-  padding: 100px 0 50px 0;
+  padding: 50px 20px 20px 20px;
   position: relative;
   margin-top: 100px;
   z-index: 5;
 }
 
-.footer-icon {
-  border-radius: 1000px;
-  background: #7f7f7f;
-  padding: 8px 0;
-  width: 40px;
-  color: #FFFFFF;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  float: left;
-}
+.social-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
-.footer-icon:first-child {
-  margin-left: 0;
-}
+  padding: 5px;
 
-.footer-icon:hover {
-  background: #123372;
-}
+  .social-icon {
+    border-radius: 1000px;
+    background: #7f7f7f;
+    padding: 8px 0;
+    width: 40px;
+    color: #FFFFFF;
+    float: left;
 
-.footer-icons {
-  width: 400px;
-  margin: 0 auto;
-}
-
-@media (max-width: 400px)
-{
-  .footer-icon:nth-child(5) {
-    clear: both;
+    margin-left: 10px;
+    margin-right: 10px;
+  
+    &:hover {
+      background: #123372;
+    }
   }
-
-  .footer-icon:first-child {
-    margin-left: 20px;
-  }
-
 }
 
-.copyright {
+.non-social-list {
+  padding: 5px;
+}
+
+#betterAskErniRef {
+  vertical-align: middle;
+  
+  > img {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+#copyright {
+  margin-top: 10px;
+
   width: 100%;
-  text-align: center;
+  text-align: right;
 }
