@@ -21,8 +21,6 @@ import { CoreModule } from './modules/core/core.module';
 import { CoreRoutingModule } from './modules/core/core-routing.module';
 import { LoginModule } from './modules/auth/auth.module';
 
-import { MomentModule } from 'ngx-moment';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -43,7 +41,6 @@ import { MomentModule } from 'ngx-moment';
     LoginModule,
     AppRoutingModule,
     CoreModule,
-    MomentModule
   ],
   providers: [
     {
