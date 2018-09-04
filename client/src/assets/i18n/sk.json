@@ -26,5 +26,8 @@
     "NAME": "Nazov",
     "ROLE": "Rola",
     "TYPE": "Druh",
-    "USERS": "Uzivatelia"
+    "USERS": "Uzivatelia",
+    "JOIN": "Pridať sa",
+    "DELETE": "Zmazať",
+    "NO_RESULTS": "Neboli nájdené žiadne výsledky :("
 }
