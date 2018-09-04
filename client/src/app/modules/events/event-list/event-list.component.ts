@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
 import { EventService } from '../../../services/event/event.service';
 import { IEventSchema, IPaginator, IEventResponse} from '../../../interfaces';
 import { ActivatedRoute, Router, Data } from '@angular/router';
@@ -9,9 +9,10 @@ import { ActivatedRoute, Router, Data } from '@angular/router';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+
   errorMessage: any;
-  events = [];
-  retreiveData = false;
+  events: IEventSchema[] = [];
+  retreiveData: boolean = false;
   paginator: IPaginator = new IPaginator(
     100,
     5,
@@ -21,13 +22,14 @@ export class EventListComponent implements OnInit {
     { field: 'name', way: '' },
     {}
   );
+
   constructor(
     private router: Router,
     private eventService: EventService,
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.data
       .subscribe((data: Data) => {
         const eventRes = data['events'];
@@ -42,11 +44,11 @@ export class EventListComponent implements OnInit {
     );
   }
 
-  openEvent(id: string) {
+  openEvent(id: string): void {
     this.router.navigate(['/events', 'edit', id]);
   }
 
-  deleteEvent(event: IEventSchema) {
+  deleteEvent(event: IEventSchema): void {
     this.retreiveData = true;
     this.eventService.deleteEvent(event, this.paginator)
       .subscribe((eventRes: IEventResponse) => {
@@ -63,7 +65,7 @@ export class EventListComponent implements OnInit {
     );
   }
 
-  displayError(reason: any) {
+  displayError(reason: any): void {
     this.errorMessage = reason && reason.error ? reason.error.err : 'Unexpected error appeared';
   }
 
