@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IEventSchema } from '../../../interfaces/event.interface';
 
 @Component({
   selector: 'app-participant-list',

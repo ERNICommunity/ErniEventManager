@@ -12,20 +12,17 @@ export class IEventAccommodationSchema {
 }
 
 export class IEventLocation {
-    address?: string;
+    address: string;
     gps?: string;
     room?: string;
     description?: string;
-}
 
-export enum IEventTransportType {
-    bus, car
-}
-
-export class IEventTransportSchema {
-    type: IEventTransportType;
-    freePlaces: number;
-    isReturning: boolean;
+    constructor() {
+        this.address = '';
+        this.gps = '';
+        this.room = '';
+        this.description = '';
+    }
 }
 
 export class IEventSchema {
@@ -37,12 +34,28 @@ export class IEventSchema {
     endDate: Date;
     location: IEventLocation;
     description?: string;
-    transport?: Array<IEventTransportSchema>;
-    accommodation?: IEventAccommodationSchema;
+    transportBus?: boolean;
+    transportCar?: boolean;
+    accommodation?: boolean;
     owner: string;
     editors: Array<string>;
     participants: Array<string>;
     limit?: Number;
+
+    constructor() {
+        this.name = '';
+        this.type = 'TYPE_0';
+        this.state = 'STATE_0';
+        this.startDate = new Date();
+        this.endDate = new Date();
+        this.location = new IEventLocation();
+        this.description = '';
+        this.transportBus = false;
+        this.transportCar = false;
+        this.accommodation = false;
+        this.participants = [];
+        this.limit = 0;
+    }
 }
 
 export class IEventResponse {

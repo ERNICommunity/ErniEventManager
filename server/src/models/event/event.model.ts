@@ -11,6 +11,9 @@ export type EventModel = mongoose.Document & {
     endDate: Date;
     location: IEventLocation;
     description?: string;
+    transportBus?: boolean;
+    transportCar?: boolean;
+    accommodation?: boolean;
     owner: String;
     editors: Array<String>;
     participants: Array<String>;
@@ -30,6 +33,9 @@ const EventSchema = new mongoose.Schema({
         room: String,
         description: String},
     description: String,
+    transportBus: Boolean,
+    transportCar: Boolean,
+    accommodation: Boolean,
     owner: { type: mongoose.Schema.Types.ObjectId },
     editors: [mongoose.Schema.Types.ObjectId],
     participants: [mongoose.Schema.Types.ObjectId],

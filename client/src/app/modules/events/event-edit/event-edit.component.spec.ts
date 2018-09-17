@@ -65,7 +65,7 @@ describe('EventEditComponent for edit', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EventEditComponent);
     component = fixture.componentInstance;
-    component.event = eventSchemaMock2;
+    component.iEvent = eventSchemaMock2;
     fixture.detectChanges();
     cancelDe = fixture.debugElement.query(By.css('#test-cancel-event'));
     editDe = fixture.debugElement.queryAll(By.css('#test-edit-event'))[0];
