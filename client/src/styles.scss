@@ -9,7 +9,9 @@ $body__bg-color: rgb(221, 234, 238);
 $gray-100: #bebcbc !default;
 $blue: #123372 !default;        //primary
 $red: #e40428 !default;         //warning
-$ligh-blue: #00a5db;
+$light-blue: #00a5db;
+
+$input-color-placeholder: #cecece !default; 
 
 @import "~bootstrap/scss/bootstrap.scss";
 
@@ -76,7 +78,7 @@ app-user-list {
     height: 0;
     border-style: solid;
     border-width: 0 0 15px 300px;
-    border-color: transparent transparent $ligh-blue transparent;
+    border-color: transparent transparent $light-blue transparent;
 }
 
 .erni__shape:before {
@@ -87,11 +89,11 @@ app-user-list {
     height: 0;
     border-style: solid;
     border-width: 0 300px 15px 0;
-    border-color: transparent $ligh-blue transparent transparent;
+    border-color: transparent $light-blue transparent transparent;
 }
 
 .erni__shape {
-    background: $ligh-blue;
+    background: $light-blue;
     position: absolute;
     right: 0;
     //bottom: 50px;
