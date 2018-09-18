@@ -147,7 +147,7 @@ export class EventEditComponent implements OnInit {
     this.eventForm.controls.dateStart.setValidators([Validators.required]);
     this.eventForm.controls.dateEnd.setValidators([Validators.required]);
     this.eventForm.controls.description.setValidators([]);
-    this.eventForm.controls.participantsLimit.setValidators([Validators.pattern('\\s*[1-9]+[0-9]*\\s*')]);
+    this.eventForm.controls.participantsLimit.setValidators([]);
     (<FormGroup>this.eventForm.controls['transport']).controls['car'].setValidators([]);
     (<FormGroup>this.eventForm.controls['transport']).controls['bus'].setValidators([]);
     this.eventForm.controls.accommodation.setValidators([]);
