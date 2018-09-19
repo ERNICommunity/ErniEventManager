@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
 
 import { EventEditComponent } from './event-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../../app.module';
 import { HttpClient } from 'selenium-webdriver/http';
@@ -12,15 +12,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { Injector, DebugElement } from '@angular/core';
 import { translateLoaderSpy, routerSpy, eventSchemaMock, eventSchemaMock2, eventServiceSpy } from '../../../utils-test/index.spec';
+import { ParticipantListComponent } from '../participant-list/participant-list.component';
 
 
 
 const getConfigObject  = (routerParam: string) => {
   return {
-    declarations: [ EventEditComponent ],
+    declarations: [ EventEditComponent, ParticipantListComponent ],
     imports: [
       HttpClientTestingModule,
       FormsModule,
+      ReactiveFormsModule,
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
@@ -67,9 +69,9 @@ describe('EventEditComponent for edit', () => {
     component = fixture.componentInstance;
     component.iEvent = eventSchemaMock2;
     fixture.detectChanges();
-    cancelDe = fixture.debugElement.query(By.css('#test-cancel-event'));
-    editDe = fixture.debugElement.queryAll(By.css('#test-edit-event'))[0];
-    nameDe = fixture.debugElement.query(By.css('#test-edit-event-name'));
+    cancelDe = fixture.debugElement.query(By.css('#cancel-event'));
+    editDe = fixture.debugElement.queryAll(By.css('#edit-event'))[0];
+    nameDe = fixture.debugElement.query(By.css('#name'));
     nameEl = nameDe.nativeElement;
     fixture.detectChanges();
   });
@@ -115,8 +117,8 @@ describe('EventEditComponent for new create', () => {
     fixture = TestBed.createComponent(EventEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    cancelDe = fixture.debugElement.query(By.css('#test-cancel-event'));
-    createDe = fixture.debugElement.queryAll(By.css('#test-create-event'))[0];
+    cancelDe = fixture.debugElement.query(By.css('#cancel-event'));
+    createDe = fixture.debugElement.queryAll(By.css('#create-event'))[0];
     fixture.detectChanges();
   });
 

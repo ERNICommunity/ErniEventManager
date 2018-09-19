@@ -146,9 +146,9 @@
           </div>
           <div class="col text-right">
             <div class="form-group">
-                <button type="button" class="btn btn-secondary ml-1" (click)="cancel()" [translate]="'CANCEL'"></button>
-                <button type="button" class="btn btn-primary ml-1" *ngIf="isCreate" (click)="create()" [disabled]="eventForm.invalid" [translate]="'CREATE'"></button>
-                <button type="button" class="btn btn-primary ml-1" *ngIf="!isCreate" (click)="edit()" [disabled]="eventForm.invalid" [translate]="'EDIT'"></button>
+                <button id="cancel-event" type="button" class="btn btn-secondary ml-1" (click)="cancel()" [translate]="'CANCEL'"></button>
+                <button id="create-event" type="button" class="btn btn-primary ml-1" *ngIf="isCreate" (click)="create()" [disabled]="eventForm.invalid" [translate]="'CREATE'"></button>
+                <button id="edit-event" type="button" class="btn btn-primary ml-1" *ngIf="!isCreate" (click)="edit()" [disabled]="eventForm.invalid" [translate]="'EDIT'"></button>
             </div>
           </div>
         </div>
@@ -156,6 +156,6 @@
     </form>
   </div>
   <div class="col-md-4 pr-md-0 pl-md-0" id="participantList">
-    <app-participant-list [event]="iEvent"></app-participant-list>
+    <app-participant-list [iEvent]="iEvent"></app-participant-list>
   </div>
 </div>

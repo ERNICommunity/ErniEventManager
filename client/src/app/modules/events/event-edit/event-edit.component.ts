@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EventService } from '../../../services/event/event.service';
 import { ActivatedRoute, Router } from '@angular/router';

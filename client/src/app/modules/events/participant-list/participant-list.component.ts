@@ -7,7 +7,7 @@ import { IEventSchema } from '../../../interfaces/event.interface';
   styleUrls: ['./participant-list.component.scss']
 })
 export class ParticipantListComponent implements OnInit {
-  @Input() event: IEventSchema;
+  @Input() iEvent: IEventSchema;
   @Input() participants: any[] = [
     {name: 'John', surname: 'Doe', gender: 'male'},
     {name: 'Jane', surname: 'Doe', gender: 'female'},
