@@ -6,9 +6,10 @@ import { EventEditComponent } from './event-edit/event-edit.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { CommonModule } from '@angular/common';
 import { EventsRoutingModule } from './events-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderModule } from '../loader/loader.module';
 import { SharedModule } from '../shared/shared.module';
+import { ParticipantListComponent } from './participant-list/participant-list.component';
 import { EventLocationPipe } from './event-card/event-location.pipe';
 import { EventDatePipe } from './event-card/event-date.pipe';
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,6 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
         EventCardComponent,
         EventEditComponent,
         EventListComponent,
+        ParticipantListComponent
         EventLocationPipe,
         EventDatePipe
     ],
@@ -28,6 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
         SharedModule,
         FormsModule,
         LoaderModule,
+        ReactiveFormsModule
         TranslateModule
     ]
 })

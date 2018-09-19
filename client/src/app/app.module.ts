@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, ErrorHandler } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,9 +15,7 @@ import { TokenInterceptor } from './services/auth/auth.interceptor';
 import { ClientErrorHandler } from './error-handling/client.error.handler';
 import { AppRoutingModule } from './app-routing.module';
 import { LoaderModule } from './modules/loader/loader.module';
-import { UsersModule } from './modules/users/users.module';
 import { CoreModule } from './modules/core/core.module';
-import { CoreRoutingModule } from './modules/core/core-routing.module';
 import { LoginModule } from './modules/auth/auth.module';
 
 import { MomentModule } from 'ngx-moment';

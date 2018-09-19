@@ -1,4 +1,4 @@
-import { IEventSchema, IEventResponse } from '../interfaces';
+import { IEventSchema, IEventResponse, IEventLocation } from '../interfaces';
 import { qiMock } from './index.spec';
 import { of } from 'rxjs';
 
@@ -9,7 +9,7 @@ export const eventSchemaMock: IEventSchema = {
     state: 'State',
     startDate: new Date(),
     endDate: new Date(),
-    location: {},
+    location: new IEventLocation(),
     owner: 'Owner',
     editors: [],
     participants: []
@@ -22,7 +22,7 @@ export const eventSchemaMock2: IEventSchema = {
     state: 'State2',
     startDate: new Date(),
     endDate: new Date(),
-    location: {},
+    location: new IEventLocation(),
     owner: 'Owner2',
     editors: [],
     participants: []

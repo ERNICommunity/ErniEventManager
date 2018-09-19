@@ -1,0 +1,39 @@
+.stretch {
+    width: 100%;
+}
+
+/* Rounded avatars */
+.avatar {
+    float: left;
+    margin: 5px;
+    position: relative;
+    height: 38px;
+    width: 38px;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}
+
+.name {
+    font-size: larger;
+    color: grey;
+}
+
+.btn-icon {
+    height: 20px;
+}
+
+.btn-padding {
+    padding: 2px 4px;
+}
+
+@media (min-width: 768px) {
+    .btn-icon {
+        height: 16px;
+    }
+}

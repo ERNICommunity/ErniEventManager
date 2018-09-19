@@ -1,7 +1,7 @@
-
+// Alphabetically
 export const allowedFields: any = {
-    Event: 'id name description location startDate endDate',
-    User: 'id email firstName lastName type avatar role'
+    Event: 'accommodation description endDate id limit location name startDate transportBus transportCar',
+    User: 'avatar email firstName id lastName role type'
 };
 
 export const usernameReg = {

@@ -7,7 +7,7 @@ export class IEventLocation {
     description?: string;
 }
 
-export class ITimeWindow{
+export class ITimeWindow {
     startDate: DateTimeFormat;
     endDate: DateTimeFormat;
     name: string;
@@ -21,6 +21,9 @@ export class IEventSchema {
     endDate: Date;
     location: IEventLocation;
     description?: string;
+    transportBus?: boolean;
+    transportCar?: boolean;
+    accommodation?: boolean;
     owner: String;
     editors: Array<String>;
     participants: Array<String>;
@@ -35,9 +38,14 @@ export class IEventSchema {
         this.startDate = new Date();
         this.endDate = new Date();
         this.location = new IEventLocation();
+        this.description = '';
+        this.transportBus = false;
+        this.transportCar = false;
+        this.accommodation = false;
         this.owner = 'Unknown';
         this.editors = [];
         this.participants = [];
+        this.limit = 0;
     }
 }
 
