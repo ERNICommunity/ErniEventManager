@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
         EventCardComponent,
         EventEditComponent,
         EventListComponent,
-        ParticipantListComponent
+        ParticipantListComponent,
         EventLocationPipe,
         EventDatePipe
     ],
@@ -30,7 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
         SharedModule,
         FormsModule,
         LoaderModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
         TranslateModule
     ]
 })
