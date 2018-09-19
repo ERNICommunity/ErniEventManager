@@ -23,7 +23,7 @@ class Auth {
     if (user) {
       const jwtBearerToken = jwt.sign({id: user.id}, RSA_PRIVATE_KEY, {
         algorithm: 'HS256',
-        expiresIn: 120,
+        expiresIn: 3600,
         subject: user.id
       });
 

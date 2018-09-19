@@ -1,16 +1,26 @@
 <div class="container">
   <div class="row justify-content-between mb-2 align-items-end">
-      <div class="col-md-4 pl-0">
+      <div class="col">
           <span class="form-control-label" [translate]="'PARTICIPANTS'"></span>
       </div>
-      <div class="col-md-4 pr-0 text-right">
-          <button type="button" class="btn btn-secondary" [translate]="'INVITE'"></button>
+      <div class="col text-right">
+          <button type="button" class="btn btn-secondary btn-padding mr-1" title="{{'EXPORT' | translate}}">
+              <img [src]="'/assets/images/document-export.svg'" alt="{{'EXPORT' | translate}}" class="btn-icon">
+          </button>
+          <button type="button" class="btn btn-secondary btn-padding" title="{{'INVITE' | translate}}">
+              <img [src]="'/assets/images/invite-people.png'" alt="{{'INVITE' | translate}}" class="btn-icon">
+          </button>
       </div>
   </div>
-  <div class="row border">
-      <div class="pt-1" *ngFor="let participant of event.participants; let i = index;">
-          <div class="col-md-12" [translate]="participant"></div>
-          <!-- <div class="col-md-3 text-truncate" [translate]="attendee.avatar"></div> -->
-      </div>
+  <hr>
+  <div class="row">
+      <div class="col-12 border-left pb-1" *ngFor="let participant of participants">
+          <span class="align-middle d-table-cell" title="{{participant.name}} {{participant.surname}}">
+              <img class="avatar" 
+                    [src]="participant.gender === 'male' ? '/assets/images/avatar-male.png' : '/assets/images/avatar-female.png'" 
+                    alt="avatar_{{participant.name}}{{participant.surname}}"/>
+          </span>
+          <span class="align-middle d-table-cell pl-2 name">{{participant.name}} {{participant.surname}}</span>
+      </div>  
   </div>
 </div>

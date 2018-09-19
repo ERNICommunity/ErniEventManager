@@ -18,6 +18,7 @@
     "EVENT": "Event",
     "EVENT_LIST": "Events List",
     "EVENTS_I_JOINED": "Events I joined",
+    "EXPORT": "Export to CSV",
     "FIRST_NAME": "First name",
     "HOME": "Home",
     "INSERT_EVENT_DESCRIPTION": "Insert event description",

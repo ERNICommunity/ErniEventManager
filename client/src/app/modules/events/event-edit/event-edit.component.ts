@@ -12,7 +12,7 @@ import { IEventSchema, IEventLocation } from '../../../interfaces';
 })
 export class EventEditComponent implements OnInit {
   // Careful with variable naming, 'event' is global var in ECMA Script
-  @Output() iEvent: IEventSchema;
+  iEvent: IEventSchema;
   isCreate = false;
   eventForm: FormGroup;
 
@@ -88,7 +88,7 @@ export class EventEditComponent implements OnInit {
    * Binding Event object to form model
    */
   private updateEventSchema(): void {
-    const toBoolean = (value: String): boolean =>  !value || value === 'false' ? false : true;
+    const toBoolean = (value: String): boolean =>  value === 'true';
     this.iEvent.name = this.eventForm.controls.name.value;
     // FIXME: probably needed only for new event attributes which are not in formerly created events, can be removed later
     if (!this.iEvent.location) {
@@ -129,15 +129,15 @@ export class EventEditComponent implements OnInit {
     this.eventForm.setValue({
       'name': valueOrDefault(iEvent.name),
       'location': iEvent.location ? valueOrDefault(iEvent.location.address) : '',
-      'dateStart': valueOrDefault(this.toBrowserDate(iEvent.startDate), todayString),
-      'dateEnd': valueOrDefault(this.toBrowserDate(iEvent.endDate), todayString),
+      'dateStart': iEvent.startDate ? this.toBrowserDate(iEvent.startDate) : todayString,
+      'dateEnd': iEvent.endDate ? this.toBrowserDate(iEvent.endDate) : todayString,
       'description': valueOrDefault(iEvent.description),
       'participantsLimit': valueOrDefault(iEvent.limit),
       transport: {
         'car': valueOrDefault(iEvent.transportBus),
         'bus': valueOrDefault(iEvent.transportCar)
       },
-      'accommodation': valueOrDefault(iEvent.accommodation.toString())
+      'accommodation': iEvent.accommodation ? iEvent.accommodation.toString() : ''
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { IEventSchema } from '../../../interfaces/event.interface';
 
 @Component({
@@ -8,6 +8,11 @@ import { IEventSchema } from '../../../interfaces/event.interface';
 })
 export class ParticipantListComponent implements OnInit {
   @Input() event: IEventSchema;
+  @Input() participants: any[] = [
+    {name: 'John', surname: 'Doe', gender: 'male'},
+    {name: 'Jane', surname: 'Doe', gender: 'female'},
+    {name: 'Jack', surname: 'Kerouac', gender: 'male'}
+  ];
 
   constructor() {}
 
