@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderModule } from '../loader/loader.module';
 import { SharedModule } from '../shared/shared.module';
 import { ParticipantListComponent } from './participant-list/participant-list.component';
+import { EventLocationPipe } from './event-card/event-location.pipe';
+import { EventDatePipe } from './event-card/event-date.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -18,6 +21,8 @@ import { ParticipantListComponent } from './participant-list/participant-list.co
         EventEditComponent,
         EventListComponent,
         ParticipantListComponent
+        EventLocationPipe,
+        EventDatePipe
     ],
     imports: [
         CommonModule,
@@ -26,8 +31,8 @@ import { ParticipantListComponent } from './participant-list/participant-list.co
         FormsModule,
         LoaderModule,
         ReactiveFormsModule
+        TranslateModule
     ]
-
 })
 export class EventsModule {
 

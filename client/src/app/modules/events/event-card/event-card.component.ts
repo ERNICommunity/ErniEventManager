@@ -7,18 +7,16 @@ import { IEventSchema } from '../../../interfaces';
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
   animations: [
-    trigger('buttonMenuSlideInOut', [
+    trigger('buttonGroupFadeInOut', [
       state('in', style({
-        transform: 'translate3d(0, 0, 0)',
         opacity: 1
       })),
       state('out', style({
-        transform: 'translate3d(20%, 0, 0)',
         opacity: 0
       })),
-      transition('in => out', animate('2000ms ease-in-out')),
-      transition('out => in', animate('500ms ease-in-out'))
-    ]),
+      transition('in => out', animate('200ms ease-in-out')),
+      transition('out => in', animate('250ms ease-in-out'))
+    ])
   ]
 })
 export class EventCardComponent implements OnInit {
@@ -30,18 +28,18 @@ export class EventCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  toggleButtonMenu() {
+  toggleButtonMenu(): void {
     this.buttonMenuState = this.buttonMenuState === 'out' ? 'in' : 'out';
   }
 
-  editEvent() {
+  editEvent(): void {
     this.edit.emit(this.event._id);
   }
 
-  deleteEvent() {
+  deleteEvent(): void {
     this.delete.emit(this.event);
   }
 

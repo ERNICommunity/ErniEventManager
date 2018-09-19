@@ -69,6 +69,7 @@ export class EventEditComponent implements OnInit {
   }
 
   public cancel(): void {
+
     this.router.navigate(['/']);
   }
 

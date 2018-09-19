@@ -18,6 +18,8 @@ import { LoaderModule } from './modules/loader/loader.module';
 import { CoreModule } from './modules/core/core.module';
 import { LoginModule } from './modules/auth/auth.module';
 
+import { MomentModule } from 'ngx-moment';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -38,6 +40,7 @@ import { LoginModule } from './modules/auth/auth.module';
     LoginModule,
     AppRoutingModule,
     CoreModule,
+    MomentModule
   ],
   providers: [
     {

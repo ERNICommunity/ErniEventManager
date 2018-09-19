@@ -1,10 +1,20 @@
+@import "../../../../styles.scss";
+
 //card header
 //------------------------------------------
 
+.card {
+  background-color: $blue !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  // hover out effect
+  transition: all 200ms ease-in-out;
+}
+
 .card:hover{
-  .card-header, .card-body {
-    color: #00a5db;
-  }
+  background-color: $light-blue !important;
+  box-shadow: 0 3px 20px rgba(0,0,0,0.49), 0 3px 6px rgba(0,0,0,0.53);
+  transition: all 200ms ease-in-out;
 }
 
 //card body
@@ -16,12 +26,25 @@
 //card footer
 //------------------------------------------
 .card-footer {
-  padding: 0px 0px 2px 10px;
-}
+  padding: 10px;
 
-.card-footer button{
-  padding: 0px;
-  width: 70px;
-  height: 30px;
-}
+  button {
+    width: auto;
+    height: 35px;
+    padding: 5px 10px;
+  }
 
+  button + button {
+    margin-left: 10px;
+  }
+
+  .btn-light {
+    background-color: white;
+  }
+
+  .btn-light:hover {
+    background-color: $blue;
+    color: white;
+    border-color: black;
+  }
+}
