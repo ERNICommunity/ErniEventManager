@@ -4,23 +4,33 @@
           <span class="form-control-label" [translate]="'PARTICIPANTS'"></span>
       </div>
       <div class="col text-right">
-          <button type="button" class="btn btn-secondary btn-padding mr-1" title="{{'EXPORT' | translate}}">
-              <img [src]="'/assets/images/document-export.svg'" alt="{{'EXPORT' | translate}}" class="btn-icon">
-          </button>
-          <button type="button" class="btn btn-secondary btn-padding" title="{{'INVITE' | translate}}">
-              <img [src]="'/assets/images/invite-people.png'" alt="{{'INVITE' | translate}}" class="btn-icon">
-          </button>
+          <img [src]="imgExportSrc" 
+                alt="{{'EXPORT' | translate}}"  
+                title="{{'EXPORT' | translate}}" 
+                class="btn-icon pr-2" 
+                (click)="export()"
+                (mouseover)="imgExportSrc='/assets/images/icons/export-blue.png'"
+                (mouseleave)="imgExportSrc='/assets/images/icons/export-light-blue.png'"
+                (mousedown)="imgExportSrc='/assets/images/icons/export-black.png'">
+          <img [src]="imgInviteSrc" 
+                alt="{{'INVITE' | translate}}" 
+                title="{{'INVITE' | translate}}" 
+                class="btn-icon"
+                (click)="invite()"
+                (mouseover)="imgInviteSrc='/assets/images/icons/invite-blue.png'"
+                (mouseleave)="imgInviteSrc='/assets/images/icons/invite-light-blue.png'"
+                (mousedown)="imgInviteSrc='/assets/images/icons/invite-black.png'">
       </div>
   </div>
   <hr>
   <div class="row">
       <div class="col-12 border-left pb-1" *ngFor="let participant of participants">
-          <span class="align-middle d-table-cell" title="{{participant.name}} {{participant.surname}}">
+          <span class="align-middle d-table-cell" title="{{participant.firstName}} {{participant.lastName}}">
               <img class="avatar" 
-                    [src]="participant.gender === 'male' ? '/assets/images/avatar-male.png' : '/assets/images/avatar-female.png'" 
-                    alt="avatar_{{participant.name}}{{participant.surname}}"/>
+                    [src]="participant.gender === 'male' ? '/assets/images/icons/avatar-male.png' : '/assets/images/icons/avatar-female.png'" 
+                    alt="avatar_{{participant.firstName}}{{participant.lastName}}"/>
           </span>
-          <span class="align-middle d-table-cell pl-2 name">{{participant.name}} {{participant.surname}}</span>
+          <span class="align-middle d-table-cell pl-2 name">{{participant.firstName}} {{participant.lastName}}</span>
       </div>  
   </div>
 </div>

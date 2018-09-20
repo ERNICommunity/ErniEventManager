@@ -1,3 +1,5 @@
+import { IUserSchema } from './user.interface';
+
 export class IEventRequest {
     data: IEventSchema;
 }
@@ -32,7 +34,7 @@ export class IEventSchema {
     accommodation?: boolean;
     owner: string;
     editors: Array<string>;
-    participants: Array<string>;
+    participants: Array<IUserSchema>;
     limit?: Number;
 }
 
