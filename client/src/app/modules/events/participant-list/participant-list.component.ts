@@ -16,6 +16,7 @@ export class ParticipantListComponent implements OnInit, OnChanges {
   private participants: IUserSchema[];
   private imgExportSrc = '/assets/images/icons/export-light-blue.png';
   private imgInviteSrc = '/assets/images/icons/invite-light-blue.png';
+  private showInviteDialog = false;
 
   @Input() iEvent: IEventSchema;
   @Output() iEventChange: EventEmitter<IUserSchema[]> = new EventEmitter();
@@ -53,7 +54,7 @@ export class ParticipantListComponent implements OnInit, OnChanges {
   }
 
   public invite(): void {
-      // TODO: invite participants via E-mail
+      this.showInviteDialog = !this.showInviteDialog;
   }
 
   public export(): void {

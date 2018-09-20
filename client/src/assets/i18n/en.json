@@ -26,6 +26,7 @@
     "INSERT_EVENT_NAME": "Insert event name",
     "INSERT_EVENT_PARTICIPANTS_LIMIT": "e.g. 2, 5, 30... (limits participants list) ",
     "INVITE": "Invite",
+    "INVITE_PEOPLE": "Invite People",
     "LAST_NAME": "Last name",
     "LOCATION": "Location",
     "MORE_OPTIONS": "More options",

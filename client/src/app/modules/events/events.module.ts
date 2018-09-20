@@ -13,6 +13,7 @@ import { ParticipantListComponent } from './participant-list/participant-list.co
 import { EventLocationPipe } from './event-card/event-location.pipe';
 import { EventDatePipe } from './event-card/event-date.pipe';
 import { TranslateModule } from '@ngx-translate/core';
+import { InviteDialogComponent } from './participant-list/invite-dialog/invite-dialog.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
         EventListComponent,
         ParticipantListComponent,
         EventLocationPipe,
-        EventDatePipe
+        EventDatePipe,
+        InviteDialogComponent
     ],
     imports: [
         CommonModule,
