@@ -6,11 +6,21 @@
     </button>
   </div>
   <div class="modal-body">
-    <h4>TBD:</h4> 
-    <p>
-      Diplay multipleselect of people from LDAP database. <br>
-      Maybe include adding emails by hand.
-    </p>
+    <h6>Insert emails:</h6> 
+    <tag-input [(ngModel)]="emails"
+        [(inputText)]="inputText"
+        [modelAsStrings]="true"
+        [editable]="true"
+        (onTagEdited)="onTagEdited($event)"
+        [removable]="true"
+        [addOnBlur]="true"
+        [addOnPaste]="true"
+        [validators]="validators"
+        [errorMessages]="errorMessages"
+        [dragZone]="'inviteEmails'"
+        [theme]="'app-theme'"
+        placeholder="+ email"></tag-input>
+    <p class="footnote" [innerHtml]="'INVITE_HINT' | translate"></p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" [translate]="'INVITE'" (click)="sendInvitation()"></button>

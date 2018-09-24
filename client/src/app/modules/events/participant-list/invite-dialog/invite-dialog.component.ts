@@ -1,5 +1,9 @@
+import { IEventSchema } from './../../../../../../../server/src/interfaces/mongo.interface';
+import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalRef, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-invite-dialog',
@@ -9,32 +13,57 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 })
 export class InviteDialogComponent implements OnInit {
 
-  @Input() eventName: string;
+  private static readonly EMAIL_REGEXP = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+  @Input() iEvent: IEventSchema;
   @ViewChild('content') content;
 
   closeResult: string;
   modal: NgbModalRef;
+  validators;
+  errorMessages;
 
-  private emails: string[];
+  private emails: Array<any>;
+  private inputText: string;
 
-  constructor(private modalService: NgbModal) { }
-
-  ngOnInit(): void {
-    // Dummy data
-    this.emails = ['john@erni.sk', 'hans@erni.ch', 'jurgen@erni.de'];
+  constructor(private modalService: NgbModal,
+              private translationService: TranslateService) {
+    this.validators = [this.validateEmail];
+    this.errorMessages = {
+      'email': translationService.instant('ERROR_WRONG_EMAIL')
+    };
   }
 
+  ngOnInit(): void {
+    this.emails = new Array();
+  }
+
+  // TODO: redirect sending mails to backend
   public sendInvitation(): void {
-    // TODO: redirect sending mails to backend
-    // Send invitations
-    const mails = this.emails.join(';');
-    const subject = 'Invitation to event: ' + this.eventName;
-    const body = 'Dear friend,\n Let me kindly invite you to my event happening on <time> at <location>.' +
-     '\n Please mind folowing details: \n <description> ';
-    window.open(`mailto:${mails}?subject=${subject}&body=${body}`);
-    console.log('Invitations sent via email');
-    // Close modal
-    this.modal.close('Invitation(s) sent');
+    // If input text is not empty validate it and pass to email array
+    if (this.inputText && InviteDialogComponent.EMAIL_REGEXP.test(this.inputText)) {
+      this.emails.push(this.inputText);
+      this.inputText = null;
+    }
+    if (this.emails.length > 0) {
+      // Build the invitation mail
+      const mails = this.emails.join(';');
+      const subject = this.translationService.instant('EMAIL_INVITATION_SUBJECT', {'name': this.iEvent.name});
+      const dateFormat = 'D.M. YYYY';
+      let body = this.translationService.instant('EMAIL_INVITATION_BODY', {
+        'startDate': moment(this.iEvent.startDate).format(dateFormat),
+        'endDate': moment(this.iEvent.endDate).format(dateFormat),
+        'location': this.iEvent.location.address
+      });
+      if (this.iEvent.description) {
+        body += this.translationService.instant('EMAIL_INVITATION_BODY_DETAILS', {'description': this.iEvent.description});
+      }
+      body += this.translationService.instant('EMAIL_INVITATION_LINK_JOIN', {'link': window.location.href});
+      // Open email client
+      window.location.href = `mailto:${mails}?subject=${subject}&body=${body}`;
+      // Close modal
+      this.modal.close('Invitation(s) sent');
+    }
   }
 
   public show() {
@@ -58,5 +87,14 @@ export class InviteDialogComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  private validateEmail(control: FormControl): {[value: string]: boolean} | null {
+    if (!InviteDialogComponent.EMAIL_REGEXP.test(control.value)) {
+      return {
+        'email': true
+      };
+    }
+    return null;
   }
 }

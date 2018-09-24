@@ -22,7 +22,7 @@
                 (mousedown)="imgInviteSrc='/assets/images/icons/invite-black.png'">
       </div>
   </div>
-  <app-invite-dialog #inviteDialog="inviteDialog"></app-invite-dialog>
+  <app-invite-dialog #inviteDialog="inviteDialog" [iEvent]="iEvent"></app-invite-dialog>
   <hr>
   <div class="row">
       <div class="col-12 border-left pb-1" *ngFor="let participant of participants">

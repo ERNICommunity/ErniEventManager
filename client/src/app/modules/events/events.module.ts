@@ -14,6 +14,7 @@ import { EventLocationPipe } from './event-card/event-location.pipe';
 import { EventDatePipe } from './event-card/event-date.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { InviteDialogComponent } from './participant-list/invite-dialog/invite-dialog.component';
+import { TagInputModule } from 'ngx-chips';
 
 @NgModule({
     declarations: [
@@ -29,10 +30,11 @@ import { InviteDialogComponent } from './participant-list/invite-dialog/invite-d
     imports: [
         CommonModule,
         EventsRoutingModule,
-        SharedModule,
         FormsModule,
         LoaderModule,
         ReactiveFormsModule,
+        SharedModule,
+        TagInputModule,
         TranslateModule
     ]
 })

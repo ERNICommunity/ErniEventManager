@@ -1,11 +1,14 @@
+import { TagInputModule } from 'ngx-chips';
 import { translateLoaderSpy } from './../../../utils-test/test-utils.spec';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ParticipantListComponent } from './participant-list.component';
 import { HttpLoaderFactory } from '../../../app.module';
+import { InviteDialogComponent } from './invite-dialog/invite-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ParticipantListComponent', () => {
   let component: ParticipantListComponent;
@@ -13,9 +16,12 @@ describe('ParticipantListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParticipantListComponent ],
+      declarations: [ ParticipantListComponent, InviteDialogComponent ],
       imports: [
         FormsModule,
+        NgbModule.forRoot(),
+        ReactiveFormsModule,
+        TagInputModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
