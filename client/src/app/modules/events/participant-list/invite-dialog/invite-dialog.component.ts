@@ -24,7 +24,20 @@ export class InviteDialogComponent implements OnInit {
   errorMessages;
 
   private emails: Array<any>;
+  get _emails(): Array<string> {
+    return this.emails;
+  }
+  set _emails(array: Array<string>) {
+    this.emails = array;
+  }
+
   private inputText: string;
+  get _inputText(): string {
+    return this.inputText;
+  }
+  set _inputText(value: string) {
+    this.inputText = value;
+  }
 
   constructor(private modalService: NgbModal,
               private translationService: TranslateService) {
