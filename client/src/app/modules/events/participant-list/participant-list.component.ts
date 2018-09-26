@@ -35,7 +35,7 @@ export class ParticipantListComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit(): void {
-    // Dummy array for testing until joining events works
+    // TODO: remove after "join event" functionality works
     const people: IUserSchema[] = [
       {_id: '1', email: 'j@d.com', firstName: 'John', lastName: 'Doe', type: 'participant', avatar: 'male', role: 'role'},
       {_id: '2', email: 'j@d.com', firstName: 'Jane', lastName: 'Doe', type: 'participant', avatar: 'female', role: 'role'},
@@ -49,7 +49,7 @@ export class ParticipantListComponent implements OnInit, OnChanges {
       const name = this.iEvent.name.toLowerCase().replace(' ', '_');
       this.export_filename = name + '_participants.csv';
     }
-    // TODO: uncomment this when ready
+    // TODO: uncomment this after "join event" functionality works
     // this.participants = this.iEvent.participants;
   }
 
