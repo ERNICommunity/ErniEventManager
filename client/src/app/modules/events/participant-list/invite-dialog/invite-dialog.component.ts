@@ -46,11 +46,10 @@ export class InviteDialogComponent implements OnInit {
     this.errorMessages = {
       'email': translationService.instant('ERROR_WRONG_EMAIL')
     };
-  }
-
-  ngOnInit(): void {
     this.emails = new Array();
   }
+
+  ngOnInit(): void {}
 
   // TODO: redirect sending mails to backend
   public sendInvitation(): void {
@@ -80,12 +79,12 @@ export class InviteDialogComponent implements OnInit {
     }
   }
 
-  public show() {
+  public show(): void {
     this.open(this.content);
   }
 
   private open(content): void {
-    this.modal = this.modalService.open(content, {centered: true, ariaLabelledBy: 'modal-basic-title'});
+    this.modal = this.modalService.open(content, {centered: true});
     this.modal.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
