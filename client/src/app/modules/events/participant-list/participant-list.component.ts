@@ -19,7 +19,6 @@ export class ParticipantListComponent implements OnInit, OnChanges {
   private showInviteDialog = false;
 
   @Input() iEvent: IEventSchema;
-  @Output() iEventChange: EventEmitter<IUserSchema[]> = new EventEmitter();
 
   private static fileHeader = (): string => {
     return 'Name' + ParticipantListComponent.SEPARATOR_WORD +
