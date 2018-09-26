@@ -1,3 +1,4 @@
+import { IEventSchema } from './../../../../interfaces/event.interface';
 import { translateLoaderSpy } from './../../../../utils-test/test-utils.spec';
 import { NgbModal, NgbModule, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +9,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { InviteDialogComponent } from './invite-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpLoaderFactory } from '../../../../app.module';
-import { IEventSchema } from '../../../../../../../server/src/interfaces/mongo.interface';
 
 describe('InviteDialogComponent', () => {
   let component: InviteDialogComponent;

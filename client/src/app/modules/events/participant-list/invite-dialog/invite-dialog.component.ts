@@ -1,4 +1,5 @@
-import { IEventSchema } from './../../../../../../../server/src/interfaces/mongo.interface';
+import { IEventSchema } from './../../../../interfaces/event.interface';
+
 import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalRef, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
