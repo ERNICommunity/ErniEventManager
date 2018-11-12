@@ -18,6 +18,8 @@ import { LoaderModule } from './modules/loader/loader.module';
 import { CoreModule } from './modules/core/core.module';
 import { LoginModule } from './modules/auth/auth.module';
 
+import { AdalService } from 'adal-angular4';
+
 import { MomentModule } from 'ngx-moment';
 
 @NgModule({
@@ -56,7 +58,8 @@ import { MomentModule } from 'ngx-moment';
     {
       provide: ErrorHandler,
       useClass: ClientErrorHandler
-    }
+    },
+    AdalService
   ],
   bootstrap: [AppComponent]
 })

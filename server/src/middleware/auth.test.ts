@@ -30,6 +30,10 @@ describe('Auth', () => {
       const req = httpMocks.createRequest();
       const res = httpMocks.createResponse();
       const next = jest.fn();
+
+      req.body.login = 'login';
+      req.body.password = 'password';
+
       Auth._validateEmailAndPassword = jest.fn().mockReturnValueOnce({
         id: 123,
         email: 'test@test.sk',

@@ -1,6 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
 import {Response, Request, NextFunction} from 'express';
+import * as azureJWT from 'azure-ad-jwt';
 
 const User = require('./../models/user/user.controller');
 const RSA_PRIVATE_KEY = fs.readFileSync('./key/private.key');
@@ -14,12 +15,21 @@ class Auth {
    * @param {e.Response} res
    * @returns {Promise<void>}
    */
-  static async login (req: Request, res: Response) {
+  static async login(req: Request, res: Response) {
     const credentials = {
       login: req.body.login,
-      password: req.body.password
+      password: req.body.password,
+      token: req.body.token
     };
-    const user = await Auth._validateEmailAndPassword(credentials);
+
+    let user;
+
+    if (credentials.login && credentials.password) {
+      user = await Auth._validateEmailAndPassword(credentials);
+    } else if (credentials.token) {
+      user = await Auth._validateAzure(credentials);
+    }
+
     if (user) {
       const jwtBearerToken = jwt.sign({id: user.id}, RSA_PRIVATE_KEY, {
         algorithm: 'HS256',
@@ -47,7 +57,7 @@ class Auth {
    * @param {e.Response} res
    * @param {e.NextFunction} next
    */
-  static async authorize (req: Request, res: Response, next: NextFunction) {
+  static async authorize(req: Request, res: Response, next: NextFunction) {
     if (!req.headers || !req.headers.authorization) {
       req.headers.authorization = 'Bearer ';
     }
@@ -56,8 +66,7 @@ class Auth {
 
     const token = authHeader.split(' ')[1];
     try {
-      const user  = await jwt.verify(token, RSA_PRIVATE_KEY);
-      console.log('here');
+      await jwt.verify(token, RSA_PRIVATE_KEY);
       next();
     } catch (err) {
       console.log('err');
@@ -89,8 +98,36 @@ class Auth {
    * @private
    */
   static async _validateEmailAndPassword(credentials: { login: string, password: string }) {
-    const user =  await User.getByEmail(credentials.login);
+    const user = await User.getByEmail(credentials.login);
     return user[0];
+  }
+
+  static async _validateAzure(credentials: {token: string} ) {
+    return new Promise((resolve, reject) => {
+      azureJWT.verify(credentials.token, { }, async function (err: any, userFromToken: any) {
+        if (err) {
+          return reject(err);
+        }
+
+        try {
+          const foundUsers = await User.getByEmail(userFromToken.unique_name);
+          if (foundUsers.length) {
+            return resolve(foundUsers[0]);
+          } else {
+            await User.createUser({
+              email: userFromToken.unique_name,
+              firstName: userFromToken.given_name,
+              lastName: userFromToken.family_name,
+            });
+            const newUser = await User.getByEmail(userFromToken.unique_name)[0];
+            return resolve(newUser);
+          }
+        } catch (err) {
+          return reject(err);
+        }
+      });
+    });
+
   }
 
 }
