@@ -4,10 +4,12 @@ import { Model } from 'mongoose';
 class GeneralController {
     public model: Model<any>;
     public name: string;
+    public populate: Array<string>;
 
     constructor(model: Model<any>, name: string) {
         this.model = model;
         this.name = name;
+        this.populate = [];
     }
 
     /**
@@ -33,11 +35,14 @@ class GeneralController {
      * @returns {Promise<Object>}
      */
     async get(params: any) {
-        const item = await this.model.findById(params.id, allowedFields[this.name]);
-        if (item) {
-            return item;
-        }
-        throw new Error('Unable to find event');
+      const item = await this.model.findOne({_id: params.id}, allowedFields[this.name])
+        .populate('participants')
+        .populate('editors')
+        .exec();
+      if (item) {
+        return item;
+      }
+      throw new Error('Unable to find event');
     }
 
     /**
@@ -46,6 +51,7 @@ class GeneralController {
      * @returns {Promise<array>}
      */
     async getAll(params: any) {
+        delete params.user;
         const response = await this.queryDataPaginated(params);
         return response;
     }
@@ -136,6 +142,8 @@ class GeneralController {
             }
 
             const list = await this.model.find(mongoFilter, allowedFields[this.name])
+                .populate('participants')
+                .populate('editors')
                 .skip(size * index)
                 .limit(size)
                 .sort(sort.way + sort.field)

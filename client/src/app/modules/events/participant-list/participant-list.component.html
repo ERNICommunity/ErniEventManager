@@ -14,13 +14,13 @@
   </div>
   <hr>
   <div class="row">
-      <div class="col-12 border-left pb-1" *ngFor="let participant of participants">
-          <span class="align-middle d-table-cell" title="{{participant.name}} {{participant.surname}}">
+      <div class="col-12 border-left pb-1" *ngFor="let participant of iEvent.participants">
+          <span class="align-middle d-table-cell" title="{{participant.firstName}} {{participant.lastName}}">
               <img class="avatar" 
                     [src]="participant.gender === 'male' ? '/assets/images/avatar-male.png' : '/assets/images/avatar-female.png'" 
-                    alt="avatar_{{participant.name}}{{participant.surname}}"/>
+                    alt="avatar_{{participant.firstName}}{{participant.lastName}}"/>
           </span>
-          <span class="align-middle d-table-cell pl-2 name">{{participant.name}} {{participant.surname}}</span>
+          <span class="align-middle d-table-cell pl-2 name">{{participant.firstName}} {{participant.lastName}}</span>
       </div>  
   </div>
 </div>

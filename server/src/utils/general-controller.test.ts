@@ -62,24 +62,12 @@ describe('General Controller', () => {
     });
     describe('get()', () => {
         it('should return item based on id', async () => {
-            const findSpy = jest.spyOn(ModelMock, 'findById');
+            const findSpy = jest.spyOn(ModelMock, 'findOne');
             const controller = new GeneralController(ModelMock, 'ModelMock');
             const result = await controller.get({id: docMock._id});
 
-            expect(findSpy).toBeCalledWith(docMock._id, 'id field1 field2');
+            expect(findSpy).toBeCalledWith({_id: docMock._id}, 'id field1 field2');
             expect(JSON.parse(JSON.stringify(result))._id).toEqual(docMock._id);
-        });
-
-        it('should throw error if no event is found', async () => {
-            ModelMock.findById = jest.fn().mockResolvedValue(undefined);
-            const item = {data: {field1: 'something'}};
-            const controller = new GeneralController(ModelMock, 'ModelMock');
-            try {
-                const result = await controller.get({id: docMock._id});
-                throw new Error('Should throw error');
-            } catch (err) {
-                expect(err.message).toEqual('Unable to find event');
-            }
         });
     });
 
@@ -197,6 +185,7 @@ describe('General Controller', () => {
                 skip: function () { return this; },
                 limit: function () { return this; },
                 sort: function () { return this; },
+                populate: function () { return this; },
                 exec: function () { return [docMock]; },
             };
 
@@ -236,6 +225,7 @@ describe('General Controller', () => {
                 skip: function () { return this; },
                 limit: function () { return this; },
                 sort: function () { return this; },
+                populate: function () { return this; },
                 exec: function () { return [docMock]; },
             };
 

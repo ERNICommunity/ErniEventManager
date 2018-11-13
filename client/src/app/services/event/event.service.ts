@@ -45,4 +45,18 @@ export class EventService {
       })
       .pipe(switchMap(() => this.queryEventsPaginated(paginated)));
   }
+
+
+
+  join(id): Observable<Object> {
+    return this.httpClient.get(`http://localhost:3000/api/event/join/${id}`);
+  }
+
+  leave(id): Observable<Object> {
+    return this.httpClient.get(`http://localhost:3000/api/event/leave/${id}`);
+  }
+
+  joined(event: IEventSchema): boolean {
+    return event.participants.filter((user: any) => user.email === localStorage.getItem('user_email')).length !== 0;
+  }
 }

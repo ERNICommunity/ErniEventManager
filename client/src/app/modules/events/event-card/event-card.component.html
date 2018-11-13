@@ -1,7 +1,7 @@
 <section class="row mt-2 mb-2 w-100 px-0 mx-0">
   <div class="col-sm-12 px-0">
-    <div class="card text-white cursor-click" id="test-edit" (mouseenter)="toggleButtonMenu()" (mouseleave)="toggleButtonMenu()" (click)="editEvent()">
-      <div class="card-header" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}">
+    <div class="card text-white cursor-click" id="test-edit">
+      <div class="card-header" data-toggle="tooltip" data-placement="top" title="Edit - {{event.name}}" (click)="editEvent()">
         <div class="row">
           <div class="col-12 col-sm-9">
             <h3 id="test-event-name">{{event.name}}</h3>
@@ -29,11 +29,21 @@
       </div>
       <div class="card-footer">
         <div class="row w-100">
-          <div class="col" [@buttonGroupFadeInOut]="buttonMenuState">
+          <div class="col">
             <div class="button-container">
-              <button type="button" class="btn btn-light join-button">
+              <button type="button" class="btn btn-light join-button" (click)="join()" *ngIf="!joined()">
                 <i class="fa fa-user-plus"></i>
                 {{ 'JOIN' | translate }}
+              </button>
+              <button type="button" class="btn btn-light joined-button" (click)="leave()" *ngIf="joined()">
+                <div class="button-default">
+                    <i class="fa fa-sign-out"></i>
+                    {{ 'JOINED' | translate }}
+                </div>
+                  <div class="button-hover">
+                      <i class="fa fa-sign-out"></i>
+                      {{ 'LEAVE' | translate }}
+                  </div>
               </button>
               <!--TODO delete will be visible only for user with admin role-->
               <button type="button" class="btn btn-light delete-button" id="test-delete" (click)="deleteEvent()">
