@@ -26,7 +26,7 @@ describe('Auth', () => {
       expect(res._getData()).toEqual('Incorrect credentials');
     });
 
-    it('should return token and user data after validation return user', async () => {
+    it('should return token and user data after validation of user and password', async () => {
       const req = httpMocks.createRequest();
       const res = httpMocks.createResponse();
       const next = jest.fn();
@@ -35,6 +35,30 @@ describe('Auth', () => {
       req.body.password = 'password';
 
       Auth._validateEmailAndPassword = jest.fn().mockReturnValueOnce({
+        id: 123,
+        email: 'test@test.sk',
+        firstName: 'Test',
+        lastName: 'User',
+      });
+      await Auth.login(req, res);
+      expect(res._getStatusCode()).toEqual(200);
+      expect(res._getData()).toEqual(JSON.stringify({
+        id: 123,
+        email: 'test@test.sk',
+        firstName: 'Test',
+        lastName: 'User',
+        token: JSON.stringify({ id: 123 })
+      }));
+    });
+  });
+  it('should return token and user data after validation of azure token', async () => {
+      const req = httpMocks.createRequest();
+      const res = httpMocks.createResponse();
+      const next = jest.fn();
+
+      req.body.token = 'token';
+
+      Auth._validateAzure = jest.fn().mockReturnValueOnce({
         id: 123,
         email: 'test@test.sk',
         firstName: 'Test',
