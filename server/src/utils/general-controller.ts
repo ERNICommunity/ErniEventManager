@@ -20,6 +20,7 @@ class GeneralController {
      */
     async create(params: {data: any}) {
         const newItem = new this.model(params.data);
+
         if (await this.model.create(newItem)) {
             const item = await this.model.findById(newItem._id, allowedFields[this.name]);
             return item;
@@ -38,6 +39,7 @@ class GeneralController {
       const item = await this.model.findOne({_id: params.id}, allowedFields[this.name])
         .populate('participants')
         .populate('editors')
+        .populate('owner')
         .exec();
       if (item) {
         return item;
@@ -144,6 +146,7 @@ class GeneralController {
             const list = await this.model.find(mongoFilter, allowedFields[this.name])
                 .populate('participants')
                 .populate('editors')
+                .populate('owner')
                 .skip(size * index)
                 .limit(size)
                 .sort(sort.way + sort.field)
