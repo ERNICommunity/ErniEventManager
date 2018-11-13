@@ -24,4 +24,5 @@ export class ILoginResultSchema {
   token: string;
   firstName: string;
   lastName: string;
+  role: string;
 }

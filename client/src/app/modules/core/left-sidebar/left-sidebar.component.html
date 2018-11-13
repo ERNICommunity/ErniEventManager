@@ -35,7 +35,7 @@
                     </li>
                     <li>
                         <hr>
-                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate(['/users'])">
+                        <a class="nav-link pl-0 w-100 cursor-click" (click)="navigate(['/users'])" *ngIf="displayUsers()">
                           <i class="fa fa-users fa-fw"></i>
                           <span class="d-inline" [translate]="'USERS'"></span>
                         </a>

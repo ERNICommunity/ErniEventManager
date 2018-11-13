@@ -32,6 +32,15 @@ export class AuthService {
     }
   }
 
+  isAdmin(): boolean {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+    const decoded = jwt_decode(token);
+    return decoded.role === 'admin';
+  }
+
   getToken(): string {
     return localStorage.getItem('auth_token');
   }

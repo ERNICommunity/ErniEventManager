@@ -12,7 +12,7 @@ class UserController extends GeneralController {
       if (item) {
         return item;
       }
-      throw new Error('Unable to find event');
+      throw new Error('Unable to find user');
     }
 }
 

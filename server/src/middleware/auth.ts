@@ -22,7 +22,7 @@ class Auth {
     };
     const user = await Auth._validateEmailAndPassword(credentials);
     if (user) {
-      const jwtBearerToken = jwt.sign({id: user.id}, RSA_PRIVATE_KEY, {
+      const jwtBearerToken = jwt.sign({id: user.id, role: user.role}, RSA_PRIVATE_KEY, {
         algorithm: 'HS256',
         expiresIn: 3600,
         subject: user.id
@@ -33,7 +33,8 @@ class Auth {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        token: jwtBearerToken
+        token: jwtBearerToken,
+        role: user.role
       };
       res.status(200).json(userReturn);
     } else {
@@ -92,6 +93,21 @@ class Auth {
   static async _validateEmailAndPassword(credentials: { login: string, password: string }) {
     const user =  await User.getByEmail(credentials.login);
     return user[0];
+  }
+
+  static async requireAdmin(req: IRequest, res: Response, next: NextFunction) {
+    try{
+      const user = await User.get({id: req.user.id});
+      if (user.role === 'admin') {
+        return next();
+      } else {
+        return res.status(401).send('Unauthorized access');
+      }
+    } catch (err) {
+      console.warn(err);
+      return res.status(401).send('Unauthorized access');
+    }
+
   }
 
 }
