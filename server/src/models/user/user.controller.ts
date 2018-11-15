@@ -14,6 +14,11 @@ class UserController extends GeneralController {
       }
       throw new Error('Unable to find user');
     }
+
+    async createUser(user: any) {
+      const newUser = new this.model(user);
+      await newUser.save();
+    }
 }
 
 module.exports = new UserController(UserModel, 'User');
