@@ -8,11 +8,6 @@ import { IEventSchema } from '../../../interfaces/event.interface';
 })
 export class ParticipantListComponent implements OnInit {
   @Input() iEvent: IEventSchema;
-  @Input() participants: any[] = [
-    {name: 'John', surname: 'Doe', gender: 'male'},
-    {name: 'Jane', surname: 'Doe', gender: 'female'},
-    {name: 'Jack', surname: 'Kerouac', gender: 'male'}
-  ];
 
   constructor() {}
 

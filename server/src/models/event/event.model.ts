@@ -36,9 +36,9 @@ const EventSchema = new mongoose.Schema({
     transportBus: Boolean,
     transportCar: Boolean,
     accommodation: Boolean,
-    owner: { type: mongoose.Schema.Types.ObjectId },
-    editors: [mongoose.Schema.Types.ObjectId],
-    participants: [mongoose.Schema.Types.ObjectId],
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    editors: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    participants: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     limit: Number
 }, { timestamps: true });
 

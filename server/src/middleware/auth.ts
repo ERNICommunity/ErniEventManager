@@ -1,6 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
-import {Response, Request, NextFunction} from 'express';
+import {Response, NextFunction} from 'express';
+import { IRequest } from '../interfaces';
 import * as azureJWT from 'azure-ad-jwt';
 
 const User = require('./../models/user/user.controller');
@@ -15,7 +16,7 @@ class Auth {
    * @param {e.Response} res
    * @returns {Promise<void>}
    */
-  static async login(req: Request, res: Response) {
+  static async login (req: IRequest, res: Response) {
     const credentials = {
       login: req.body.login,
       password: req.body.password,
@@ -57,7 +58,7 @@ class Auth {
    * @param {e.Response} res
    * @param {e.NextFunction} next
    */
-  static async authorize(req: Request, res: Response, next: NextFunction) {
+  static async authorize (req: IRequest, res: Response, next: NextFunction) {
     if (!req.headers || !req.headers.authorization) {
       req.headers.authorization = 'Bearer ';
     }
@@ -66,7 +67,8 @@ class Auth {
 
     const token = authHeader.split(' ')[1];
     try {
-      await jwt.verify(token, RSA_PRIVATE_KEY);
+      const user  = await jwt.verify(token, RSA_PRIVATE_KEY);
+      req.user = user;
       next();
     } catch (err) {
       console.log('err');
@@ -80,7 +82,7 @@ class Auth {
    * @param {e.Response} res
    * @param {e.NextFunction} next
    */
-  static allowOptions(req: Request, res: Response, next: NextFunction) {
+  static allowOptions(req: IRequest, res: Response, next: NextFunction) {
     const env: string = process.env.NODE_ENV || 'local';
     if (env !== 'production' && req.method === 'OPTIONS') {
       res.status(200).end();
