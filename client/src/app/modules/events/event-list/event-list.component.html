@@ -1,7 +1,7 @@
 <!--div class="text-danger">{{errorMessage}}</div-->
 
 <div *ngIf="!retreiveData">
-  <app-event-card class="w-100" [event]="event" (delete)="deleteEvent($event)" (edit)="openEvent($event)" *ngFor="let event of events; let i = index;"></app-event-card>
+  <app-event-card class="w-100" [event]="event" (delete)="deleteEvent($event)" (edit)="openEvent($event)" (join)="joinEvent($event)" (leave)="leaveEvent($event)" *ngFor="let event of events; let i = index;"></app-event-card>
   <h3 id="noResultsText" *ngIf="events && events.length === 0">{{ 'NO_RESULTS' | translate }}</h3>
 </div>
 <div *ngIf="retreiveData">

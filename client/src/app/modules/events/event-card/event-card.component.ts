@@ -12,6 +12,8 @@ export class EventCardComponent implements OnInit {
   @Input() event: IEventSchema;
   @Output() delete: EventEmitter<IEventSchema> = new EventEmitter();
   @Output() edit: EventEmitter<string> = new EventEmitter();
+  @Output() join: EventEmitter<string> = new EventEmitter();
+  @Output() leave: EventEmitter<string> = new EventEmitter();
 
   constructor(private http: HttpClient, private eventService: EventService) { }
 
@@ -26,14 +28,12 @@ export class EventCardComponent implements OnInit {
     this.delete.emit(this.event);
   }
 
-  join(): void {
-    this.eventService.join(this.event._id)
-      .subscribe((event: IEventSchema) => this.event = event);
+  joinEvent(): void {
+    this.join.emit(this.event._id);
   }
 
-  leave(): void {
-    this.eventService.leave(this.event._id)
-      .subscribe((event: IEventSchema) => this.event = event);
+  leaveEvent(): void {
+    this.leave.emit(this.event._id);
   }
 
   joined(): boolean {
