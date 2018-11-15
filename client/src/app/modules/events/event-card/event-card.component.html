@@ -31,11 +31,11 @@
         <div class="row w-100">
           <div class="col">
             <div class="button-container">
-              <button type="button" class="btn btn-light join-button" (click)="join()" *ngIf="!joined()">
+              <button type="button" class="btn btn-light join-button" (click)="joinEvent()" *ngIf="!joined()">
                 <i class="fa fa-user-plus"></i>
                 {{ 'JOIN' | translate }}
               </button>
-              <button type="button" class="btn btn-light joined-button" (click)="leave()" *ngIf="joined()">
+              <button type="button" class="btn btn-light joined-button" (click)="leaveEvent()" *ngIf="joined()">
                 <div class="button-default">
                     <i class="fa fa-sign-out"></i>
                     {{ 'JOINED' | translate }}
