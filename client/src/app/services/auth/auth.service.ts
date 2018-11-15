@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {ILoginResultSchema} from '../../interfaces';
 import * as jwt_decode from 'jwt-decode';
+import { AdalService } from 'adal-angular4';
 
 const loginPath = 'api/login';
 
@@ -14,14 +15,18 @@ const loginPath = 'api/login';
 export class AuthService {
   @Output() loginChange = new EventEmitter();
   @Output() authError = new EventEmitter();
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private adalService: AdalService) {
     if (this.isAuthenticated()) {
       this.loginChange.emit(localStorage.getItem('user_email'));
     }
   }
 
-  authenticateOnBackend(login: string, password: string): Observable<ILoginResultSchema> {
-    return this.http.post<ILoginResultSchema>(`${environment.serverPath}${loginPath}`, {login: login, password: password});
+  authenticateOnBackend(login: string, password: string, token: string): Observable<ILoginResultSchema> {
+    return this.http.post<ILoginResultSchema>(`${environment.serverPath}${loginPath}`, {
+      login: login,
+      password: password,
+      token: token
+    });
   }
 
   isAuthenticated(): boolean {
@@ -69,16 +74,36 @@ export class AuthService {
 
   logout() {
     this.removeToken();
-    localStorage.removeItem('user_firstName');
-    localStorage.removeItem('user_lastName');
-    localStorage.removeItem('user_email');
-    this.loginChange.emit(undefined);
-    this.router.navigateByUrl('/login');
+    if (this.adalService.userInfo.authenticated) {
+      this.adalService.logOut();
+    } else {
+      this.loginChange.emit(undefined);
+      localStorage.removeItem('user_firstName');
+      localStorage.removeItem('user_lastName');
+      localStorage.removeItem('user_email');
+      this.router.navigateByUrl('/login');
+    }
   }
 
   login(login: string, password: string) {
     if (login && password) {
-      return this.authenticateOnBackend(login, password)
+      return this.authenticateOnBackend(login, password, null)
+        .subscribe(
+          result => {
+            this.setToken(result.token);
+            localStorage.setItem('user_firstName', result.firstName);
+            localStorage.setItem('user_lastName', result.lastName);
+            localStorage.setItem('user_email', result.email);
+            this.loginChange.emit(result.email);
+            this.authError.emit(false);
+            this.router.navigateByUrl('/');
+          });
+    }
+  }
+
+  loginAzure() {
+    if (this.adalService.userInfo.token) {
+      return this.authenticateOnBackend(null, null, this.adalService.userInfo.token)
         .subscribe(
           result => {
             this.setToken(result.token);
