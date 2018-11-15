@@ -8,5 +8,10 @@ const serverPath = _isDev ? 'http://localhost:3000/' : `/`;
 
 export const environment = {
   production: false,
-  serverPath
+  serverPath,
+  azureConfig: {
+    tenant: 'eb25818e-5bd5-49bf-99de-53e3e7b42630',
+    clientId: '7eb7f3c1-377e-433f-92fe-d657272d4b79',
+    redirectUri: 'http://localhost:4200/'
+  }
 };
