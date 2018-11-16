@@ -48,11 +48,11 @@ export class EventService {
 
 
 
-  join(id): Observable<Object> {
+  join(id: string): Observable<Object> {
     return this.httpClient.get(`http://localhost:3000/api/event/join/${id}`);
   }
 
-  leave(id): Observable<Object> {
+  leave(id: string): Observable<Object> {
     return this.httpClient.get(`http://localhost:3000/api/event/leave/${id}`);
   }
 
