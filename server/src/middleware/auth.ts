@@ -128,16 +128,16 @@ class Auth {
         }
 
         try {
-          const foundUsers = await User.getByEmail(userFromToken.unique_name);
-          if (foundUsers.length) {
-            return resolve(foundUsers[0]);
+          const foundUser = await User.getByEmail(userFromToken.unique_name);
+          if (foundUser) {
+            return resolve(foundUser);
           } else {
             await User.createUser({
               email: userFromToken.unique_name,
               firstName: userFromToken.given_name,
               lastName: userFromToken.family_name,
             });
-            const newUser = await User.getByEmail(userFromToken.unique_name)[0];
+            const newUser = await User.getByEmail(userFromToken.unique_name);
             return resolve(newUser);
           }
         } catch (err) {
