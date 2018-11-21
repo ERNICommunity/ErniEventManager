@@ -4,6 +4,8 @@ import {Response, NextFunction} from 'express';
 import { IRequest } from '../interfaces';
 import * as azureJWT from 'azure-ad-jwt';
 
+const bcrypt = require('bcrypt');
+
 const User = require('./../models/user/user.controller');
 const RSA_PRIVATE_KEY = fs.readFileSync('./key/private.key');
 
@@ -100,8 +102,22 @@ class Auth {
    * @private
    */
   static async _validateEmailAndPassword(credentials: { login: string, password: string }) {
-    const user = await User.getByEmail(credentials.login);
-    return user[0];
+    if (!credentials.login || !credentials.password) {
+      return;
+    }
+    try {
+      const user = await User.getByEmail(credentials.login);
+      if (user.password) {
+        const correctPassword = await bcrypt.compare(credentials.password, user.password);
+        if (correctPassword) {
+          return user;
+        }
+      }
+      throw new Error(`Password not correct for user: ${user.email}`);
+    } catch (err) {
+      console.log(`Unsuccessfull login: ${err}`);
+      return false;
+    }
   }
 
   static async _validateAzure(credentials: {token: string} ) {

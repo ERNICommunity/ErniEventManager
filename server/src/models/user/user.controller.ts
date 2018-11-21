@@ -9,8 +9,8 @@ class UserController extends GeneralController {
 
     async getByEmail(email: string) {
       const item = await this.model.find({email: email});
-      if (item) {
-        return item;
+      if (item && item.length) {
+        return item[0];
       }
       throw new Error('Unable to find event');
     }
