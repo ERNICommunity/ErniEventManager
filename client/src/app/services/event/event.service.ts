@@ -49,11 +49,11 @@ export class EventService {
 
 
   join(id): Observable<Object> {
-    return this.httpClient.get(`http://localhost:3000/api/event/join/${id}`);
+    return this.httpClient.get(`${environment.serverPath}${this.eventPath}/join/${id}`);
   }
 
   leave(id): Observable<Object> {
-    return this.httpClient.get(`http://localhost:3000/api/event/leave/${id}`);
+    return this.httpClient.get(`${environment.serverPath}${this.eventPath}/leave/${id}`);
   }
 
   joined(event: IEventSchema): boolean {

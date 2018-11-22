@@ -35,7 +35,7 @@ export class LeftSidebarComponent implements OnInit {
     this.router.navigate(path);
   }
 
-  displayUsers() {
+  isAdmin() {
     return this.authService.isAdmin();
   }
 }
