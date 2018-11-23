@@ -15,6 +15,7 @@ export class EventEditComponent implements OnInit {
   iEvent: IEventSchema;
   isCreate = false;
   eventForm: FormGroup;
+  canEditLocation = true;
 
   constructor(
     private eventService: EventService,
@@ -165,6 +166,20 @@ export class EventEditComponent implements OnInit {
   private fromBrowserDate(date: String): Date {
     const numbers = date.split('-');
     return new Date(Number(numbers[0]), Number(numbers[2]) - 1, Number(numbers[1]));
+  }
+
+  longitudeChange(longitude) {
+    if (this.iEvent.location === undefined) {
+      this.iEvent.location = {address: ''};
+    }
+    this.iEvent.location.longitude = longitude;
+  }
+
+  latitudeChange(latitude) {
+    if (this.iEvent.location === undefined) {
+      this.iEvent.location = {address: ''};
+    }
+    this.iEvent.location.latitude = latitude;
   }
 
 }

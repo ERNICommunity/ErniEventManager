@@ -1,0 +1,7 @@
+<div class="map-wrapper">
+    <div id="map" class="map"></div>
+    <div class="map-buttons">
+        <div class="map-button" (click)="removeMarker()" placement="right" ngbTooltip="Remove" *ngIf="edit"><i class="fa fa-times"></i></div>
+        <div class="map-button" (click)="openGoogleMaps()" style="float:right" placement="right" ngbTooltip="Fulscreen"><i class="fa fa-expand"></i></div>
+    </div>
+</div>
