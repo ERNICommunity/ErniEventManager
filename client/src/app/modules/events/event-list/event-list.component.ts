@@ -65,6 +65,26 @@ export class EventListComponent implements OnInit {
     );
   }
 
+  joinEvent(id: string): void {
+    this.eventService.join(id)
+      .subscribe((joinedEvent: IEventSchema) => {
+        const event = this.events.find(item => item._id === joinedEvent._id);
+        if (event) {
+          event.participants = joinedEvent.participants;
+        }
+      });
+  }
+
+  leaveEvent(id: string): void {
+    this.eventService.leave(id)
+      .subscribe((joinedEvent: IEventSchema) => {
+        const event = this.events.find(item => item._id === joinedEvent._id);
+        if (event) {
+          event.participants = joinedEvent.participants;
+        }
+      });
+  }
+
   displayError(reason: any): void {
     this.errorMessage = reason && reason.error ? reason.error.err : 'Unexpected error appeared';
   }

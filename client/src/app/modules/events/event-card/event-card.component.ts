@@ -1,38 +1,23 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { IEventSchema } from '../../../interfaces';
+import { HttpClient } from '@angular/common/http';
+import { EventService } from '../../../services/event/event.service';
 
 @Component({
   selector: 'app-event-card',
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
-  animations: [
-    trigger('buttonGroupFadeInOut', [
-      state('in', style({
-        opacity: 1
-      })),
-      state('out', style({
-        opacity: 0
-      })),
-      transition('in => out', animate('200ms ease-in-out')),
-      transition('out => in', animate('250ms ease-in-out'))
-    ])
-  ]
 })
 export class EventCardComponent implements OnInit {
   @Input() event: IEventSchema;
   @Output() delete: EventEmitter<IEventSchema> = new EventEmitter();
   @Output() edit: EventEmitter<string> = new EventEmitter();
+  @Output() join: EventEmitter<string> = new EventEmitter();
+  @Output() leave: EventEmitter<string> = new EventEmitter();
 
-  buttonMenuState = 'out';
-
-  constructor() { }
+  constructor(private http: HttpClient, private eventService: EventService) { }
 
   ngOnInit(): void {
-  }
-
-  toggleButtonMenu(): void {
-    this.buttonMenuState = this.buttonMenuState === 'out' ? 'in' : 'out';
   }
 
   editEvent(): void {
@@ -43,4 +28,15 @@ export class EventCardComponent implements OnInit {
     this.delete.emit(this.event);
   }
 
+  joinEvent(): void {
+    this.join.emit(this.event._id);
+  }
+
+  leaveEvent(): void {
+    this.leave.emit(this.event._id);
+  }
+
+  joined(): boolean {
+    return this.eventService.joined(this.event);
+  }
 }

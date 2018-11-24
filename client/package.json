@@ -25,6 +25,8 @@
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "@ngx-translate/core": "^10.0.1",
     "@ngx-translate/http-loader": "^3.0.1",
+    "adal-angular4": "^3.0.16",
+    "azure-ad-jwt": "^1.1.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",

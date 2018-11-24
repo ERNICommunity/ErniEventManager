@@ -23,24 +23,27 @@ export class EventEditComponent implements OnInit {
   ) {
     this.iEvent = new IEventSchema();
     this.eventForm = this.getEventForm();
+
+    route.params.subscribe(val => {
+      this.setIsCreateState();
+      if (!this.isCreate) {
+        this.getEvent().subscribe(
+          (receivedEvent) => {
+            this.iEvent = receivedEvent;
+            this.setEventFormValues(receivedEvent);
+          },
+          (error) => {
+            this.router.navigate(['/']);
+          }
+        );
+      } else {
+        this.setEventFormValues(this.iEvent);
+      }
+      this.setEventFormValidators();
+    });
    }
 
   ngOnInit() {
-    this.setIsCreateState();
-    if (!this.isCreate) {
-      this.getEvent().subscribe(
-        (receivedEvent) => {
-          this.iEvent = receivedEvent;
-          this.setEventFormValues(receivedEvent);
-        },
-        (error) => {
-          this.router.navigate(['/']);
-        }
-      );
-    } else {
-      this.setEventFormValues(this.iEvent);
-    }
-    this.setEventFormValidators();
   }
 
   public create(): void {

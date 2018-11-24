@@ -1,6 +1,6 @@
 import * as express from 'express';
-import { IRouter, IRouteParameters } from '../interfaces';
-import { Response, Request, NextFunction } from 'express';
+import { IRouter, IRouteParameters, IRequest } from '../interfaces';
+import { Response, NextFunction } from 'express';
 
 /**
  * GeneralRouter handles registering routes to express router based on given configuration
@@ -46,8 +46,8 @@ class GeneralRouter {
      * @param fn {string} name of funcion to be called
      * @returns {(req: Request, res: Response, next?: NextFunction) => any} middleware that can be sent to router
      */
-    middlewareFactory(handler: (req: Request, res: Response, router: any, fn: string) => any, fn: string) {
-        return (req: Request, res: Response, next?: NextFunction) => handler(req, res, this, fn);
+    middlewareFactory(handler: (req: IRequest, res: Response, router: any, fn: string) => any, fn: string) {
+        return (req: IRequest, res: Response, next?: NextFunction) => handler(req, res, this, fn);
     }
 
     /**
@@ -55,14 +55,15 @@ class GeneralRouter {
      * @param {Request} req
      * @returns {{} & any & any & any}
      */
-    getParams(req: Request) {
+    getParams(req: IRequest) {
         const params = req.params;
         const query = req.query;
         const body = req.body;
-        return Object.assign({}, params, query, body);
+        const user = {user: req.user};
+        return Object.assign({}, params, query, body, user);
     }
 
-    async handleRoute(req: Request, res: Response, router: any, fn: string) {
+    async handleRoute(req: IRequest, res: Response, router: any, fn: string) {
         let result;
         try {
             if (typeof router.controller[fn] !== 'function') {

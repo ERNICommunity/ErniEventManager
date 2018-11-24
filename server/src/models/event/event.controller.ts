@@ -6,6 +6,24 @@ class EventController extends GeneralController {
     constructor(model: Model<any>, name: string) {
         super(model, name);
     }
+
+    async join(params: {user: any, id: string}) {
+      const event = await this.model.findById(params.id).exec();
+      if (event.participants.indexOf(params.user.id) === -1) {
+        event.participants.push(params.user.id);
+      }
+      await event.save();
+      return this.get(params);
+    }
+
+    async leave(params: {user: any, id: string}) {
+      const event = await this.model.findById(params.id).exec();
+      if (event.participants.indexOf(params.user.id) !== -1) {
+        event.participants.splice(event.participants.indexOf(params.user.id), 1);
+      }
+      await event.save();
+      return this.get(params);
+    }
 }
 
 module.exports = new EventController(EventModel, 'Event');

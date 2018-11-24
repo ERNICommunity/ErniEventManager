@@ -1,30 +1,39 @@
-<div class="container">
-    <div class="row">
-        <div class="col wrapper">
-            <div class="logo">
-                <img height="100px" [src]="'/assets/images/erni-logo-coat.png'">
+<div class="login-wrapper" *ngIf="display">
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="col wrapper">
+                    <div class="logo">
+                        <img height="100px" [src]="'/assets/images/erni-logo-coat.png'">
+                    </div>
+                    <div class="content" *ngIf="!showForm">
+                        <h3>Who are you?</h3>
+                        <div class="box" (click)="loginAzure()">Internal<br />Employee</div>
+                        <div class="box" (click)="showForm=!showForm">External<br /> Guest</div>
+                    </div>
+
+                    <form [formGroup]="form" class="content" *ngIf="showForm">
+                        <div [hidden]='!error' class="alert alert-danger" role="alert">
+                            Incorrect credentials
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="user-name"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input class="form-control" name="login" placeholder="Login" formControlName="login" aria-label="Login" aria-describedby="user-name">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="user-password"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control" name="password" placeholder="Password" formControlName="password" aria-label="Password" aria-describedby="user-password">
+                        </div>
+                        <div class="form-buttons">
+                            <button class="button fa fa-3x fa-arrow-circle-right" (click)="login()"></button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <form [formGroup]="form" class="content">
-                <h1>Event Manager</h1>
-                <div [hidden]='!error' class="alert alert-danger" role="alert">
-                    Incorrect credentials
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="user-name"><i class="fa fa-user"></i></span>
-                    </div>
-                    <input class="form-control" name="login" placeholder="Login" formControlName="login" aria-label="Login" aria-describedby="user-name">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="user-password"><i class="fa fa-lock"></i></span>
-                    </div>
-                    <input type="password" class="form-control" name="password" placeholder="Password" formControlName="password" aria-label="Password" aria-describedby="user-password">
-                </div>
-                <div class="form-buttons">
-                    <button class="button fa fa-3x fa-arrow-circle-right" (click)="login()"></button>
-                </div>
-            </form>
         </div>
     </div>
 </div>

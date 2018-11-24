@@ -25,10 +25,34 @@
 
     margin-left: 10px;
     margin-right: 10px;
+  }
   
-    &:hover {
-      background: #123372;
-    }
+  .facebook:hover {
+    background: #3b5998;
+  }
+
+  .twitter:hover {
+    background: #1dcaff;
+  }
+
+  .youtube:hover {
+    background: #cc181e;
+  }
+
+  .linkedin:hover {
+    background: #0077B5;
+  }
+
+  .xing:hover {
+    background: #026466;
+  }
+
+  .instagram:hover {
+    background: #c1558b;
+  }
+
+  .social-wall:hover {
+    background: #123372;
   }
 }
 
