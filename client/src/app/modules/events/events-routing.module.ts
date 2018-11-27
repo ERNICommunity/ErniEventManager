@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { AuthGuard } from '../../services/auth/auth-guard.service';
 import { EventsResolver } from './events-resolver.service';
-import { EventsJoinedResolver } from './events-joined-resolver.service';
 
 const eventsRoutes: Routes = [
     {
@@ -25,7 +24,7 @@ const eventsRoutes: Routes = [
             {
                 path: ':type',
                 component: EventListComponent,
-                resolve: {events: EventsJoinedResolver},
+                resolve: {events: EventsResolver},
             },
         ]
     },
