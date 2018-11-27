@@ -5,9 +5,10 @@ import { IRequest } from '../interfaces';
 import * as azureJWT from 'azure-ad-jwt';
 
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const User = require('./../models/user/user.controller');
-const RSA_PRIVATE_KEY = fs.readFileSync('./key/private.key');
+const RSA_PRIVATE_KEY = crypto.randomBytes(256);
 
 class Auth {
   /**
