@@ -5,17 +5,18 @@ import { NgModule } from '@angular/core';
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { AuthGuard } from '../../services/auth/auth-guard.service';
 import { EventsResolver } from './events-resolver.service';
+import { EventsJoinedResolver } from './events-joined-resolver.service';
 
 const eventsRoutes: Routes = [
     {
         path: '',
         component: EventsComponent,
         canActivateChild: [AuthGuard],
-        resolve: {events: EventsResolver},
         children: [
             {
                 path: '',
-                component: EventListComponent
+                component: EventListComponent,
+                resolve: {events: EventsResolver},
             },
             {
                 path: 'edit/:id',
@@ -23,7 +24,8 @@ const eventsRoutes: Routes = [
             },
             {
                 path: ':type',
-                component: EventListComponent
+                component: EventListComponent,
+                resolve: {events: EventsJoinedResolver},
             },
         ]
     },

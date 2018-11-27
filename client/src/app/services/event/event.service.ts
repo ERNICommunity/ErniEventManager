@@ -33,6 +33,16 @@ export class EventService {
     );
   }
 
+  queryEventsJoinedPaginated(paginator: IPaginator): Observable<IEventResponse> {
+    return this.httpClient.get<IEventResponse>(`${environment.serverPath}${this.eventPath}/joined`,
+      {
+        params: {
+          ...preparePaginator(paginator)
+        }
+      }
+    );
+  }
+
   editEvent(id: string, data: IEventSchema): Observable<IEventSchema> {
     return this.httpClient.put<IEventSchema>(`${environment.serverPath}${this.eventPath}/${id}`, { data });
   }
