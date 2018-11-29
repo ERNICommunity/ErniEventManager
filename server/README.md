@@ -22,6 +22,13 @@ To run locally:
 To run on server:
 TBD
 
+## DEV User
+login: admin@erni.ch
+
+pass: admin
+
+Note: This user should be changed / removed on prod env! 
+
 ## Mongo migrations
 
 Package: https://www.npmjs.com/package/migrate-mongo

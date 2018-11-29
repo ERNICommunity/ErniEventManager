@@ -48,11 +48,11 @@ export class EventService {
 
 
 
-  join(id): Observable<Object> {
+  join(id: string): Observable<Object> {
     return this.httpClient.get(`${environment.serverPath}${this.eventPath}/join/${id}`);
   }
 
-  leave(id): Observable<Object> {
+  leave(id: string): Observable<Object> {
     return this.httpClient.get(`${environment.serverPath}${this.eventPath}/leave/${id}`);
   }
 
