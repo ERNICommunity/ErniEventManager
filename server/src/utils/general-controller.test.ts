@@ -89,7 +89,7 @@ describe('General Controller', () => {
                 await controller.update({id: docMock._id, data: docMock});
                 throw new Error('Should throw error');
             } catch (err) {
-                expect(err.message).toEqual('Event not found');
+                expect(err.message).toEqual('Item not found');
             }
         });
 
@@ -101,7 +101,7 @@ describe('General Controller', () => {
                 await controller.update({id: docMock._id, data: docMock});
                 throw new Error('Should throw error');
             } catch (err) {
-                expect(err.message).toEqual('Problem with updating event');
+                expect(err.message).toEqual('Problem with updating item');
             }
         });
 
@@ -140,7 +140,7 @@ describe('General Controller', () => {
                 await controller.delete({id: docMock._id});
                 throw new Error('Should throw error');
             } catch (err) {
-                expect(err.message).toEqual('Problem with deleting event');
+                expect(err.message).toEqual('Problem with deleting item');
             }
         });
 

@@ -12,7 +12,7 @@ class UserController extends GeneralController {
       if (item && item.length) {
         return item[0];
       }
-      throw new Error('Unable to find event');
+      throw new Error('Unable to find user');
     }
 
     async createUser(user: any) {

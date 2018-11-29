@@ -4,6 +4,7 @@ import { ICurrentPage } from '../../../interfaces';
 import { LeftSidebarService } from '../../../services/left-sidebar/left-sidebar.service';
 import { PageNameService } from '../../../services/page-name/page-name.service';
 import { filter, map } from 'rxjs/operators';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -16,7 +17,8 @@ export class LeftSidebarComponent implements OnInit {
   constructor(
     private leftSidebarService: LeftSidebarService,
     private pageNameService: PageNameService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -31,5 +33,9 @@ export class LeftSidebarComponent implements OnInit {
 
     this.toggleMenu();
     this.router.navigate(path);
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 }

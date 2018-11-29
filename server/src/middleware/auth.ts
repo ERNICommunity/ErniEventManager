@@ -34,7 +34,7 @@ class Auth {
     }
 
     if (user) {
-      const jwtBearerToken = jwt.sign({id: user.id}, RSA_PRIVATE_KEY, {
+      const jwtBearerToken = jwt.sign({id: user.id, role: user.role}, RSA_PRIVATE_KEY, {
         algorithm: 'HS256',
         expiresIn: 60 * 60 * 24,
         subject: user.id
@@ -45,7 +45,8 @@ class Auth {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        token: jwtBearerToken
+        token: jwtBearerToken,
+        role: user.role
       };
       res.status(200).json(userReturn);
     } else {
@@ -118,6 +119,21 @@ class Auth {
       console.log(`Unsuccessfull login: ${err}`);
       return false;
     }
+  }
+
+  static async requireAdmin(req: IRequest, res: Response, next: NextFunction) {
+    try{
+      const user = await User.get({id: req.user.id});
+      if (user.role === 'admin') {
+        return next();
+      } else {
+        return res.status(401).send('Unauthorized access');
+      }
+    } catch (err) {
+      console.warn(err);
+      return res.status(401).send('Unauthorized access');
+    }
+
   }
 
   static async _validateAzure(credentials: {token: string} ) {

@@ -44,7 +44,7 @@ class GeneralController {
       if (item) {
         return item;
       }
-      throw new Error('Unable to find event');
+      throw new Error('Unable to find item');
     }
 
     /**
@@ -74,9 +74,9 @@ class GeneralController {
                 const event = await this.model.findById(id, allowedFields[this.name]);
                 return event;
             }
-            throw new Error('Problem with updating event');
+            throw new Error('Problem with updating item');
         }
-        throw new Error('Event not found');
+        throw new Error('Item not found');
     }
 
     /**
@@ -93,7 +93,7 @@ class GeneralController {
                 const response = await this.queryDataPaginated(params);
                 return response;
             }
-            throw new Error('Problem with deleting event');
+            throw new Error('Problem with deleting item');
         }
         throw new Error ('You are not allowed to delete this entry');
     }
