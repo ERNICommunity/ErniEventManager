@@ -3,16 +3,21 @@ import { Model } from 'mongoose';
 import { default as GeneralController } from '../../utils/general-controller';
 
 class UserController extends GeneralController {
+
     constructor(model: Model<any>, name: string) {
         super(model, name);
     }
 
     async getByEmail(email: string) {
-      const item = await this.model.find({email: email});
-      if (item && item.length) {
-        return item[0];
+      try {
+        const item = await this.model.find({email: email});
+        if (item && item.length) {
+          return item[0];
+        }
+        return;
+      } catch (err) {
+        return;
       }
-      throw new Error('Unable to find user');
     }
 
     async createUser(user: any) {

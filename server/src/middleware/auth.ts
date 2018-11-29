@@ -108,14 +108,17 @@ class Auth {
       return;
     }
     try {
-      const user = await User.getByEmail(credentials.login);
-      if (user.password) {
-        const correctPassword = await bcrypt.compare(credentials.password, user.password);
-        if (correctPassword) {
-          return user;
+      const foundUser = await User.getByEmail(credentials.login);
+      if (foundUser) {
+        if (foundUser.password) {
+          const correctPassword = await bcrypt.compare(credentials.password, foundUser.password);
+          if (correctPassword) {
+            return foundUser;
+          }
+          throw new Error(`Password not correct for user: ${foundUser.email}`);
         }
       }
-      throw new Error(`Password not correct for user: ${user.email}`);
+      throw new Error(`User not found for login: ${credentials.login}`);
     } catch (err) {
       console.log(`Unsuccessfull login: ${err}`);
       return false;
