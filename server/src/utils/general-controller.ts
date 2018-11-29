@@ -140,6 +140,8 @@ class GeneralController {
                     mongoFilter[property] = propValue;
                 } else if (typeof (propValue) === 'string') {
                     mongoFilter[property] = `/.*${propValue}*/i`;
+                } else if (Array.isArray(propValue) && propValue.every(this._isStringOrNumber)) {
+                    mongoFilter[property] = {$in: propValue};
                 }
             }
 
@@ -160,6 +162,10 @@ class GeneralController {
         } catch (err) {
             throw err;
         }
+    }
+
+    _isStringOrNumber(item: any) {
+      return typeof item === 'string' || typeof item === 'number';
     }
 
 }

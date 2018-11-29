@@ -20,6 +20,6 @@ export class EventsResolver implements Resolve<IEventResponse> {
    constructor(private eventService: EventService) {}
 
    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IEventResponse> {
-    return this.eventService.queryEventsPaginated(this.paginator);
+    return this.eventService.queryEventsPaginated(this.paginator, route.params);
    }
 }

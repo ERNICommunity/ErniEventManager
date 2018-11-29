@@ -72,10 +72,14 @@ class GeneralRouter {
 
             result = await router.controller[fn](router.getParams(req));
         } catch (err) {
+            let msg;
             if (err instanceof Error) {
-                err = err.message;
+              msg = err.message;
+            } else {
+              msg = err;
             }
-            return res.status(500).json({error: err});
+            console.error(err);
+            return res.status(500).json({error: msg});
         }
 
         if (result instanceof Error) {

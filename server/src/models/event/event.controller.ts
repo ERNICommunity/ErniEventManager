@@ -47,6 +47,13 @@ class EventController extends GeneralController {
       await event.save();
       return this.get(params);
     }
+
+    async getJoined(params: any) {
+      params.participants = [params.user.id];
+      delete params.user;
+      const response = await this.queryDataPaginated(params);
+      return response;
+    }
 }
 
 module.exports = new EventController(EventModel, 'Event');

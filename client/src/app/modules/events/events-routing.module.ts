@@ -11,11 +11,11 @@ const eventsRoutes: Routes = [
         path: '',
         component: EventsComponent,
         canActivateChild: [AuthGuard],
-        resolve: {events: EventsResolver},
         children: [
             {
                 path: '',
-                component: EventListComponent
+                component: EventListComponent,
+                resolve: {events: EventsResolver},
             },
             {
                 path: 'edit/:id',
@@ -23,7 +23,8 @@ const eventsRoutes: Routes = [
             },
             {
                 path: ':type',
-                component: EventListComponent
+                component: EventListComponent,
+                resolve: {events: EventsResolver},
             },
         ]
     },
