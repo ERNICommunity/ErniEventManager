@@ -7,6 +7,10 @@ span.error-message {
     font-size: small;
 }
 
+:host {
+  width: 100% !important;
+}
+
 // *::-webkit-input-placeholder {
 //     color: #cecece !important;
 //     font-style: italic;
