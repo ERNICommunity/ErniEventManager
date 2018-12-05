@@ -1,14 +1,14 @@
+import { HttpClient } from '@angular/common/http';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TagInputModule } from 'ngx-chips';
+import { HttpLoaderFactory } from '../../../../app.module';
 import { IEventSchema } from './../../../../interfaces/event.interface';
 import { translateLoaderSpy } from './../../../../utils-test/test-utils.spec';
-import { NgbModal, NgbModule, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { TagInputModule } from 'ngx-chips';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InviteDialogComponent } from './invite-dialog.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpLoaderFactory } from '../../../../app.module';
+
 
 describe('InviteDialogComponent', () => {
   let component: InviteDialogComponent;
@@ -63,54 +63,54 @@ describe('InviteDialogComponent', () => {
 
     it('should send fully defined mail', () => {
       // Given
-      component._emails = ['john@doe.com'];
-      component._inputText = 'someone@email.com';
+      component.emails = ['john@doe.com'];
+      component.inputText = 'someone@email.com';
       // When
       component.show();
       component.sendInvitation();
       // Then
       expect(component.modal).not.toBeUndefined();
-      expect(component._inputText).toEqual(null);
-      expect(component._emails).toEqual(['john@doe.com', 'someone@email.com']);
+      expect(component.inputText).toEqual(null);
+      expect(component.emails).toEqual(['john@doe.com', 'someone@email.com']);
     });
 
     it('should send email if valid input text is present and no tag is entered', () => {
       // Given
-      component._emails = [];
-      component._inputText = 'someone@email.com';
+      component.emails = [];
+      component.inputText = 'someone@email.com';
       // When
       component.show();
       component.sendInvitation();
       // Then
       expect(component.modal).not.toBeUndefined();
-      expect(component._inputText).toEqual(null);
-      expect(component._emails).toEqual(['someone@email.com']);
+      expect(component.inputText).toEqual(null);
+      expect(component.emails).toEqual(['someone@email.com']);
     });
 
     it('shouldn\'t send anything if wrong data are presented', () => {
       // Given
-      component._emails = [];
-      component._inputText = 'someone@email'; // e.g. incomplete address
+      component.emails = [];
+      component.inputText = 'someone@email'; // e.g. incomplete address
       // When
       component.show();
       component.sendInvitation();
       // Then
       expect(component.modal).not.toBeUndefined();
-      expect(component._inputText).toEqual('someone@email');
-      expect(component._emails).toEqual([]);
+      expect(component.inputText).toEqual('someone@email');
+      expect(component.emails).toEqual([]);
     });
 
     it('shouldn\'t send anything if no data are presented', () => {
       // Given
-      component._emails = [];
-      component._inputText = null;
+      component.emails = [];
+      component.inputText = null;
       // When
       component.show();
       component.sendInvitation();
       // Then
       expect(component.modal).not.toBeUndefined();
-      expect(component._inputText).toEqual(null);
-      expect(component._emails).toEqual([]);
+      expect(component.inputText).toEqual(null);
+      expect(component.emails).toEqual([]);
     });
   });
 
