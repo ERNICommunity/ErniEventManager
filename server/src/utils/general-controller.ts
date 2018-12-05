@@ -20,6 +20,7 @@ class GeneralController {
      */
     async create(params: {data: any}) {
         const newItem = new this.model(params.data);
+
         if (await this.model.create(newItem)) {
             const item = await this.model.findById(newItem._id, allowedFields[this.name]);
             return item;
@@ -38,11 +39,12 @@ class GeneralController {
       const item = await this.model.findOne({_id: params.id}, allowedFields[this.name])
         .populate('participants')
         .populate('editors')
+        .populate('owner')
         .exec();
       if (item) {
         return item;
       }
-      throw new Error('Unable to find event');
+      throw new Error('Unable to find item');
     }
 
     /**
@@ -72,9 +74,9 @@ class GeneralController {
                 const event = await this.model.findById(id, allowedFields[this.name]);
                 return event;
             }
-            throw new Error('Problem with updating event');
+            throw new Error('Problem with updating item');
         }
-        throw new Error('Event not found');
+        throw new Error('Item not found');
     }
 
     /**
@@ -91,7 +93,7 @@ class GeneralController {
                 const response = await this.queryDataPaginated(params);
                 return response;
             }
-            throw new Error('Problem with deleting event');
+            throw new Error('Problem with deleting item');
         }
         throw new Error ('You are not allowed to delete this entry');
     }
@@ -138,12 +140,15 @@ class GeneralController {
                     mongoFilter[property] = propValue;
                 } else if (typeof (propValue) === 'string') {
                     mongoFilter[property] = `/.*${propValue}*/i`;
+                } else if (Array.isArray(propValue) && propValue.every(this._isStringOrNumber)) {
+                    mongoFilter[property] = {$in: propValue};
                 }
             }
 
             const list = await this.model.find(mongoFilter, allowedFields[this.name])
                 .populate('participants')
                 .populate('editors')
+                .populate('owner')
                 .skip(size * index)
                 .limit(size)
                 .sort(sort.way + sort.field)
@@ -157,6 +162,10 @@ class GeneralController {
         } catch (err) {
             throw err;
         }
+    }
+
+    _isStringOrNumber(item: any) {
+      return typeof item === 'string' || typeof item === 'number';
     }
 
 }

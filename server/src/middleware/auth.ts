@@ -5,9 +5,10 @@ import { IRequest } from '../interfaces';
 import * as azureJWT from 'azure-ad-jwt';
 
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const User = require('./../models/user/user.controller');
-const RSA_PRIVATE_KEY = fs.readFileSync('./key/private.key');
+const RSA_PRIVATE_KEY = crypto.randomBytes(256);
 
 class Auth {
   /**
@@ -34,7 +35,7 @@ class Auth {
     }
 
     if (user) {
-      const jwtBearerToken = jwt.sign({id: user.id}, RSA_PRIVATE_KEY, {
+      const jwtBearerToken = jwt.sign({id: user.id, role: user.role}, RSA_PRIVATE_KEY, {
         algorithm: 'HS256',
         expiresIn: 60 * 60 * 24,
         subject: user.id
@@ -45,7 +46,8 @@ class Auth {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        token: jwtBearerToken
+        token: jwtBearerToken,
+        role: user.role
       };
       res.status(200).json(userReturn);
     } else {
@@ -106,18 +108,36 @@ class Auth {
       return;
     }
     try {
-      const user = await User.getByEmail(credentials.login);
-      if (user.password) {
-        const correctPassword = await bcrypt.compare(credentials.password, user.password);
-        if (correctPassword) {
-          return user;
+      const foundUser = await User.getByEmail(credentials.login);
+      if (foundUser) {
+        if (foundUser.password) {
+          const correctPassword = await bcrypt.compare(credentials.password, foundUser.password);
+          if (correctPassword) {
+            return foundUser;
+          }
+          throw new Error(`Password not correct for user: ${foundUser.email}`);
         }
       }
-      throw new Error(`Password not correct for user: ${user.email}`);
+      throw new Error(`User not found for login: ${credentials.login}`);
     } catch (err) {
       console.log(`Unsuccessfull login: ${err}`);
       return false;
     }
+  }
+
+  static async requireAdmin(req: IRequest, res: Response, next: NextFunction) {
+    try{
+      const user = await User.get({id: req.user.id});
+      if (user.role === 'admin') {
+        return next();
+      } else {
+        return res.status(401).send('Unauthorized access');
+      }
+    } catch (err) {
+      console.warn(err);
+      return res.status(401).send('Unauthorized access');
+    }
+
   }
 
   static async _validateAzure(credentials: {token: string} ) {

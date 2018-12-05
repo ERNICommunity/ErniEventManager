@@ -15,7 +15,8 @@ export class IEventAccommodationSchema {
 
 export class IEventLocation {
     address: string;
-    gps?: string;
+    latitude?: string;
+    longitude?: string;
     room?: string;
     description?: string;
 }

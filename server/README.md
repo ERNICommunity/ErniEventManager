@@ -12,11 +12,11 @@ To install:
  * Create a .env file based on .env-example and fill it with development data
  * Run `npm install` from root server directory.
  * Run `npm install -g migrate-mongo`
- * Add SSH private key to /key/private.key for authorization
 
 To run locally:
  * Setup & make sure you have mongo running.
  * Run `npm run watch`, wait until webpack builds & runs the Nodejs app
+ * Setup .env file (.env-example can be reused)
  * When you see "[watch:server] server is listening on 3000" message, the application server is running & will automatically reload if you change any of the source file.
 
 To run on server:

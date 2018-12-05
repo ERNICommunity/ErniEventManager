@@ -22,9 +22,9 @@ export class EventService {
     return this.httpClient.get<IEventSchema>(`${environment.serverPath}${this.eventPath}/${id}`);
   }
 
-  queryEventsPaginated(paginator: IPaginator): Observable<IEventResponse> {
+  queryEventsPaginated(paginator: IPaginator, params: {type?: string}): Observable<IEventResponse> {
     // paginator.exactFilter.group = eventName;
-    return this.httpClient.get<IEventResponse>(`${environment.serverPath}${this.eventPath}`,
+    return this.httpClient.get<IEventResponse>(`${environment.serverPath}${this.eventPath}/${params && params.type ? params.type : ''}`,
       {
         params: {
           ...preparePaginator(paginator)
@@ -43,17 +43,17 @@ export class EventService {
           ...preparePaginator(paginated)
         }
       })
-      .pipe(switchMap(() => this.queryEventsPaginated(paginated)));
+      .pipe(switchMap(() => this.queryEventsPaginated(paginated, {})));
   }
 
 
 
-  join(id): Observable<Object> {
-    return this.httpClient.get(`http://localhost:3000/api/event/join/${id}`);
+  join(id: string): Observable<Object> {
+    return this.httpClient.get(`${environment.serverPath}${this.eventPath}/join/${id}`);
   }
 
-  leave(id): Observable<Object> {
-    return this.httpClient.get(`http://localhost:3000/api/event/leave/${id}`);
+  leave(id: string): Observable<Object> {
+    return this.httpClient.get(`${environment.serverPath}${this.eventPath}/leave/${id}`);
   }
 
   joined(event: IEventSchema): boolean {

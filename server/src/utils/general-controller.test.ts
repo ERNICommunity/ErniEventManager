@@ -89,7 +89,7 @@ describe('General Controller', () => {
                 await controller.update({id: docMock._id, data: docMock});
                 throw new Error('Should throw error');
             } catch (err) {
-                expect(err.message).toEqual('Event not found');
+                expect(err.message).toEqual('Item not found');
             }
         });
 
@@ -101,7 +101,7 @@ describe('General Controller', () => {
                 await controller.update({id: docMock._id, data: docMock});
                 throw new Error('Should throw error');
             } catch (err) {
-                expect(err.message).toEqual('Problem with updating event');
+                expect(err.message).toEqual('Problem with updating item');
             }
         });
 
@@ -140,7 +140,7 @@ describe('General Controller', () => {
                 await controller.delete({id: docMock._id});
                 throw new Error('Should throw error');
             } catch (err) {
-                expect(err.message).toEqual('Problem with deleting event');
+                expect(err.message).toEqual('Problem with deleting item');
             }
         });
 
@@ -195,6 +195,7 @@ describe('General Controller', () => {
                 sort: {way: 'way', field: 'field'},
                 someField1: 'value',
                 someField2: 9,
+                someField3: ['string', 123],
                 qi: 'someQi'
             };
 
@@ -213,7 +214,7 @@ describe('General Controller', () => {
             expect(limitSpy).toBeCalledWith(2);
             expect(sortSpy).toBeCalledWith(filterQuery.sort.way + filterQuery.sort.field);
             expect(execSpy).toBeCalled();
-            expect(ModelMock.count).toBeCalledWith({someField1: '/.*value*/i', someField2: 9});
+            expect(ModelMock.count).toBeCalledWith({someField1: '/.*value*/i', someField2: 9, someField3: {$in: ['string', 123]}});
 
             expect(result.list).toEqual([docMock]);
             expect(result.length).toEqual(1);

@@ -16,7 +16,7 @@ class ApiRoute {
         this.router.post('/login', Auth.login);
         this.router.use('/subEvent', Auth.authorize, subEventRouter);
         this.router.use('/event', Auth.authorize, eventRouter);
-        this.router.use('/user', Auth.authorize, userRouter);
+        this.router.use('/user', Auth.authorize, Auth.requireAdmin, userRouter);
         this.router.get('/', Auth.authorize, this.getEmpty);
         this.router.get('/:params', Auth.authorize, this.getParams);
     }

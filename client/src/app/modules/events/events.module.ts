@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
-
-import { EventsComponent } from './events.component';
-import { EventCardComponent } from './event-card/event-card.component';
-import { EventEditComponent } from './event-edit/event-edit.component';
-import { EventListComponent } from './event-list/event-list.component';
 import { CommonModule } from '@angular/common';
-import { EventsRoutingModule } from './events-routing.module';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { TagInputModule } from 'ngx-chips';
+import { MapComponent } from '../core/map/map.component';
 import { LoaderModule } from '../loader/loader.module';
 import { SharedModule } from '../shared/shared.module';
-import { ParticipantListComponent } from './participant-list/participant-list.component';
-import { EventLocationPipe } from './event-card/event-location.pipe';
+import { EventCardComponent } from './event-card/event-card.component';
 import { EventDatePipe } from './event-card/event-date.pipe';
-import { TranslateModule } from '@ngx-translate/core';
+import { EventLocationPipe } from './event-card/event-location.pipe';
+import { EventEditComponent } from './event-edit/event-edit.component';
+import { EventListComponent } from './event-list/event-list.component';
+import { EventsRoutingModule } from './events-routing.module';
+import { EventsComponent } from './events.component';
 import { InviteDialogComponent } from './participant-list/invite-dialog/invite-dialog.component';
-import { TagInputModule } from 'ngx-chips';
+import { ParticipantListComponent } from './participant-list/participant-list.component';
+
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { TagInputModule } from 'ngx-chips';
         ParticipantListComponent,
         EventLocationPipe,
         EventDatePipe,
-        InviteDialogComponent
+        InviteDialogComponent,
+        MapComponent
     ],
     imports: [
         CommonModule,
