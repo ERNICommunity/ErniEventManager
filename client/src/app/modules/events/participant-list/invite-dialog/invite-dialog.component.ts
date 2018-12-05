@@ -1,10 +1,10 @@
-import { IEventSchema } from './../../../../interfaces/event.interface';
-
-import { FormControl } from '@angular/forms';
-import { NgbModal, NgbModalRef, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { IEventSchema } from './../../../../interfaces/event.interface';
+
 
 @Component({
   selector: 'app-invite-dialog',
@@ -21,23 +21,23 @@ export class InviteDialogComponent implements OnInit {
 
   closeResult: string;
   modal: NgbModalRef;
-  validators;
-  errorMessages;
+  validators: ((c: AbstractControl) => {[value: string]: boolean})[];
+  errorMessages: {[key: string]: string};
 
-  private emails: Array<any>;
-  get _emails(): Array<string> {
-    return this.emails;
+  private _emails: Array<string>;
+  get emails(): Array<string> {
+    return this._emails;
   }
-  set _emails(array: Array<string>) {
-    this.emails = array;
+  set emails(array: Array<string>) {
+    this._emails = array;
   }
 
-  private inputText: string;
-  get _inputText(): string {
-    return this.inputText;
+  private _inputText: string;
+  get inputText(): string {
+    return this._inputText;
   }
-  set _inputText(value: string) {
-    this.inputText = value;
+  set inputText(value: string) {
+    this._inputText = value;
   }
 
   constructor(private modalService: NgbModal,
@@ -46,21 +46,21 @@ export class InviteDialogComponent implements OnInit {
     this.errorMessages = {
       'email': translationService.instant('ERROR_WRONG_EMAIL')
     };
-    this.emails = new Array();
+    this._emails = new Array();
   }
 
   ngOnInit(): void {}
 
   // TODO: redirect sending mails to backend
-  public sendInvitation(): void {
+  sendInvitation(): void {
     // If input text is not empty validate it and pass to email array
-    if (this.inputText && InviteDialogComponent.EMAIL_REGEXP.test(this.inputText)) {
-      this.emails.push(this.inputText);
-      this.inputText = null;
+    if (this._inputText && InviteDialogComponent.EMAIL_REGEXP.test(this._inputText)) {
+      this._emails.push(this._inputText);
+      this._inputText = null;
     }
-    if (this.emails.length > 0) {
+    if (this._emails.length > 0) {
       // Build the invitation mail
-      const mails = this.emails.join(';');
+      const mails = this._emails.join(';');
       const subject = this.translationService.instant('EMAIL_INVITATION_SUBJECT', {'name': this.iEvent.name});
       const dateFormat = 'D.M. YYYY';
       let body = this.translationService.instant('EMAIL_INVITATION_BODY', {
@@ -79,7 +79,7 @@ export class InviteDialogComponent implements OnInit {
     }
   }
 
-  public show(): void {
+  show(): void {
     this.open(this.content);
   }
 
@@ -102,7 +102,7 @@ export class InviteDialogComponent implements OnInit {
     }
   }
 
-  private validateEmail(control: FormControl): {[value: string]: boolean} | null {
+  private validateEmail(control: AbstractControl): {[value: string]: boolean} | null {
     if (!InviteDialogComponent.EMAIL_REGEXP.test(control.value)) {
       return {
         'email': true
