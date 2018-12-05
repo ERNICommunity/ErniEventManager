@@ -148,11 +148,35 @@
                                 <span class="error-message" [translate]="'ERROR_REQUIRED_FIELDS'"></span>
                             </div>
                         </div>
-                        <div class="col text-right">
+                    </div>
+                    <div class="row">
+                        <div class="col">
                             <div class="form-group">
-                                <button id="cancel-event" type="button" class="btn btn-secondary ml-1" (click)="cancel()" [translate]="'CANCEL'"></button>
-                                <button id="create-event" type="button" class="btn btn-primary ml-1" *ngIf="isCreate" (click)="create()" [disabled]="eventForm.invalid" [translate]="'CREATE'"></button>
-                                <button id="edit-event" type="button" class="btn btn-primary ml-1" *ngIf="!isCreate" (click)="edit()" [disabled]="eventForm.invalid" [translate]="'EDIT'"></button>
+                                <button id="cancel-event" 
+                                        type="button" 
+                                        class="btn btn-secondary w-100" 
+                                        (click)="cancel()" 
+                                        [translate]="'CANCEL'"></button>
+                            </div>
+                        </div>
+                        <div class="col" *ngIf="isCreate">
+                            <div class="form-group">
+                                <button id="create-event" 
+                                        type="button" 
+                                        class="btn btn-primary w-100"  
+                                        (click)="create()"
+                                        [disabled]="eventForm.invalid" 
+                                        [translate]="'CREATE'"></button>
+                            </div>
+                        </div>
+                        <div class="col" *ngIf="!isCreate">
+                            <div class="form-group">
+                                <button id="edit-event" 
+                                        type="button" 
+                                        class="btn btn-primary w-100" 
+                                        (click)="edit()"
+                                        [disabled]="eventForm.invalid" 
+                                        [translate]="'EDIT'"></button>
                             </div>
                         </div>
                     </div>

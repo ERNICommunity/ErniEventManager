@@ -40,7 +40,7 @@ export class ParticipantListComponent implements OnInit, OnChanges {
       {_id: '2', email: 'j@d.com', firstName: 'Jane', lastName: 'Doe', type: 'participant', avatar: 'female', role: 'role'},
       {_id: '3', email: 'j@d.com', firstName: 'Jack', lastName: 'Kerouac', type: 'participant', avatar: 'male', role: 'role'}
     ];
-    this.participants = people;
+    this.participants = this.iEvent.participants;
   }
 
   ngOnChanges(): void {
@@ -49,7 +49,7 @@ export class ParticipantListComponent implements OnInit, OnChanges {
       this.export_filename = name + '_participants.csv';
     }
     // TODO: uncomment this after "join event" functionality works
-    // this.participants = this.iEvent.participants;
+    this.participants = this.iEvent.participants;
   }
 
   public invite(): void {
