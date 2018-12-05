@@ -25,15 +25,15 @@
 }
 
 .btn-icon {
-    height: 20px;
+    height: 25px;
 }
 
-.btn-padding {
-    padding: 2px 4px;
+.btn-icon:hover {
+    cursor: pointer;
 }
 
 @media (min-width: 768px) {
     .btn-icon {
-        height: 16px;
+        height: 20px;
     }
 }

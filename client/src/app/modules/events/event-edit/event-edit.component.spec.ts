@@ -1,3 +1,5 @@
+import { TagInputModule } from 'ngx-chips';
+import { InviteDialogComponent } from './../participant-list/invite-dialog/invite-dialog.component';
 import { async, ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
 
 import { EventEditComponent } from './event-edit.component';
@@ -7,6 +9,7 @@ import { HttpLoaderFactory } from '../../../app.module';
 import { HttpClient } from 'selenium-webdriver/http';
 import { EventService } from '../../../services/event/event.service';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Router, ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
@@ -18,11 +21,13 @@ import { ParticipantListComponent } from '../participant-list/participant-list.c
 
 const getConfigObject  = (routerParam: string) => {
   return {
-    declarations: [ EventEditComponent, ParticipantListComponent ],
+    declarations: [ EventEditComponent, ParticipantListComponent, InviteDialogComponent ],
     imports: [
       HttpClientTestingModule,
       FormsModule,
+      NgbModule.forRoot(),
       ReactiveFormsModule,
+      TagInputModule,
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,

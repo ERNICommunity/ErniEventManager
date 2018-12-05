@@ -1,0 +1,55 @@
+@import "../../../../../../node_modules/ngx-chips/core/styles/core/_core.scss";
+@import "../../../../../styles.scss";
+
+$app-theme-primary: $light-blue;
+$app-theme-primary-dark: darken($app-theme-primary, 10%);
+$app-theme-error: $red;
+
+// this is the container's theme
+$app-theme: (
+    container-border-bottom: 2px solid $app-theme-primary,
+    container-border-bottom-focused: 2px solid $app-theme-primary,
+    container-border-bottom-invalid: 2px solid $app-theme-primary,
+    error-message-color: $app-theme-error
+);
+
+// this is the tag's theme
+$app-tag-theme: (
+    border-radius: 0.25rem,
+    background: $app-theme-primary,
+    color: #f9f9f9,
+    color-hover: #f9f9f9,
+    background-focused: $app-theme-primary,
+    background-active: $app-theme-primary,
+    background-hover: darken($app-theme-primary, 5%)
+);
+
+// this is the delete icon's theme
+$app-icon-theme: (
+    color: #f9f9f9,
+    color-hover: #f9f9f9,
+    fill: #fff,
+    fill-focus: #eee,
+    transition: all 0.35s
+);
+
+// apply theme to the container
+::ng-deep .ng2-tag-input.app-theme {
+    @include tag-input-theme($app-theme);
+}
+
+// apply theme to the tags
+::ng-deep .ng2-tag-input.app-theme tag {
+    @include tag-theme($app-tag-theme);
+}
+
+// apply theme to the delete icon
+:ng-deep .ng2-tag-input.app-theme tag delete-icon {
+    @include icon-theme($app-icon-theme);
+}
+
+// ************************************************ NGX-CHIPS unrelated follows
+
+.footnote {
+    font-size: 0.7em;
+}

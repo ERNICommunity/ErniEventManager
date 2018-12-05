@@ -1,12 +1,13 @@
+import { EventEmitter } from '@angular/core';
 import { of } from 'rxjs';
 import { ILoginResultSchema } from '../interfaces';
-import { EventEmitter } from '@angular/core';
 
 const loginResultSchemaMock: ILoginResultSchema  = {
     token: 'toktoktoktoktok',
     firstName: 'Juro',
     lastName: 'Lname',
-    email: 'email@email.em'
+    email: 'email@email.em',
+    role: 'nobody'
 };
 
 export const authServiceSpy = {
