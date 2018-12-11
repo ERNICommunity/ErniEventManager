@@ -20,12 +20,7 @@ const eventsRoutes: Routes = [
             {
                 path: 'edit/:id',
                 component: EventEditComponent
-            },
-            {
-                path: ':type',
-                component: EventListComponent,
-                resolve: {events: EventsResolver},
-            },
+            }
         ]
     },
 ];

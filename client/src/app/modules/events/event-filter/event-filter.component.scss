@@ -1,0 +1,22 @@
+input[type="text"] {
+  border: none;
+  font-size: 2em;
+  width: 100%;
+}
+
+input[type="text"]:focus, button:focus {
+  outline:0;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #cccccc;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+button:hover, .active {
+  color: #00a5db;
+}
