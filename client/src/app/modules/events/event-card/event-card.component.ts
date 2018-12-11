@@ -11,32 +11,18 @@ import { EventService } from '../../../services/event/event.service';
 export class EventCardComponent implements OnInit {
   @Input() event: IEventSchema;
   @Output() delete: EventEmitter<IEventSchema> = new EventEmitter();
-  @Output() edit: EventEmitter<string> = new EventEmitter();
-  @Output() join: EventEmitter<string> = new EventEmitter();
-  @Output() leave: EventEmitter<string> = new EventEmitter();
+  @Output() open: EventEmitter<string> = new EventEmitter();
 
   constructor(private http: HttpClient, private eventService: EventService) { }
 
   ngOnInit(): void {
   }
 
-  editEvent(): void {
-    this.edit.emit(this.event._id);
+  openEvent (): void {
+    this.open.emit(this.event._id);
   }
 
   deleteEvent(): void {
     this.delete.emit(this.event);
-  }
-
-  joinEvent(): void {
-    this.join.emit(this.event._id);
-  }
-
-  leaveEvent(): void {
-    this.leave.emit(this.event._id);
-  }
-
-  joined(): boolean {
-    return this.eventService.joined(this.event);
   }
 }

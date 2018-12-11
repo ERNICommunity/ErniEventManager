@@ -14,8 +14,6 @@ export class ParticipantListComponent implements OnInit, OnChanges {
 
   private export_filename: string;
   private participants: IUserSchema[];
-  private imgExportSrc = '/assets/images/icons/export-light-blue.png';
-  private imgInviteSrc = '/assets/images/icons/invite-light-blue.png';
   private showInviteDialog = false;
 
   @Input() iEvent: IEventSchema;
@@ -38,6 +36,7 @@ export class ParticipantListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    this.participants = this.iEvent.participants;
     if (this.iEvent.name) {
       const name = this.iEvent.name.toLowerCase().replace(' ', '_');
       this.export_filename = name + '_participants.csv';

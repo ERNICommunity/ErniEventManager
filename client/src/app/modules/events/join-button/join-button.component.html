@@ -1,0 +1,14 @@
+<button type="button" class="btn btn-light join-button" (click)="joinEvent()" *ngIf="!joined() && canJoin()">
+    <i class="fa fa-plus"></i>
+    {{ 'JOIN' | translate }}
+</button>
+<button type="button" class="btn btn-light joined-button" (click)="leaveEvent()" *ngIf="joined()">
+    <div class="button-default">
+        <i class="fa fa-check"></i>
+        {{ 'JOINED' | translate }}
+    </div>
+    <div class="button-hover">
+        <i class="fa fa-times"></i>
+        {{ 'LEAVE' | translate }}
+    </div>
+</button>

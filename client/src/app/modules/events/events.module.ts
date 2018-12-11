@@ -10,11 +10,13 @@ import { EventCardComponent } from './event-card/event-card.component';
 import { EventDatePipe } from './event-card/event-date.pipe';
 import { EventLocationPipe } from './event-card/event-location.pipe';
 import { EventEditComponent } from './event-edit/event-edit.component';
+import { EventViewComponent } from './event-view/event-view.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { EventsComponent } from './events.component';
 import { InviteDialogComponent } from './participant-list/invite-dialog/invite-dialog.component';
 import { ParticipantListComponent } from './participant-list/participant-list.component';
+import { JoinButtonComponent } from './join-button/join-button.component';
 
 
 @NgModule({
@@ -22,12 +24,14 @@ import { ParticipantListComponent } from './participant-list/participant-list.co
         EventsComponent,
         EventCardComponent,
         EventEditComponent,
+        EventViewComponent,
         EventListComponent,
         ParticipantListComponent,
         EventLocationPipe,
         EventDatePipe,
         InviteDialogComponent,
-        MapComponent
+        MapComponent,
+        JoinButtonComponent
     ],
     imports: [
         CommonModule,

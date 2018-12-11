@@ -51,5 +51,9 @@
     "USERS": "Users",
     "JOIN": "Join",
     "DELETE": "Delete",
-    "NO_RESULTS": "No results found :("
+    "NO_RESULTS": "No results found :(",
+    "CREATED_BY": "Created by",
+    "PARTICIPATION_LIMIT_START": "There is free space for ",
+    "PARTICIPATION_LIMIT_END": " participants.",
+    "PARTICIPATION_LIMIT_FULL": "Event is full."
 }

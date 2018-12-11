@@ -33,7 +33,9 @@ export class IEventSchema {
     transportBus?: boolean;
     transportCar?: boolean;
     accommodation?: boolean;
-    owner: string;
+    owner: {
+      email: string
+    };
     editors: Array<string>;
     participants: Array<IUserSchema>;
     limit?: Number;
