@@ -1,0 +1,33 @@
+<div class="col-xs-12">
+    <div class="row">
+        <div class="col-md-8 pl-md-0" id="eventInfo">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>{{iEvent.name}}
+                            <span *ngIf="canEdit" class="edit-button pull-right" (click)="editEvent()">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </h1>
+                        <hr />
+                        <div class="row">
+                            <div class="col-8">
+                                <p>{{iEvent.startDate | date: 'dd/MM/yyyy'}} - {{iEvent.endDate  | date: 'dd/MM/yyyy'}}, {{iEvent.location?.address}}</p>
+                                <p><span [translate]="'CREATED_BY'"></span>: {{iEvent.owner?.firstName}} {{iEvent.owner?.lastName}}</p>
+                            </div>
+                            <div class="col-4" align="right">
+                                <join-button [event]="iEvent" (joinedEvent)="changeEvent($event)" ></join-button>
+                            </div>
+                        </div>
+
+                        <p>{{iEvent.description}}</p>
+                        <app-map [edit]="canEditLocation" [title]="iEvent.location?.address" [latitude]="iEvent.location?.latitude" [longitude]="iEvent.location?.longitude" ></app-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 pr-md-0 pl-md-0" id="participantList">
+            <app-participant-list [iEvent]="iEvent"></app-participant-list>
+        </div>
+    </div>
+</div>

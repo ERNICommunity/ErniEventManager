@@ -1,0 +1,37 @@
+button {
+  width: auto;
+  height: 35px;
+  padding: 5px 10px;
+}
+
+button + button {
+  margin-left: 10px;
+}
+
+.btn-light {
+  background-color: white;
+}
+
+.joined-button {
+  background: #b0d57c !important;
+  color: #000000;
+  border-color: #b0d57c;
+
+  .button-default {
+    display: block;
+  }
+  .button-hover {
+    display: none;
+  }
+}
+.joined-button:hover {
+  background: #ff9b9c !important;
+  color: #000000 !important;
+  border-color: #ff9b9c !important;
+  .button-default {
+    display: none;
+  }
+  .button-hover {
+    display: block;
+  }
+}

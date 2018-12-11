@@ -30,8 +30,12 @@ export class EventEditComponent implements OnInit {
       if (!this.isCreate) {
         this.getEvent().subscribe(
           (receivedEvent) => {
-            this.iEvent = receivedEvent;
-            this.setEventFormValues(receivedEvent);
+            if (this.canEdit(receivedEvent)) {
+              this.iEvent = receivedEvent;
+              this.setEventFormValues(receivedEvent);
+            } else {
+              this.router.navigate(['/events', 'view', receivedEvent._id]);
+            }
           },
           (error) => {
             this.router.navigate(['/']);
@@ -64,7 +68,7 @@ export class EventEditComponent implements OnInit {
     this.updateEventSchema();
     this.eventService.editEvent(this.route.snapshot.params['id'], this.iEvent)
       .subscribe((event) => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/events', 'view', this.route.snapshot.params['id']]);
       },
         (reason) => {
           console.log('Following error appeared: ', reason);
@@ -74,7 +78,7 @@ export class EventEditComponent implements OnInit {
 
   public cancel(): void {
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/events', 'view', this.route.snapshot.params['id']]);
   }
 
   public getEvent(): Observable<IEventSchema> {
@@ -87,6 +91,10 @@ export class EventEditComponent implements OnInit {
     } else {
       this.isCreate = false;
     }
+  }
+
+  private canEdit(receivedEvent): boolean {
+    return receivedEvent.owner && receivedEvent.owner.email === localStorage.getItem('user_email');
   }
 
   /**

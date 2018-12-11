@@ -45,7 +45,7 @@ export class EventListComponent implements OnInit {
   }
 
   openEvent(id: string): void {
-    this.router.navigate(['/events', 'edit', id]);
+    this.router.navigate(['/events', 'view', id]);
   }
 
   deleteEvent(event: IEventSchema): void {
@@ -63,26 +63,6 @@ export class EventListComponent implements OnInit {
         this.retreiveData = false;
       }
     );
-  }
-
-  joinEvent(id: string): void {
-    this.eventService.join(id)
-      .subscribe((joinedEvent: IEventSchema) => {
-        const event = this.events.find(item => item._id === joinedEvent._id);
-        if (event) {
-          event.participants = joinedEvent.participants;
-        }
-      });
-  }
-
-  leaveEvent(id: string): void {
-    this.eventService.leave(id)
-      .subscribe((joinedEvent: IEventSchema) => {
-        const event = this.events.find(item => item._id === joinedEvent._id);
-        if (event) {
-          event.participants = joinedEvent.participants;
-        }
-      });
   }
 
   displayError(reason: any): void {

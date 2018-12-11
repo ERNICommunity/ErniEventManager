@@ -57,6 +57,9 @@ export class EventService {
   }
 
   joined(event: IEventSchema): boolean {
+    if (!event.participants){
+      return false;
+    }
     return event.participants.filter((user: any) => user.email === localStorage.getItem('user_email')).length !== 0;
   }
 }

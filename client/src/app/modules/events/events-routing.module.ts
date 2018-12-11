@@ -3,6 +3,7 @@ import { EventsComponent } from './events.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { NgModule } from '@angular/core';
 import { EventEditComponent } from './event-edit/event-edit.component';
+import { EventViewComponent } from './event-view/event-view.component';
 import { AuthGuard } from '../../services/auth/auth-guard.service';
 import { EventsResolver } from './events-resolver.service';
 
@@ -20,6 +21,10 @@ const eventsRoutes: Routes = [
             {
                 path: 'edit/:id',
                 component: EventEditComponent
+            },
+            {
+                path: 'view/:id',
+                component: EventViewComponent
             },
             {
                 path: ':type',

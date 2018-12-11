@@ -52,5 +52,9 @@
     "USERS": "Uzivatelia",
     "JOIN": "Pridať sa",
     "DELETE": "Zmazať",
-    "NO_RESULTS": "Neboli nájdené žiadne výsledky :("
+    "NO_RESULTS": "Neboli nájdené žiadne výsledky :(",
+    "CREATED_BY": "Vytvoril/a",
+    "PARTICIPATION_LIMIT_START": "Na tento je ešte ",
+    "PARTICIPATION_LIMIT_END": " voľných miest.",
+    "PARTICIPATION_LIMIT_FULL": "Event je plne obsadený."
 }

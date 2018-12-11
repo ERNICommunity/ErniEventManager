@@ -4,26 +4,24 @@
           <span class="form-control-label" [translate]="'PARTICIPANTS'"></span>
       </div>
       <div class="col text-right">
-          <img [src]="imgExportSrc" 
-                alt="{{'EXPORT' | translate}}"  
-                title="{{'EXPORT' | translate}}" 
-                class="btn-icon pr-2" 
-                (click)="export()"
-                (mouseover)="imgExportSrc='/assets/images/icons/export-blue.png'"
-                (mouseleave)="imgExportSrc='/assets/images/icons/export-light-blue.png'"
-                (mousedown)="imgExportSrc='/assets/images/icons/export-black.png'">
-          <img [src]="imgInviteSrc" 
-                alt="{{'INVITE' | translate}}" 
-                title="{{'INVITE' | translate}}" 
-                class="btn-icon"
-                (click)="inviteDialog.show()"
-                (mouseover)="imgInviteSrc='/assets/images/icons/invite-blue.png'"
-                (mouseleave)="imgInviteSrc='/assets/images/icons/invite-light-blue.png'"
-                (mousedown)="imgInviteSrc='/assets/images/icons/invite-black.png'">
+          <i    title="{{'EXPORT' | translate}}"
+                class="fa fa-upload"
+                (click)="export()"></i>
+          <i  title="{{'INVITE' | translate}}"
+                class="fa fa-user-plus"
+              (click)="inviteDialog.show()"></i>
       </div>
   </div>
   <app-invite-dialog #inviteDialog="inviteDialog" [iEvent]="iEvent"></app-invite-dialog>
-  <hr>
+  <hr />
+  <div *ngIf="iEvent.limit && (iEvent.limit - iEvent.participants.length > 0)" class="alert alert-success">
+      <span [translate]="'PARTICIPATION_LIMIT_START'"></span>
+      <b>{{(iEvent.limit - iEvent.participants.length)}}</b>
+      <span [translate]="'PARTICIPATION_LIMIT_END'"></span>
+  </div>
+  <div *ngIf="iEvent.limit && (iEvent.limit - iEvent.participants.length === 0)" class="alert alert-danger">
+      <span [translate]="'PARTICIPATION_LIMIT_FULL'"></span>
+  </div>
   <div class="row">
       <div class="col-12 border-left pb-1" *ngFor="let participant of participants">
           <span class="align-middle d-table-cell" title="{{participant.firstName}} {{participant.lastName}}">

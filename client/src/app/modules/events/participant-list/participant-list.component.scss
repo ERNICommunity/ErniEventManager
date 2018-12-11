@@ -32,6 +32,17 @@
     cursor: pointer;
 }
 
+i {
+  margin-left: 5px;
+  font-size: 1.2em;
+  color: #00a5db;
+  cursor: pointer;
+}
+
+i:hover {
+  color: inherit;
+}
+
 @media (min-width: 768px) {
     .btn-icon {
         height: 20px;
