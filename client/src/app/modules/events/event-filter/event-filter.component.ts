@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class EventFilterComponent implements OnInit {
   @Output() reloadedEvents = new EventEmitter();
-  searchTerm: string;
+  searchTerm = "";
   joined = false;
 
   constructor(
