@@ -11,6 +11,7 @@ import { EventDatePipe } from './event-card/event-date.pipe';
 import { EventLocationPipe } from './event-card/event-location.pipe';
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { EventFilterComponent } from './event-filter/event-filter.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { EventsComponent } from './events.component';
 import { InviteDialogComponent } from './participant-list/invite-dialog/invite-dialog.component';
@@ -23,6 +24,7 @@ import { ParticipantListComponent } from './participant-list/participant-list.co
         EventCardComponent,
         EventEditComponent,
         EventListComponent,
+        EventFilterComponent,
         ParticipantListComponent,
         EventLocationPipe,
         EventDatePipe,

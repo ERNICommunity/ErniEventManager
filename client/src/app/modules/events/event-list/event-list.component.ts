@@ -89,4 +89,23 @@ export class EventListComponent implements OnInit {
     this.errorMessage = reason && reason.error ? reason.error.err : 'Unexpected error appeared';
   }
 
+  reloadEvents(searchConditions: {query: string, type: string}): void {
+    const self = this;
+    if (searchConditions.query !== '') {
+      this.paginator.filter = {
+        name:  searchConditions.query
+      };
+    } else {
+      this.paginator.filter = {};
+    }
+
+    this.eventService.queryEventsPaginated(this.paginator, {type: searchConditions.type} )
+      .subscribe(function(events) {
+        self.retreiveData = false;
+        self.paginator.length = events.length;
+        self.events = events.list;
+      });
+
+  }
+
 }
