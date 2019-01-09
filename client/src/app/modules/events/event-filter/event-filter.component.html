@@ -6,7 +6,7 @@
         <button class="pull-right" placement="top" ngbTooltip="Create" (click)="createEvent()">
             <i class="fa fa-plus"></i>
         </button>
-        <button class="pull-right" placement="top" ngbTooltip="Joined" [ngClass]="joined ? 'active': ''" (click)="toggleJoined()">
+        <button class="pull-right" placement="top" ngbTooltip="Joined" [ngClass]="{ 'active' : joined }" (click)="toggleJoined()">
             <i class="fa fa-check"></i>
         </button>
         <button class="pull-right" placement="top" ngbTooltip="Search" (click)="reloadEvents()">
