@@ -1,5 +1,7 @@
 # Erni Event Manager
 
+:warning: **REPOSITORY NOT ACTIVE SINCE 2018 Dependabot alerts in git security settings disabled**
+
 Application to handle Erni events
 
 ## Setup
